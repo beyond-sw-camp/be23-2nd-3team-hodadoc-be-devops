@@ -1,0 +1,28 @@
+# ingress-controller 설치 명령어
+# kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.1/deploy/static/provider/aws/deploy.yaml
+# aws lb -> ingress controller pod -> ingress -> service로의 라우팅
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hodadoc-ingress
+  namespace: hodadoc
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  tls:
+  - hosts:
+    - "server.hodadoc.littleniddle.store"
+    secretName: server-hodadoc-littleniddle-store-tls
+  rules:
+  - host: server.hodadoc.littleniddle.store
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: hodadoc-service
+            port:
+              number: 80
+      

@@ -1,0 +1,225 @@
+<mxfile host="app.diagrams.net" version="29.6.1">
+  <diagram name="접수" id="checkin-flow">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ===== 타이틀 ===== -->
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#333;" value="3. 접수 (Check-in / Reception)" vertex="1">
+          <mxGeometry x="400" y="20" width="500" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- ========================================== -->
+        <!-- 환자: 접수 생성 흐름                         -->
+        <!-- ========================================== -->
+        <mxCell id="patient-section" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#4A86C8;strokeWidth=2;dashed=1;fontSize=14;fontStyle=1;fontColor=#4A86C8;verticalAlign=top;spacingTop=5;" value="환자: 접수 생성 흐름" vertex="1">
+          <mxGeometry x="30" y="80" width="1540" height="300" as="geometry" />
+        </mxCell>
+
+        <!-- Step 1: profileGuard -->
+        <mxCell id="p1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" value="① profileGuard&#xa;검증" vertex="1">
+          <mxGeometry x="50" y="130" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="p1-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#6c8ebf;align=center;" value="JWT 토큰 검증&#xa;+ 이름/전화번호 확인" vertex="1">
+          <mxGeometry x="35" y="180" width="150" height="25" as="geometry" />
+        </mxCell>
+
+        <!-- Step 2: 접수하기 버튼 -->
+        <mxCell id="p2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" value="② 접수하기&#xa;버튼 클릭" vertex="1">
+          <mxGeometry x="230" y="130" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="p2-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#6c8ebf;align=center;" value="병원 상세 페이지&#xa;버튼 비활성화 조건:&#xa;휴무 / 마감 / 운영시간 외" vertex="1">
+          <mxGeometry x="210" y="180" width="160" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Step 3: 접수 모달 → 동의 -->
+        <mxCell id="p3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" value="③ 접수 모달&#xa;약관 동의" vertex="1">
+          <mxGeometry x="410" y="130" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="p3-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#6c8ebf;align=center;" value="CheckinModal.vue&#xa;전체 동의 후 접수 요청" vertex="1">
+          <mxGeometry x="395" y="180" width="150" height="25" as="geometry" />
+        </mxCell>
+
+        <!-- Step 4: Backend 접수 생성 -->
+        <mxCell id="p4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="④ 접수 생성" vertex="1">
+          <mxGeometry x="600" y="130" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="p4-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#82b366;align=center;" value="POST /checkin/patient&#xa;{ hospitalId }" vertex="1">
+          <mxGeometry x="590" y="180" width="150" height="25" as="geometry" />
+        </mxCell>
+
+        <!-- 가용성 검증 상세 -->
+        <mxCell id="p4-validate" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#82b366;fontSize=9;align=left;spacingLeft=10;" value="&lt;b&gt;가용성 검증 (Backend)&lt;/b&gt;&#xa;&#xa;1. 병원 삭제 여부 체크&#xa;2. 관리자 수동 마감 여부 체크&#xa;3. 병원 휴무일 (HospitalHoliday) 체크&#xa;4. 공휴일 (PublicHoliday) 체크&#xa;5. 운영시간 외 여부 체크&#xa;6. 마감 30분 전 여부 체크&#xa;7. 오늘 중복 접수 체크" vertex="1">
+          <mxGeometry x="440" y="230" width="260" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- Step 5: Redis 대기번호 -->
+        <mxCell id="p5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;fontStyle=1;" value="⑤ 대기번호 발급" vertex="1">
+          <mxGeometry x="800" y="130" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="p5-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#d6b656;align=center;" value="Redis INCR (atomic)&#xa;key: checkin:waitingNumber&#xa;:{hospitalId}:{today}" vertex="1">
+          <mxGeometry x="780" y="180" width="170" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Step 6: DB 저장 -->
+        <mxCell id="p6" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=6;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=9;" value="MariaDB&#xa;Checkin 저장&#xa;status=WAITING" vertex="1">
+          <mxGeometry x="1000" y="125" width="120" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- Step 7: SSE 알림 -->
+        <mxCell id="p7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#CC6600;fontSize=10;fontStyle=1;fontColor=#CC6600;" value="⑦ SSE 알림&#xa;→ 병원" vertex="1">
+          <mxGeometry x="1180" y="130" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="p7-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#CC6600;align=center;" value="RECEPTION_CREATED&#xa;새 접수 알림" vertex="1">
+          <mxGeometry x="1170" y="180" width="140" height="25" as="geometry" />
+        </mxCell>
+
+        <!-- Step 8: 결과 표시 -->
+        <mxCell id="p8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" value="⑧ 대기순번 표시" vertex="1">
+          <mxGeometry x="1370" y="130" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="p8-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#6c8ebf;align=center;" value="&quot;현재 대기순번: N번&quot;&#xa;마이페이지 접수 탭 이동" vertex="1">
+          <mxGeometry x="1350" y="180" width="170" height="25" as="geometry" />
+        </mxCell>
+
+        <!-- 환자 흐름 화살표 -->
+        <mxCell id="pa1" edge="1" parent="1" source="p1" target="p2" style="rounded=1;orthogonalLoop=1;strokeColor=#333;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pa2" edge="1" parent="1" source="p2" target="p3" style="rounded=1;orthogonalLoop=1;strokeColor=#333;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pa3" edge="1" parent="1" source="p3" target="p4" style="rounded=1;orthogonalLoop=1;strokeColor=#333;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pa3-label" connectable="0" parent="pa3" style="edgeLabel;html=1;fontSize=8;fontColor=#82b366;" value="POST" vertex="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pa4v" edge="1" parent="1" source="p4" target="p4-validate" style="rounded=1;orthogonalLoop=1;strokeColor=#82b366;strokeWidth=1;dashed=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pa5" edge="1" parent="1" source="p4" target="p5" style="rounded=1;orthogonalLoop=1;strokeColor=#333;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pa5-label" connectable="0" parent="pa5" style="edgeLabel;html=1;fontSize=8;fontColor=#82b366;" value="검증 통과" vertex="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pa6" edge="1" parent="1" source="p5" target="p6" style="rounded=1;orthogonalLoop=1;strokeColor=#333;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pa7" edge="1" parent="1" source="p6" target="p7" style="rounded=1;orthogonalLoop=1;strokeColor=#CC6600;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pa8" edge="1" parent="1" source="p7" target="p8" style="rounded=1;orthogonalLoop=1;strokeColor=#333;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ========================================== -->
+        <!-- 병원관리자: 접수 관리 흐름                     -->
+        <!-- ========================================== -->
+        <mxCell id="hospital-section" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#82b366;strokeWidth=2;dashed=1;fontSize=14;fontStyle=1;fontColor=#82b366;verticalAlign=top;spacingTop=5;" value="병원관리자: 접수 관리 흐름" vertex="1">
+          <mxGeometry x="30" y="400" width="1540" height="280" as="geometry" />
+        </mxCell>
+
+        <!-- 접수 목록 -->
+        <mxCell id="h1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" value="① 오늘 접수 목록" vertex="1">
+          <mxGeometry x="50" y="450" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="h1-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#82b366;align=center;" value="GET /checkin/hospital&#xa;오늘 날짜 기준 전체 조회" vertex="1">
+          <mxGeometry x="30" y="500" width="180" height="25" as="geometry" />
+        </mxCell>
+
+        <!-- 호출 -->
+        <mxCell id="h2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="② 환자 호출" vertex="1">
+          <mxGeometry x="280" y="440" width="130" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="h2-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#82b366;align=center;" value="PATCH /{id}/status&#xa;WAITING → CALLED" vertex="1">
+          <mxGeometry x="265" y="480" width="160" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="h2-sse" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#CC6600;fontSize=9;fontColor=#CC6600;" value="SSE → 환자: 호출되었어요!&#xa;RECEPTION_CALLED" vertex="1">
+          <mxGeometry x="460" y="435" width="180" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- 대기순번 업데이트 -->
+        <mxCell id="h2-queue" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#CC6600;fontSize=9;fontColor=#CC6600;" value="SSE → 대기 중인 모든 환자&#xa;RECEPTION_QUEUE_UPDATE&#xa;&quot;현재 대기 순번: N번&quot;" vertex="1">
+          <mxGeometry x="460" y="485" width="200" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- 진료 완료 -->
+        <mxCell id="h3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="③ 진료 완료" vertex="1">
+          <mxGeometry x="280" y="550" width="130" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="h3-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#82b366;align=center;" value="PATCH /{id}/status&#xa;CALLED → COMPLETED" vertex="1">
+          <mxGeometry x="265" y="590" width="160" height="25" as="geometry" />
+        </mxCell>
+
+        <!-- 접수 취소 -->
+        <mxCell id="h4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1;" value="④ 접수 취소" vertex="1">
+          <mxGeometry x="280" y="630" width="130" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="h4-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#b85450;align=center;" value="WAITING → CANCELLED&#xa;+ 대기순번 재계산 브로드캐스트" vertex="1">
+          <mxGeometry x="255" y="670" width="180" height="25" as="geometry" />
+        </mxCell>
+
+        <!-- 접수 마감 -->
+        <mxCell id="h5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1;" value="⑤ 접수 수동 마감" vertex="1">
+          <mxGeometry x="730" y="450" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="h5-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#b85450;align=center;" value="PATCH /hospital/{id}/checkin-close&#xa;환자 화면: 접수하기 버튼 비활성화&#xa;텍스트 → &quot;접수 마감&quot;" vertex="1">
+          <mxGeometry x="700" y="500" width="200" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- 상태 전이도 -->
+        <mxCell id="status-flow" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#4A86C8;fontSize=10;align=left;spacingLeft=15;" value="&lt;b&gt;접수 상태 전이&lt;/b&gt;&#xa;&#xa;WAITING → CALLED → COMPLETED&#xa;WAITING → CANCELLED&#xa;&#xa;환자 직접 취소:&#xa;  DELETE /checkin/patient/{id}&#xa;  WAITING 상태에서만 가능" vertex="1">
+          <mxGeometry x="730" y="560" width="250" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- 병원관리자 화살표 -->
+        <mxCell id="ha1a" edge="1" parent="1" source="h1" target="h2" style="rounded=1;orthogonalLoop=1;strokeColor=#82b366;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ha1b" edge="1" parent="1" source="h1" target="h3" style="rounded=1;orthogonalLoop=1;strokeColor=#82b366;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ha1c" edge="1" parent="1" source="h1" target="h4" style="rounded=1;orthogonalLoop=1;strokeColor=#b85450;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ha2s" edge="1" parent="1" source="h2" target="h2-sse" style="rounded=1;orthogonalLoop=1;strokeColor=#CC6600;strokeWidth=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ha2q" edge="1" parent="1" source="h2" target="h2-queue" style="rounded=1;orthogonalLoop=1;strokeColor=#CC6600;strokeWidth=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ========================================== -->
+        <!-- 프론트 접수 가용성 & 알림 요약                 -->
+        <!-- ========================================== -->
+        <mxCell id="bottom-section" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#9673a6;strokeWidth=2;dashed=1;fontSize=14;fontStyle=1;fontColor=#9673a6;verticalAlign=top;spacingTop=5;" value="접수 가용성 판단 &amp; SSE 알림 요약" vertex="1">
+          <mxGeometry x="30" y="700" width="1540" height="190" as="geometry" />
+        </mxCell>
+
+        <!-- 프론트 버튼 비활성화 조건 -->
+        <mxCell id="fe-disable" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=left;spacingLeft=15;" value="&lt;b&gt;프론트: 접수 버튼 비활성화 조건&lt;/b&gt;&#xa;&#xa;isCheckinClosed = true → &quot;접수 마감&quot;&#xa;todayIsHoliday = true → &quot;오늘 휴무&quot;&#xa;isTodayDayOff = true → &quot;오늘 휴무&quot;&#xa;isOutsideHours = true → 버튼 비활성화&#xa;isNearClosing = true → 버튼 비활성화&#xa;&#xa;HospitalDetailSidebar.vue&#xa;checkinDisabled / checkinLabel computed" vertex="1">
+          <mxGeometry x="50" y="740" width="340" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- 대기번호 발급 로직 -->
+        <mxCell id="waiting-logic" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=15;" value="&lt;b&gt;대기번호 발급 (Redis)&lt;/b&gt;&#xa;&#xa;Key: checkin:waitingNumber:{hospitalId}:{today}&#xa;Operation: INCR (atomic increment)&#xa;&#xa;Redis 키 없으면:&#xa;  → DB에서 오늘 최대값 조회 후 초기화&#xa;&#xa;대기순번 계산:&#xa;  WAITING 상태 중 내 번호보다 앞선 수 + 1" vertex="1">
+          <mxGeometry x="430" y="740" width="340" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- SSE 알림 종류 -->
+        <mxCell id="sse-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#CC6600;fontSize=11;align=left;spacingLeft=15;fontColor=#333;" value="&lt;b&gt;SSE 알림 종류&lt;/b&gt;&#xa;&#xa;RECEPTION_CREATED → 병원&#xa;  (새 접수 알림)&#xa;&#xa;RECEPTION_CALLED → 환자&#xa;  (호출되었어요!)&#xa;&#xa;RECEPTION_QUEUE_UPDATE → 대기 중 전체 환자&#xa;  (대기순번 변경 시 브로드캐스트)" vertex="1">
+          <mxGeometry x="810" y="740" width="300" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- 범례 -->
+        <mxCell id="legend" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#CCC;fontSize=10;align=left;spacingLeft=10;verticalAlign=top;spacingTop=10;" value="&lt;b&gt;범례&lt;/b&gt;&#xa;🔵 파란색 = 프론트엔드 (Vue)&#xa;🟢 초록색 = 백엔드 (Spring Boot)&#xa;🟡 노란색 = Redis (대기번호)&#xa;🟣 보라색 = MariaDB&#xa;🟠 주황색 = SSE 알림" vertex="1">
+          <mxGeometry x="1160" y="740" width="230" height="130" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

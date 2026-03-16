@@ -1,0 +1,90 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://${DB_HOST}:3306/hodadoc?useSSL=true
+    username: admin
+    password: ${DB_PW}
+
+  sql:
+    init:
+      mode: always # 항상 실행 (필요에 따라 never, embedded 로 변경)
+      data-locations: classpath:data.sql, classpath:hospital_data_all_final.sql, classpath:insert_doctor.sql, classpath:insert_hospital_holiday.sql, classpath:insert_hospital_images_s3.sql, classpath:update_coordinates_all.sql, classpath:insert_review_dummy.sql
+
+
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MariaDBDialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+    show_sql: true
+    defer-datasource-initialization: true # JPA 테이블 생성 후 data.sql 실행하도록 보장
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 1000MB
+      max-request-size: 1000MB
+
+
+  redis:
+    host: my-redis
+    port: 6379
+  rabbitmq:
+    host: my-rabbitmq
+    port: 5672
+    username: ${RABBITMQ_DEFAULT_USER}
+    password: ${RABBITMQ_DEFAULT_PASS}
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false  # ✅ LocalDate를 타임스탬프 대신 "2026-02-24" 형식으로 직렬화
+    deserialization:
+      fail-on-unknown-properties: false  # ✅ 알 수 없는 필드 무시
+
+server:
+  port: 8080
+  tomcat:
+    max-file-part-count: 100
+    max-parameter-count: 1000
+
+mybatis:
+  mapper-locations: classpath:/mapper/**/*.xml
+
+jwt:
+  expiration: 3000
+  secretKey: ${JWT_SECRETKEY}
+  refresh-expiration: 10080
+  expirationRt: 300000
+  secretKeyRt: ${JWT_SECRETKEY_RT}
+
+oauth:
+  kakao:
+    client-id: ${KAKAO_CLIENT_ID}
+    client-secret: ${KAKAO_CLIENT_SECRET}
+    redirect-uri: http://${FRONT_DOMAIN}:3002/oauth/kakao/redirect
+
+logging:
+  level:
+    root: info
+
+aws:
+  credentials:
+    access-key: ${AWS_ACCESS_KEY_HOS}
+    secret-key: ${AWS_SECRET_KEY_HOS}
+  region: ap-northeast-2
+  s3:
+    bucket: abilitytony-board-profile-image
+
+public-holiday:
+  api:
+    service-key: "${HOLIDAY_SERVICE_KEY}"
+    base-url: ${HOLIDAY_URL}
+solapi:
+  api-key: ${SOLAPI_API_KEY}
+  api-secret: ${SOLAPI_API_SECRET}
+  from-number: "${PHONE_NUMBER}"
+  enabled: false # 테스트 시 false로 설정, 실제 시연할 시에는 true로 설정

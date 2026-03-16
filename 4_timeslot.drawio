@@ -1,0 +1,277 @@
+<mxfile host="app.diagrams.net" version="29.6.1">
+  <diagram name="예약 시간대 생성 로직" id="timeslot-flow">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ===== 타이틀 ===== -->
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#333;" value="4. 예약 시간대 생성 로직 (Time Slot)" vertex="1">
+          <mxGeometry x="400" y="20" width="500" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- ========================================== -->
+        <!-- 병원관리자: 스케줄 설정                       -->
+        <!-- ========================================== -->
+        <mxCell id="schedule-section" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#82b366;strokeWidth=2;dashed=1;fontSize=14;fontStyle=1;fontColor=#82b366;verticalAlign=top;spacingTop=5;" value="병원관리자: 의사 스케줄 설정" vertex="1">
+          <mxGeometry x="30" y="80" width="1540" height="240" as="geometry" />
+        </mxCell>
+
+        <!-- Step 1: 의사 선택 -->
+        <mxCell id="s1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" value="① 의사 선택" vertex="1">
+          <mxGeometry x="50" y="130" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s1-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#6c8ebf;align=center;" value="병원관리자 페이지&#xa;의사 목록에서 선택" vertex="1">
+          <mxGeometry x="35" y="180" width="150" height="25" as="geometry" />
+        </mxCell>
+
+        <!-- Step 2: 요일별 근무 설정 -->
+        <mxCell id="s2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" value="② 요일별&#xa;근무시간 설정" vertex="1">
+          <mxGeometry x="230" y="130" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s2-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#6c8ebf;align=center;" value="월~일 각 요일별&#xa;근무/점심/진료간격 입력" vertex="1">
+          <mxGeometry x="215" y="180" width="160" height="25" as="geometry" />
+        </mxCell>
+
+        <!-- 스케줄 DTO 예시 -->
+        <mxCell id="s2-dto" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1F8E9;strokeColor=#82b366;fontSize=9;align=left;spacingLeft=10;" value="&lt;b&gt;DoctorScheduleReqDto 예시&lt;/b&gt;&#xa;&#xa;{&#xa;  dayOfWeek: &quot;MONDAY&quot;,&#xa;  workStartTime: &quot;09:00&quot;,&#xa;  workEndTime: &quot;18:00&quot;,&#xa;  lunchStartTime: &quot;12:00&quot;,&#xa;  lunchEndTime: &quot;13:00&quot;,&#xa;  consultationInterval: 30,&#xa;  isDayOff: false&#xa;}" vertex="1">
+          <mxGeometry x="50" y="220" width="230" height="90" as="geometry" />
+        </mxCell>
+
+        <!-- Step 3: Backend 저장 -->
+        <mxCell id="s3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="③ 스케줄 저장" vertex="1">
+          <mxGeometry x="430" y="130" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s3-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#82b366;align=center;" value="PUT /doctor/{id}/schedule&#xa;7개 요일 × DoctorSchedule" vertex="1">
+          <mxGeometry x="410" y="180" width="170" height="25" as="geometry" />
+        </mxCell>
+
+        <!-- DB -->
+        <mxCell id="s3-db" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=6;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=9;" value="MariaDB&#xa;DoctorSchedule" vertex="1">
+          <mxGeometry x="450" y="220" width="110" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- Step 4: 휴무일 설정 -->
+        <mxCell id="s4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="④ 의사 휴무일 설정" vertex="1">
+          <mxGeometry x="630" y="130" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s4-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#82b366;align=center;" value="POST /doctor/{id}/off-days/batch&#xa;특정 날짜들 휴무 지정&#xa;DELETE .../month → 월 단위 초기화" vertex="1">
+          <mxGeometry x="610" y="180" width="180" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- DB -->
+        <mxCell id="s4-db" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=6;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=9;" value="MariaDB&#xa;DoctorOffDay" vertex="1">
+          <mxGeometry x="650" y="235" width="110" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- Step 5: 병원 휴무일 -->
+        <mxCell id="s5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="⑤ 병원 휴무일 등록" vertex="1">
+          <mxGeometry x="840" y="130" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s5-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#82b366;align=center;" value="병원 정보 관리에서&#xa;정기 휴무요일 + 특별 휴무일" vertex="1">
+          <mxGeometry x="820" y="180" width="180" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="s5-db" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=6;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=9;" value="MariaDB&#xa;HospitalHoliday" vertex="1">
+          <mxGeometry x="860" y="220" width="110" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- Step 6: 공휴일 자동 동기화 -->
+        <mxCell id="s6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1;" value="⑥ 공휴일 자동 동기화" vertex="1">
+          <mxGeometry x="1050" y="130" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s6-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#b85450;align=center;" value="Scheduler (매년 자동)&#xa;공공데이터포털 API 호출&#xa;PublicHoliday 테이블 갱신" vertex="1">
+          <mxGeometry x="1030" y="180" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="s6-db" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=6;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=9;" value="MariaDB&#xa;PublicHoliday" vertex="1">
+          <mxGeometry x="1070" y="235" width="110" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="s6-api" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;" value="공공데이터포털&#xa;공휴일 API" vertex="1">
+          <mxGeometry x="1260" y="140" width="120" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- 설정 화살표 -->
+        <mxCell id="sa1" edge="1" parent="1" source="s1" target="s2" style="rounded=1;orthogonalLoop=1;strokeColor=#333;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sa2" edge="1" parent="1" source="s2" target="s3" style="rounded=1;orthogonalLoop=1;strokeColor=#333;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sa2-label" connectable="0" parent="sa2" style="edgeLabel;html=1;fontSize=8;fontColor=#82b366;" value="PUT" vertex="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sa3d" edge="1" parent="1" source="s3" target="s3-db" style="rounded=1;orthogonalLoop=1;strokeColor=#9673a6;strokeWidth=1;dashed=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sa4" edge="1" parent="1" source="s3" target="s4" style="rounded=1;orthogonalLoop=1;strokeColor=#333;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sa4d" edge="1" parent="1" source="s4" target="s4-db" style="rounded=1;orthogonalLoop=1;strokeColor=#9673a6;strokeWidth=1;dashed=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sa5d" edge="1" parent="1" source="s5" target="s5-db" style="rounded=1;orthogonalLoop=1;strokeColor=#9673a6;strokeWidth=1;dashed=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sa6d" edge="1" parent="1" source="s6" target="s6-db" style="rounded=1;orthogonalLoop=1;strokeColor=#9673a6;strokeWidth=1;dashed=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sa6a" edge="1" parent="1" source="s6" target="s6-api" style="rounded=1;orthogonalLoop=1;strokeColor=#b85450;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sa6a-label" connectable="0" parent="sa6a" style="edgeLabel;html=1;fontSize=8;fontColor=#b85450;" value="HTTPS" vertex="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ========================================== -->
+        <!-- 환자: 가용 시간대 조회 (슬롯 생성 과정)        -->
+        <!-- ========================================== -->
+        <mxCell id="slot-section" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#4A86C8;strokeWidth=2;dashed=1;fontSize=14;fontStyle=1;fontColor=#4A86C8;verticalAlign=top;spacingTop=5;" value="환자: 가용 시간대 조회 시 실시간 슬롯 생성 과정" vertex="1">
+          <mxGeometry x="30" y="340" width="1540" height="300" as="geometry" />
+        </mxCell>
+
+        <!-- 조회 요청 -->
+        <mxCell id="q1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" value="① 날짜 선택" vertex="1">
+          <mxGeometry x="50" y="390" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="q1-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#6c8ebf;align=center;" value="환자가 캘린더에서&#xa;날짜 클릭" vertex="1">
+          <mxGeometry x="35" y="440" width="150" height="25" as="geometry" />
+        </mxCell>
+
+        <!-- API 호출 -->
+        <mxCell id="q2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="② 슬롯 조회 API" vertex="1">
+          <mxGeometry x="230" y="390" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="q2-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#82b366;align=center;" value="GET /reservation/slots&#xa;?doctorId=1&amp;date=2026-03-15" vertex="1">
+          <mxGeometry x="205" y="440" width="180" height="25" as="geometry" />
+        </mxCell>
+
+        <!-- 슬롯 생성 과정 상세 (핵심) -->
+        <mxCell id="gen-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#82b366;fontSize=10;align=left;spacingLeft=12;verticalAlign=top;spacingTop=8;" value="&lt;b&gt;③ 슬롯 생성 과정 (generateTimeSlots)&lt;/b&gt;" vertex="1">
+          <mxGeometry x="420" y="375" width="700" height="245" as="geometry" />
+        </mxCell>
+
+        <!-- Step A -->
+        <mxCell id="gen-a" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#82b366;fontSize=9;" value="A. 해당 요일의&#xa;DoctorSchedule 조회" vertex="1">
+          <mxGeometry x="440" y="410" width="130" height="40" as="geometry" />
+        </mxCell>
+        <!-- Step B -->
+        <mxCell id="gen-b" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#E65100;fontSize=9;fontColor=#E65100;" value="B. isDayOff?" vertex="1">
+          <mxGeometry x="610" y="405" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="gen-b-yes" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#b85450;fontStyle=1;" value="→ 빈 목록 반환" vertex="1">
+          <mxGeometry x="720" y="395" width="100" height="25" as="geometry" />
+        </mxCell>
+        <!-- Step C -->
+        <mxCell id="gen-c" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#E65100;fontSize=9;fontColor=#E65100;" value="C. DoctorOffDay&#xa;존재?" vertex="1">
+          <mxGeometry x="610" y="470" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="gen-c-yes" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#b85450;fontStyle=1;" value="→ 빈 목록 반환" vertex="1">
+          <mxGeometry x="730" y="465" width="100" height="25" as="geometry" />
+        </mxCell>
+        <!-- Step D -->
+        <mxCell id="gen-d" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#E65100;fontSize=9;fontColor=#E65100;" value="D. 병원 휴무일&#xa;/ 공휴일?" vertex="1">
+          <mxGeometry x="610" y="535" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="gen-d-yes" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#b85450;fontStyle=1;" value="→ 빈 목록 반환" vertex="1">
+          <mxGeometry x="730" y="530" width="100" height="25" as="geometry" />
+        </mxCell>
+
+        <!-- Step E: 시간 분할 -->
+        <mxCell id="gen-e" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#82b366;fontSize=9;" value="E. workStart ~ workEnd를&#xa;consultationInterval로 분할&#xa;(점심시간 제외)" vertex="1">
+          <mxGeometry x="860" y="410" width="180" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="gen-e-ex" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;fontColor=#82b366;align=left;" value="예) 09:00~18:00, 간격 30분, 점심 12:00~13:00&#xa;→ 09:00, 09:30, 10:00, ..., 11:30, 13:00, ..., 17:30" vertex="1">
+          <mxGeometry x="860" y="460" width="250" height="25" as="geometry" />
+        </mxCell>
+
+        <!-- Step F: 기존 예약 체크 -->
+        <mxCell id="gen-f" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#82b366;fontSize=9;" value="F. 각 슬롯에 대해&#xa;기존 예약/블록 체크" vertex="1">
+          <mxGeometry x="860" y="500" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="gen-f-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;fontColor=#82b366;align=left;" value="예약 있음 → available=false&#xa;BLOCKED → available=false, blocked=true&#xa;비어있음 → available=true" vertex="1">
+          <mxGeometry x="860" y="540" width="230" height="35" as="geometry" />
+        </mxCell>
+
+        <!-- Step G: 응답 -->
+        <mxCell id="gen-g" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#82b366;fontSize=9;fontStyle=1;" value="G. AvailableSlotDto[]&#xa;반환" vertex="1">
+          <mxGeometry x="860" y="580" width="130" height="35" as="geometry" />
+        </mxCell>
+
+        <!-- 결과 표시 -->
+        <mxCell id="q4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" value="④ 시간대 목록&#xa;표시" vertex="1">
+          <mxGeometry x="1180" y="390" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="q4-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#6c8ebf;align=center;" value="available=true → 선택 가능&#xa;available=false → 비활성화&#xa;blocked=true → 차단됨 표시" vertex="1">
+          <mxGeometry x="1160" y="440" width="170" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- 슬롯 생성 내부 화살표 -->
+        <mxCell id="ga1" edge="1" parent="1" source="gen-a" target="gen-b" style="rounded=1;orthogonalLoop=1;strokeColor=#82b366;strokeWidth=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gb-no" edge="1" parent="1" source="gen-b" target="gen-c" style="rounded=1;orthogonalLoop=1;strokeColor=#82b366;strokeWidth=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gb-no-label" connectable="0" parent="gb-no" style="edgeLabel;html=1;fontSize=8;fontColor=#82b366;" value="No" vertex="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gc-no" edge="1" parent="1" source="gen-c" target="gen-d" style="rounded=1;orthogonalLoop=1;strokeColor=#82b366;strokeWidth=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gc-no-label" connectable="0" parent="gc-no" style="edgeLabel;html=1;fontSize=8;fontColor=#82b366;" value="No" vertex="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gd-no" edge="1" parent="1" source="gen-d" target="gen-e" style="rounded=1;orthogonalLoop=1;strokeColor=#82b366;strokeWidth=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gd-no-label" connectable="0" parent="gd-no" style="edgeLabel;html=1;fontSize=8;fontColor=#82b366;" value="No" vertex="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ge-f" edge="1" parent="1" source="gen-e" target="gen-f" style="rounded=1;orthogonalLoop=1;strokeColor=#82b366;strokeWidth=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gf-g" edge="1" parent="1" source="gen-f" target="gen-g" style="rounded=1;orthogonalLoop=1;strokeColor=#82b366;strokeWidth=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- 조회 흐름 화살표 -->
+        <mxCell id="qa1" edge="1" parent="1" source="q1" target="q2" style="rounded=1;orthogonalLoop=1;strokeColor=#333;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qa2" edge="1" parent="1" source="q2" target="gen-a" style="rounded=1;orthogonalLoop=1;strokeColor=#333;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qa3" edge="1" parent="1" source="gen-g" target="q4" style="rounded=1;orthogonalLoop=1;strokeColor=#333;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ========================================== -->
+        <!-- 데이터 관계 & 범례                           -->
+        <!-- ========================================== -->
+        <mxCell id="bottom-section" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#9673a6;strokeWidth=2;dashed=1;fontSize=14;fontStyle=1;fontColor=#9673a6;verticalAlign=top;spacingTop=5;" value="데이터 관계 &amp; 핵심 포인트" vertex="1">
+          <mxGeometry x="30" y="660" width="1540" height="190" as="geometry" />
+        </mxCell>
+
+        <!-- 데이터 관계 -->
+        <mxCell id="data-rel" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=left;spacingLeft=15;" value="&lt;b&gt;DB 테이블 관계&lt;/b&gt;&#xa;&#xa;Doctor → DoctorSchedule (1:7, 요일별)&#xa;Doctor → DoctorOffDay (1:N, 특정 날짜)&#xa;Hospital → HospitalHoliday (1:N, 정기/특별 휴무)&#xa;System → PublicHoliday (공휴일, Scheduler 동기화)&#xa;&#xa;슬롯은 DB에 저장하지 않음&#xa;  → 조회 시 실시간으로 생성 (on-the-fly)" vertex="1">
+          <mxGeometry x="50" y="700" width="380" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- 핵심 포인트 -->
+        <mxCell id="key-points" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1F8E9;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=15;" value="&lt;b&gt;핵심 포인트&lt;/b&gt;&#xa;&#xa;• 슬롯은 사전 생성하지 않음 → 조회 시 실시간 계산&#xa;• consultationInterval이 슬롯 크기를 결정&#xa;  (15분, 20분, 30분 등 병원별 설정)&#xa;• 휴무 체크 우선순위:&#xa;  isDayOff → DoctorOffDay → HospitalHoliday&#xa;  → PublicHoliday → 슬롯별 예약/블록 체크&#xa;• 블록: 관리자가 특정 슬롯을 수동 차단" vertex="1">
+          <mxGeometry x="470" y="700" width="380" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- 범례 -->
+        <mxCell id="legend" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#CCC;fontSize=10;align=left;spacingLeft=10;verticalAlign=top;spacingTop=10;" value="&lt;b&gt;범례&lt;/b&gt;&#xa;🔵 파란색 = 프론트엔드 (Vue)&#xa;🟢 초록색 = 백엔드 (Spring Boot)&#xa;🟣 보라색 = MariaDB&#xa;🔴 빨간색 = 외부 API (공공데이터포털)&#xa;◇ 다이아몬드 = 조건 분기&#xa;&#xa;&lt;b&gt;관련 API&lt;/b&gt;&#xa;PUT /doctor/{id}/schedule&#xa;POST /doctor/{id}/off-days/batch&#xa;GET /reservation/slots" vertex="1">
+          <mxGeometry x="890" y="700" width="250" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- 슬롯 예시 시각화 -->
+        <mxCell id="slot-visual" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;fontSize=10;align=left;spacingLeft=10;verticalAlign=top;spacingTop=10;fontColor=#333;" value="&lt;b&gt;슬롯 결과 예시 (30분 간격)&lt;/b&gt;&#xa;&#xa;09:00 ✅ available&#xa;09:30 ✅ available&#xa;10:00 ❌ 예약됨&#xa;10:30 🚫 BLOCKED&#xa;11:00 ✅ available&#xa;11:30 ✅ available&#xa;12:00 ~ 12:30  (점심시간 제외)&#xa;13:00 ✅ available ..." vertex="1">
+          <mxGeometry x="1180" y="700" width="230" height="130" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

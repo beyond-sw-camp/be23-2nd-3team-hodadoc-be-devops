@@ -1,0 +1,373 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36" version="29.6.1">
+  <diagram id="chat-architecture" name="5. 채팅 (Chat)">
+    <mxGraphModel dx="1430" dy="1253" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;fontSize=22;fontStyle=1;align=center;verticalAlign=middle;" value="5. 채팅 (Chat) 아키텍처" vertex="1">
+          <mxGeometry height="40" width="500" x="300" y="-30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;" value="" vertex="1">
+          <mxGeometry height="170" width="280" x="790" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-title" parent="1" style="text;html=1;fontSize=13;fontStyle=1;align=left;" value="범례" vertex="1">
+          <mxGeometry height="20" width="60" x="810" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="Frontend" vertex="1">
+          <mxGeometry height="24" width="80" x="810" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="Backend" vertex="1">
+          <mxGeometry height="24" width="80" x="910" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="leg3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="Redis" vertex="1">
+          <mxGeometry height="24" width="80" x="810" y="244" as="geometry" />
+        </mxCell>
+        <mxCell id="leg4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" value="DB" vertex="1">
+          <mxGeometry height="24" width="80" x="910" y="244" as="geometry" />
+        </mxCell>
+        <mxCell id="leg5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" value="RabbitMQ" vertex="1">
+          <mxGeometry height="24" width="80" x="810" y="278" as="geometry" />
+        </mxCell>
+        <mxCell id="leg6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce5cd;strokeColor=#d79b00;fontSize=10;" value="SSE 알림" vertex="1">
+          <mxGeometry height="24" width="80" x="910" y="278" as="geometry" />
+        </mxCell>
+        <mxCell id="leg7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6d0de;strokeColor=#996185;fontSize=10;" value="WebSocket" vertex="1">
+          <mxGeometry height="24" width="80" x="810" y="312" as="geometry" />
+        </mxCell>
+        <mxCell id="secA-title" parent="1" style="text;html=1;fontSize=16;fontStyle=1;align=left;" value="A. 채팅방 생성" vertex="1">
+          <mxGeometry height="30" width="200" x="20" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="&lt;b&gt;환자&lt;/b&gt;&#xa;병원 상세 페이지에서&#xa;「채팅으로 문의하기」클릭" vertex="1">
+          <mxGeometry height="60" width="180" x="20" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="HospitalDetailSidebar&#xa;startChat()" vertex="1">
+          <mxGeometry height="40" width="180" x="20" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="POST /chat/room/private/hospital&#xa;?hospitalId={id}" vertex="1">
+          <mxGeometry height="40" width="220" x="20" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="a-diamond" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="기존 방&#xa;존재?" vertex="1">
+          <mxGeometry height="70" width="100" x="70" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="a-yes" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="기존 roomId 반환" vertex="1">
+          <mxGeometry height="36" width="130" x="220" y="425" as="geometry" />
+        </mxCell>
+        <mxCell id="a-no" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" value="새 ChatRoom 생성&#xa;+ ChatParticipant 2명 추가" vertex="1">
+          <mxGeometry height="40" width="200" x="20" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="a-cs1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="&lt;b&gt;환자&lt;/b&gt;&#xa;마이페이지에서&#xa;「고객센터」클릭" vertex="1">
+          <mxGeometry height="60" width="170" x="420" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="a-cs2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="POST /chat/room/private/admin" vertex="1">
+          <mxGeometry height="36" width="190" x="410" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="a-cs3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="ChatRoom 생성/반환&#xa;(name: &quot;서버 문의&quot;)&#xa;환자 + 서버관리자 참여" vertex="1">
+          <mxGeometry height="50" width="210" x="400" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="a-widget" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=0;" value="&lt;b&gt;ChatWidget&lt;/b&gt; 열림&#xa;visible=true, roomId, title" vertex="1">
+          <mxGeometry height="40" width="200" x="230" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="aa1" edge="1" parent="1" source="a1" style="edgeStyle=orthogonalEdgeStyle;" target="a2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aa2" edge="1" parent="1" source="a2" style="edgeStyle=orthogonalEdgeStyle;" target="a3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aa3" edge="1" parent="1" source="a3" style="edgeStyle=orthogonalEdgeStyle;" target="a-diamond">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aa4" edge="1" parent="1" source="a-diamond" style="edgeStyle=orthogonalEdgeStyle;" target="a-yes" value="Yes">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aa5" edge="1" parent="1" source="a-diamond" style="edgeStyle=orthogonalEdgeStyle;" target="a-no" value="No">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aa6" edge="1" parent="1" source="a-cs1" style="edgeStyle=orthogonalEdgeStyle;" target="a-cs2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aa7" edge="1" parent="1" source="a-cs2" style="edgeStyle=orthogonalEdgeStyle;" target="a-cs3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aa8" edge="1" parent="1" source="a-yes" style="edgeStyle=orthogonalEdgeStyle;dashed=1;" target="a-widget">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aa9" edge="1" parent="1" source="a-no" style="edgeStyle=orthogonalEdgeStyle;dashed=1;" target="a-widget">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aa10" edge="1" parent="1" source="a-cs3" style="edgeStyle=orthogonalEdgeStyle;dashed=1;" target="a-widget">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="secB-title" parent="1" style="text;html=1;fontSize=16;fontStyle=1;align=left;" value="B. 메시지 전송 흐름" vertex="1">
+          <mxGeometry height="30" width="250" x="20" y="640" as="geometry" />
+        </mxCell>
+        <mxCell id="b1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="① 사용자 메시지 입력&#xa;Enter 또는 전송 버튼" vertex="1">
+          <mxGeometry height="44" width="180" x="20" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="b2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6d0de;strokeColor=#996185;fontSize=10;" value="② stompClient.publish()&#xa;destination: /publish/{roomId}&#xa;body: {roomId, message}" vertex="1">
+          <mxGeometry height="54" width="200" x="20" y="744" as="geometry" />
+        </mxCell>
+        <mxCell id="b3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="③ StompHandler&#xa;JWT 토큰 검증&#xa;accountId 추출 (sub)" vertex="1">
+          <mxGeometry height="54" width="170" x="260" y="744" as="geometry" />
+        </mxCell>
+        <mxCell id="b4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="④ StompController&#xa;.sendMessage()&#xa;발신자 정보 세팅 (spoofing 방지)" vertex="1">
+          <mxGeometry height="54" width="210" x="470" y="744" as="geometry" />
+        </mxCell>
+        <mxCell id="b5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="⑤ ChatService.saveMessage()" vertex="1">
+          <mxGeometry height="36" width="230" x="340" y="830" as="geometry" />
+        </mxCell>
+        <mxCell id="b5a" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" value="5-1. ChatMessage 저장" vertex="1">
+          <mxGeometry height="36" width="160" x="140" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="b5b" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" value="5-2. ReadStatus 생성&#xa;발신자: isRead=true&#xa;수신자: isRead=false" vertex="1">
+          <mxGeometry height="54" width="170" x="340" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="b5c" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce5cd;strokeColor=#d79b00;fontSize=10;" value="5-3. SseAlarmService&#xa;.sendMessage()&#xa;수신자에게 CHAT_MESSAGE 알림" vertex="1">
+          <mxGeometry height="54" width="200" x="550" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="b6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="⑥ RedisPubSubService.publish()&#xa;Redis DB4 channel &quot;chat&quot;" vertex="1">
+          <mxGeometry height="44" width="210" x="340" y="980" as="geometry" />
+        </mxCell>
+        <mxCell id="b7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="⑦ RedisPubSubService.onMessage()&#xa;(모든 서버에서 수신)" vertex="1">
+          <mxGeometry height="44" width="210" x="340" y="1050" as="geometry" />
+        </mxCell>
+        <mxCell id="b8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6d0de;strokeColor=#996185;fontSize=10;" value="⑧ convertAndSend()&#xa;/topic/{roomId}&#xa;구독 중인 모든 클라이언트에 전송" vertex="1">
+          <mxGeometry height="54" width="210" x="340" y="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="b9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="⑨ ChatWidget 수신&#xa;messages 배열에 추가&#xa;scrollToBottom()" vertex="1">
+          <mxGeometry height="54" width="210" x="340" y="1200" as="geometry" />
+        </mxCell>
+        <mxCell id="ba1" edge="1" parent="1" source="b1" style="edgeStyle=orthogonalEdgeStyle;" target="b2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ba2" edge="1" parent="1" source="b2" style="edgeStyle=orthogonalEdgeStyle;" target="b3" value="STOMP">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ba3" edge="1" parent="1" source="b3" style="edgeStyle=orthogonalEdgeStyle;" target="b4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ba4" edge="1" parent="1" source="b4" style="edgeStyle=orthogonalEdgeStyle;" target="b5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ba5" edge="1" parent="1" source="b5" style="edgeStyle=orthogonalEdgeStyle;" target="b5a">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ba6" edge="1" parent="1" source="b5" style="edgeStyle=orthogonalEdgeStyle;" target="b5b">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ba7" edge="1" parent="1" source="b5" style="edgeStyle=orthogonalEdgeStyle;" target="b5c">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ba8" edge="1" parent="1" source="b5" style="edgeStyle=orthogonalEdgeStyle;" target="b6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ba9" edge="1" parent="1" source="b6" style="edgeStyle=orthogonalEdgeStyle;" target="b7" value="Pub/Sub">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ba10" edge="1" parent="1" source="b7" style="edgeStyle=orthogonalEdgeStyle;" target="b8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ba11" edge="1" parent="1" source="b8" style="edgeStyle=orthogonalEdgeStyle;" target="b9" value="WebSocket">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="secC-title" parent="1" style="text;html=1;fontSize=16;fontStyle=1;align=left;" value="C. SSE 알림 전달 흐름" vertex="1">
+          <mxGeometry height="30" width="250" x="790" y="640" as="geometry" />
+        </mxCell>
+        <mxCell id="c1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce5cd;strokeColor=#d79b00;fontSize=10;" value="SseAlarmService&#xa;.sendMessage()&#xa;type=CHAT_MESSAGE&#xa;reservationId=roomId" vertex="1">
+          <mxGeometry height="64" width="190" x="790" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="c-diamond" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fce5cd;strokeColor=#d79b00;fontSize=10;" value="현재 서버에&#xa;SseEmitter&#xa;존재?" vertex="1">
+          <mxGeometry height="90" width="120" x="820" y="770" as="geometry" />
+        </mxCell>
+        <mxCell id="c-yes" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce5cd;strokeColor=#d79b00;fontSize=10;" value="emitter.send()&#xa;직접 전송" vertex="1">
+          <mxGeometry height="40" width="140" x="1000" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="c-no-redis" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="Redis Pub/Sub&#xa;channel: notification-channel&#xa;(DB 1)" vertex="1">
+          <mxGeometry height="50" width="190" x="790" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="c-rabbit" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" value="RabbitMQ 대기 큐&#xa;pending.alarm.{userId}&#xa;(오프라인 보관)" vertex="1">
+          <mxGeometry height="50" width="170" x="1030" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="c-other" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce5cd;strokeColor=#d79b00;fontSize=10;" value="다른 서버&#xa;onMessage()&#xa;→ 로컬 emitter에 전송" vertex="1">
+          <mxGeometry height="50" width="190" x="790" y="970" as="geometry" />
+        </mxCell>
+        <mxCell id="c-front" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="sseService.js&#xa;CHAT_MESSAGE 이벤트 수신&#xa;→ notificationStore.add()" vertex="1">
+          <mxGeometry height="50" width="190" x="790" y="1050" as="geometry" />
+        </mxCell>
+        <mxCell id="c-bell" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="🔔 NotificationBell&#xa;알림 뱃지 표시" vertex="1">
+          <mxGeometry height="40" width="190" x="790" y="1130" as="geometry" />
+        </mxCell>
+        <mxCell id="c-reconnect" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce5cd;strokeColor=#d79b00;fontSize=10;" value="재접속 시 (/sse/connect)&#xa;flushPendingAlarms()&#xa;→ RabbitMQ 큐 drain" vertex="1">
+          <mxGeometry height="50" width="170" x="1030" y="970" as="geometry" />
+        </mxCell>
+        <mxCell id="ca1" edge="1" parent="1" source="c1" style="edgeStyle=orthogonalEdgeStyle;" target="c-diamond">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ca2" edge="1" parent="1" source="c-diamond" style="edgeStyle=orthogonalEdgeStyle;" target="c-yes" value="Yes">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ca3" edge="1" parent="1" source="c-diamond" style="edgeStyle=orthogonalEdgeStyle;" target="c-no-redis" value="No">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ca4" edge="1" parent="1" source="c-diamond" style="edgeStyle=orthogonalEdgeStyle;dashed=1;" target="c-rabbit">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="950" y="815" />
+              <mxPoint x="950" y="860" />
+              <mxPoint x="1115" y="860" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ca4label" parent="1" style="text;html=1;fontSize=9;align=center;" value="항상 저장" vertex="1">
+          <mxGeometry height="16" width="60" x="950" y="845" as="geometry" />
+        </mxCell>
+        <mxCell id="ca5" edge="1" parent="1" source="c-no-redis" style="edgeStyle=orthogonalEdgeStyle;" target="c-other">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ca6" edge="1" parent="1" source="c-other" style="edgeStyle=orthogonalEdgeStyle;" target="c-front">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ca6b" edge="1" parent="1" source="c-yes" style="edgeStyle=orthogonalEdgeStyle;" target="c-front">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1070" y="860" />
+              <mxPoint x="1070" y="1040" />
+              <mxPoint x="885" y="1040" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ca7" edge="1" parent="1" source="c-front" style="edgeStyle=orthogonalEdgeStyle;" target="c-bell">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ca8" edge="1" parent="1" source="c-rabbit" style="edgeStyle=orthogonalEdgeStyle;dashed=1;" target="c-reconnect">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="secD-title" parent="1" style="text;html=1;fontSize=16;fontStyle=1;align=left;" value="D. 읽음 처리 (2중 구조)" vertex="1">
+          <mxGeometry height="30" width="300" x="20" y="1300" as="geometry" />
+        </mxCell>
+        <mxCell id="d1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="ChatWidget.init()&#xa;채팅방 열기" vertex="1">
+          <mxGeometry height="40" width="170" x="20" y="1340" as="geometry" />
+        </mxCell>
+        <mxCell id="d2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="&lt;b&gt;Backend 읽음 (DB)&lt;/b&gt;&#xa;POST /chat/room/{roomId}/read&#xa;→ ReadStatus.isRead = true&#xa;(ChatService.messageRead)" vertex="1">
+          <mxGeometry height="64" width="230" x="20" y="1410" as="geometry" />
+        </mxCell>
+        <mxCell id="d3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="&lt;b&gt;Frontend 읽음 (메모리)&lt;/b&gt;&#xa;notificationStore.markReadByRoom(roomId)&#xa;→ CHAT_MESSAGE 알림 read=true&#xa;→ 🔔 뱃지 갱신" vertex="1">
+          <mxGeometry height="64" width="260" x="300" y="1410" as="geometry" />
+        </mxCell>
+        <mxCell id="da1" edge="1" parent="1" source="d1" style="edgeStyle=orthogonalEdgeStyle;" target="d2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="da2" edge="1" parent="1" source="d1" style="edgeStyle=orthogonalEdgeStyle;" target="d3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d-note" parent="1" style="text;html=1;fontSize=10;align=left;verticalAlign=top;fillColor=#f5f5f5;strokeColor=#666666;rounded=1;spacingLeft=8;" value="&lt;b&gt;DB ReadStatus&lt;/b&gt;: 영구 저장, 안 읽은 메시지 수 계산에 사용&#xa;&lt;b&gt;notificationStore&lt;/b&gt;: 메모리 전용, 새로고침 시 초기화&#xa;→ 두 시스템은 독립적으로 동작하며 각각 업데이트 필요" vertex="1">
+          <mxGeometry height="60" width="380" x="20" y="1500" as="geometry" />
+        </mxCell>
+        <mxCell id="secE-title" parent="1" style="text;html=1;fontSize=16;fontStyle=1;align=left;" value="E. WebSocket 연결 구조" vertex="1">
+          <mxGeometry height="30" width="300" x="790" y="1300" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="ChatWidget&#xa;connectStomp()" vertex="1">
+          <mxGeometry height="40" width="160" x="790" y="1340" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6d0de;strokeColor=#996185;fontSize=10;" value="SockJS 연결&#xa;/connect (HTTP 폴백)" vertex="1">
+          <mxGeometry height="40" width="160" x="790" y="1400" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6d0de;strokeColor=#996185;fontSize=10;" value="STOMP CONNECT&#xa;Authorization: Bearer {JWT}" vertex="1">
+          <mxGeometry height="40" width="190" x="790" y="1460" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="StompHandler&#xa;JWT 검증 → accountId" vertex="1">
+          <mxGeometry height="40" width="160" x="1030" y="1460" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6d0de;strokeColor=#996185;fontSize=10;" value="SUBSCRIBE&#xa;/topic/{roomId}" vertex="1">
+          <mxGeometry height="40" width="160" x="790" y="1520" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" parent="1" style="text;html=1;fontSize=10;align=left;fillColor=#f5f5f5;strokeColor=#666666;rounded=1;spacingLeft=8;" value="reconnectDelay: 5000ms&#xa;자동 재연결" vertex="1">
+          <mxGeometry height="36" width="160" x="1020" y="1520" as="geometry" />
+        </mxCell>
+        <mxCell id="ea1" edge="1" parent="1" source="e1" style="edgeStyle=orthogonalEdgeStyle;" target="e2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ea2" edge="1" parent="1" source="e2" style="edgeStyle=orthogonalEdgeStyle;" target="e3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ea3" edge="1" parent="1" source="e3" style="edgeStyle=orthogonalEdgeStyle;" target="e4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ea4" edge="1" parent="1" source="e3" style="edgeStyle=orthogonalEdgeStyle;" target="e5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="secF-title" parent="1" style="text;html=1;fontSize=16;fontStyle=1;align=left;" value="F. 엔티티 관계" vertex="1">
+          <mxGeometry height="30" width="200" x="20" y="1590" as="geometry" />
+        </mxCell>
+        <mxCell id="f-room" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" value="&lt;b&gt;ChatRoom&lt;/b&gt;&#xa;id, name&#xa;createdTime, modifiedTime" vertex="1">
+          <mxGeometry height="54" width="170" x="300" y="1630" as="geometry" />
+        </mxCell>
+        <mxCell id="f-msg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" value="&lt;b&gt;ChatMessage&lt;/b&gt;&#xa;id, content (max 500)&#xa;chatRoom (FK), account (FK)" vertex="1">
+          <mxGeometry height="54" width="190" x="80" y="1730" as="geometry" />
+        </mxCell>
+        <mxCell id="f-part" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" value="&lt;b&gt;ChatParticipant&lt;/b&gt;&#xa;id, leftYn (N/Y)&#xa;chatRoom (FK), account (FK)" vertex="1">
+          <mxGeometry height="54" width="190" x="310" y="1730" as="geometry" />
+        </mxCell>
+        <mxCell id="f-read" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" value="&lt;b&gt;ReadStatus&lt;/b&gt;&#xa;id, isRead (Boolean)&#xa;chatRoom, account, chatMessage (FK)" vertex="1">
+          <mxGeometry height="54" width="210" x="540" y="1730" as="geometry" />
+        </mxCell>
+        <mxCell id="f-account" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" value="&lt;b&gt;Account&lt;/b&gt;&#xa;id, email, role" vertex="1">
+          <mxGeometry height="44" width="140" x="550" y="1630" as="geometry" />
+        </mxCell>
+        <mxCell id="fa1" edge="1" parent="1" source="f-room" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;" target="f-msg" value="1:N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fa2" edge="1" parent="1" source="f-room" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;" target="f-part" value="1:N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fa3" edge="1" parent="1" source="f-room" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;" target="f-read" value="1:N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fa4" edge="1" parent="1" source="f-account" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;" target="f-read" value="1:N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="secG-title" parent="1" style="text;html=1;fontSize=16;fontStyle=1;align=left;" value="G. 멀티서버 메시지 분배 (Redis Pub/Sub)" vertex="1">
+          <mxGeometry height="30" width="400" x="20" y="1830" as="geometry" />
+        </mxCell>
+        <mxCell id="g-s1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="&lt;b&gt;Server 1&lt;/b&gt;&#xa;StompController&#xa;→ Redis publish &quot;chat&quot;" vertex="1">
+          <mxGeometry height="54" width="170" x="20" y="1870" as="geometry" />
+        </mxCell>
+        <mxCell id="g-redis" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" value="&lt;b&gt;Redis (DB 4)&lt;/b&gt;&#xa;channel: &quot;chat&quot;&#xa;Pub/Sub" vertex="1">
+          <mxGeometry height="54" width="160" x="280" y="1870" as="geometry" />
+        </mxCell>
+        <mxCell id="g-s2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="&lt;b&gt;Server 2&lt;/b&gt;&#xa;RedisPubSubService&#xa;.onMessage()&#xa;→ /topic/{roomId} 브로드캐스트" vertex="1">
+          <mxGeometry height="64" width="200" x="530" y="1860" as="geometry" />
+        </mxCell>
+        <mxCell id="g-s3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="&lt;b&gt;Server 3&lt;/b&gt;&#xa;(동일)" vertex="1">
+          <mxGeometry height="36" width="100" x="530" y="1940" as="geometry" />
+        </mxCell>
+        <mxCell id="g-c1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="Client A&#xa;(발신자)" vertex="1">
+          <mxGeometry height="36" width="100" x="790" y="1860" as="geometry" />
+        </mxCell>
+        <mxCell id="g-c2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="Client B&#xa;(수신자)" vertex="1">
+          <mxGeometry height="36" width="100" x="790" y="1910" as="geometry" />
+        </mxCell>
+        <mxCell id="ga1" edge="1" parent="1" source="g-s1" style="edgeStyle=orthogonalEdgeStyle;" target="g-redis" value="publish">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ga2" edge="1" parent="1" source="g-redis" style="edgeStyle=orthogonalEdgeStyle;" target="g-s2" value="subscribe">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ga3" edge="1" parent="1" source="g-redis" style="edgeStyle=orthogonalEdgeStyle;dashed=1;" target="g-s3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ga4" edge="1" parent="1" source="g-s2" style="edgeStyle=orthogonalEdgeStyle;" target="g-c1" value="/topic">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ga5" edge="1" parent="1" source="g-s2" style="edgeStyle=orthogonalEdgeStyle;" target="g-c2" value="/topic">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="key-title" parent="1" style="text;html=1;fontSize=14;fontStyle=1;align=left;" value="핵심 포인트" vertex="1">
+          <mxGeometry height="24" width="200" x="850" y="1590" as="geometry" />
+        </mxCell>
+        <mxCell id="key-box" parent="1" style="text;html=1;fontSize=10;align=left;verticalAlign=top;fillColor=#f5f5f5;strokeColor=#666666;rounded=1;spacingLeft=8;spacingTop=4;" value="• WebSocket: STOMP + SockJS (HTTP 폴백 지원)&#xa;• 메시지 분배: Redis Pub/Sub (DB 4, channel &quot;chat&quot;)&#xa;• SSE 알림 분배: Redis Pub/Sub (DB 1, channel &quot;notification-channel&quot;)&#xa;• 오프라인 알림 보관: RabbitMQ (pending.alarm.{userId})&#xa;• 읽음 처리: Backend DB (ReadStatus) + Frontend Memory (notificationStore)&#xa;• JWT sub = accountId (Long), spoofing 방지를 위해 서버에서 발신자 정보 세팅&#xa;• ChatWidget: 플로팅 UI (우측 하단 고정), 풀페이지 채팅 없음&#xa;• 채팅방 유형: 병원 문의 (환자↔병원관리자), 고객센터 (환자↔서버관리자)" vertex="1">
+          <mxGeometry height="130" width="440" x="850" y="1620" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

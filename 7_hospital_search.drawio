@@ -1,0 +1,432 @@
+<mxfile host="app.diagrams.net" modified="2026-03-15T00:00:00.000Z" agent="draw.io" version="24.0.0">
+  <diagram id="hospital-search-architecture" name="7. 병원 검색 (Hospital Search)">
+    <mxGraphModel dx="1800" dy="2400" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- ==================== 제목 ==================== -->
+        <mxCell id="title" value="7. 병원 검색 (Hospital Search) 아키텍처" style="text;html=1;fontSize=22;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="250" y="-30" width="550" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- ==================== 범례 ==================== -->
+        <mxCell id="legend-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="-30" width="280" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend-title" value="범례" style="text;html=1;fontSize=13;fontStyle=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="900" y="-20" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg1" value="Frontend" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="900" y="10" width="80" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg2" value="Backend" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="10" width="80" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg3" value="DB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="900" y="44" width="80" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg4" value="외부 API" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="44" width="80" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg5" value="분기" style="rhombus;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="910" y="74" width="60" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- ================================================================== -->
+        <!-- Section A: 병원 검색 흐름                                            -->
+        <!-- ================================================================== -->
+        <mxCell id="secA-title" value="A. 병원 검색 흐름" style="text;html=1;fontSize=16;fontStyle=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="20" y="130" width="250" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Step 1: 사용자 위치 -->
+        <mxCell id="a1" value="① 사용자 위치 감지&#xa;navigator.geolocation&#xa;(거부 시 서울시청 기본값)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="20" y="170" width="200" height="54" as="geometry"/>
+        </mxCell>
+
+        <!-- Step 2: 검색 조건 입력 -->
+        <mxCell id="a2" value="② 검색 조건 입력&#xa;(HospitalList.vue)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="20" y="250" width="200" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- 필터 상세 -->
+        <mxCell id="a-filters" value="&lt;b&gt;검색 필터 항목&lt;/b&gt;&#xa;• 키워드 (병원명, 주소, 진료과)&#xa;• 지역 선택 (시도 → 시군구 → 읍면동)&#xa;• 진료과 선택 (다중 선택 모달)&#xa;• 동적 필터: 시간, 휴일, 시설, 서비스&#xa;• 진료중 토글 (isCurrentlyOpen)" style="text;html=1;fontSize=10;align=left;verticalAlign=top;fillColor=#f5f5f5;strokeColor=#999999;rounded=1;spacingLeft=8;spacingTop=4;" vertex="1" parent="1">
+          <mxGeometry x="260" y="170" width="240" height="100" as="geometry"/>
+        </mxCell>
+
+        <!-- Step 3: API 호출 -->
+        <mxCell id="a3" value="③ GET /hospital/list&#xa;HospitalSearchDto + Pageable" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="20" y="320" width="220" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- Step 4: 필수 파라미터 검증 -->
+        <mxCell id="a4" value="userLat, userLng&#xa;필수?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="70" y="390" width="110" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="a4-no" value="400 Bad Request" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="240" y="405" width="120" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Step 5: Native SQL -->
+        <mxCell id="a5" value="④ Native SQL 쿼리 실행&#xa;(HospitalRepository)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="490" width="200" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- SQL 쿼리 내용 -->
+        <mxCell id="a5-detail" value="&lt;b&gt;쿼리 로직&lt;/b&gt;&#xa;• status = APPROVED 만 조회&#xa;• 이름/주소/진료과 LIKE 검색&#xa;• 지역 필터 (sido, sigungu, emdName)&#xa;• 필터 존재 확인 (LEFT JOIN + EXISTS)&#xa;• 운영시간 체크 (요일 + 시간 + 점심시간)&#xa;• 휴무일/공휴일 제외&#xa;• ST_Distance_Sphere() 거리 계산" style="text;html=1;fontSize=10;align=left;verticalAlign=top;fillColor=#f5f5f5;strokeColor=#999999;rounded=1;spacingLeft=8;spacingTop=4;" vertex="1" parent="1">
+          <mxGeometry x="270" y="480" width="260" height="130" as="geometry"/>
+        </mxCell>
+
+        <!-- Step 6: 정렬 -->
+        <mxCell id="a6" value="⑤ 3단계 정렬" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="560" width="200" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="a6-detail" value="1순위: 이름 관련도 (정확일치 &gt; 접두사 &gt; 기타)&#xa;2순위: 진료중 여부 (진료중 우선)&#xa;3순위: 거리순 (ST_Distance_Sphere ASC)" style="text;html=1;fontSize=10;align=left;fillColor=#f5f5f5;strokeColor=#999999;rounded=1;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="30" y="600" width="300" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Step 7: 결과 -->
+        <mxCell id="a7" value="⑥ Page&lt;HospitalListDto&gt; 반환&#xa;→ 카드 목록 렌더링" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="30" y="670" width="200" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- 카드 표시 항목 -->
+        <mxCell id="a7-card" value="&lt;b&gt;병원 카드 표시 항목&lt;/b&gt;&#xa;이름, 상태뱃지(진료중/종료)&#xa;주소, 거리(km), 마감시간&#xa;진료과, 썸네일 이미지, 평균 별점" style="text;html=1;fontSize=10;align=left;verticalAlign=top;fillColor=#f5f5f5;strokeColor=#999999;rounded=1;spacingLeft=8;spacingTop=4;" vertex="1" parent="1">
+          <mxGeometry x="270" y="660" width="220" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- Section A 화살표 -->
+        <mxCell id="aa1" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="a1" target="a2" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="aa2" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="a2" target="a3" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="aa3" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="a3" target="a4" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="aa4" value="없음" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="a4" target="a4-no" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="aa5" value="있음" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="a4" target="a5" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="aa6" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="a5" target="a6" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="aa7" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="a6" target="a7" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ================================================================== -->
+        <!-- Section B: 동적 필터 시스템                                          -->
+        <!-- ================================================================== -->
+        <mxCell id="secB-title" value="B. 동적 필터 시스템 (FilterCategory)" style="text;html=1;fontSize=16;fontStyle=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="580" y="130" width="350" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Filter API -->
+        <mxCell id="b-api" value="GET /admin/filter/list&#xa;→ 전체 필터 목록 조회" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="580" y="170" width="180" height="36" as="geometry"/>
+        </mxCell>
+
+        <!-- 카테고리별 -->
+        <mxCell id="b-time" value="&lt;b&gt;TIME (시간)&lt;/b&gt;&#xa;평일야간, 주말야간&#xa;평일24시간, 주말24시간" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="580" y="230" width="160" height="54" as="geometry"/>
+        </mxCell>
+        <mxCell id="b-holiday" value="&lt;b&gt;HOLIDAY (휴일)&lt;/b&gt;&#xa;토요일, 일요일, 공휴일" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="760" y="230" width="160" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="b-facility" value="&lt;b&gt;FACILITY (시설)&lt;/b&gt;&#xa;주차가능, 엘리베이터&#xa;장애인편의시설, 키즈존" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="580" y="300" width="160" height="54" as="geometry"/>
+        </mxCell>
+        <mxCell id="b-service" value="&lt;b&gt;SERVICE (서비스)&lt;/b&gt;&#xa;여의사" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="760" y="300" width="160" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- 필터 적용 구조 -->
+        <mxCell id="b-join" value="Hospital ← HospitalFilter → Filter&#xa;(ManyToMany 조인 테이블)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="580" y="380" width="230" height="36" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ba1" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="b-api" target="b-time" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="ba2" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="b-api" target="b-holiday" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ================================================================== -->
+        <!-- Section C: 지역 선택 흐름                                            -->
+        <!-- ================================================================== -->
+        <mxCell id="secC-title" value="C. 지역 선택 (3단계 모달)" style="text;html=1;fontSize=16;fontStyle=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="580" y="440" width="300" height="30" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="c1" value="1단계&#xa;시/도 선택&#xa;(서울, 경기...)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="580" y="480" width="120" height="54" as="geometry"/>
+        </mxCell>
+        <mxCell id="c2" value="2단계&#xa;시/군/구 선택&#xa;(강남구...)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="730" y="480" width="120" height="54" as="geometry"/>
+        </mxCell>
+        <mxCell id="c3" value="3단계&#xa;읍/면/동 선택&#xa;(역삼동...)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="880" y="480" width="120" height="54" as="geometry"/>
+        </mxCell>
+        <mxCell id="c-data" value="addressData.js&#xa;(전국 시도/시군구/읍면동 데이터)" style="text;html=1;fontSize=10;align=left;fillColor=#f5f5f5;strokeColor=#999999;rounded=1;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="580" y="550" width="230" height="30" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ca1" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="c1" target="c2" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="ca2" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="c2" target="c3" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ================================================================== -->
+        <!-- Section D: 지도 뷰 (Map View)                                       -->
+        <!-- ================================================================== -->
+        <mxCell id="secD-title" value="D. 지도 뷰 (Kakao Map)" style="text;html=1;fontSize=16;fontStyle=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="20" y="770" width="300" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- 뷰 전환 -->
+        <mxCell id="d-toggle" value="HospitalList.vue&#xa;목록 ↔ 지도 뷰 전환" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="20" y="810" width="180" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- 지도 API 호출 -->
+        <mxCell id="d-api" value="GET /hospital/mapApi&#xa;전체 APPROVED 병원&#xa;좌표 + 운영 상태 반환" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="20" y="880" width="190" height="54" as="geometry"/>
+        </mxCell>
+
+        <!-- KakaoMap -->
+        <mxCell id="d-kakao" value="&lt;b&gt;KakaoMap.vue&lt;/b&gt;&#xa;Kakao Maps SDK 래퍼&#xa;(VUE_APP_KAKAO_MAP_APPKEY)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="260" y="810" width="200" height="54" as="geometry"/>
+        </mxCell>
+
+        <!-- 지도 기능 -->
+        <mxCell id="d-features" value="&lt;b&gt;지도 기능&lt;/b&gt;&#xa;• 마커 표시 (초록=기본, 주황=선택)&#xa;• 반경 필터 (1km, 2km, 5km)&#xa;• 「이 지역 재검색」 버튼&#xa;• GPS 버튼 (내 위치 이동)&#xa;• 하단 플로팅 카드 캐러셀&#xa;• 주소 → 좌표 변환 (Geocoding 폴백)" style="text;html=1;fontSize=10;align=left;verticalAlign=top;fillColor=#f5f5f5;strokeColor=#999999;rounded=1;spacingLeft=8;spacingTop=4;" vertex="1" parent="1">
+          <mxGeometry x="260" y="880" width="240" height="110" as="geometry"/>
+        </mxCell>
+
+        <!-- Nearby API -->
+        <mxCell id="d-nearby" value="GET /hospital/nearby&#xa;?userLat=&amp;userLng=&amp;radius=5&#xa;→ 반경 내 병원 목록" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="20" y="960" width="200" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- 거리 계산 -->
+        <mxCell id="d-distance" value="distanceService.js&#xa;haversineKm(a, b)&#xa;프론트 거리 계산 + 정렬" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="20" y="1040" width="200" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="da1" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="d-toggle" target="d-api" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="da2" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="d-toggle" target="d-kakao" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="da3" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="d-api" target="d-nearby" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ================================================================== -->
+        <!-- Section E: 병원 상세 페이지                                           -->
+        <!-- ================================================================== -->
+        <mxCell id="secE-title" value="E. 병원 상세 페이지 (HospitalPublicDetail)" style="text;html=1;fontSize=16;fontStyle=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="560" y="630" width="400" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- API 호출 -->
+        <mxCell id="e-api" value="GET /hospital/{id}&#xa;→ HospitalPublicDetailDto" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="560" y="670" width="190" height="36" as="geometry"/>
+        </mxCell>
+
+        <!-- 메인 콘텐츠 -->
+        <mxCell id="e-main" value="&lt;b&gt;메인 콘텐츠 (좌측)&lt;/b&gt;" style="text;html=1;fontSize=12;fontStyle=0;align=left;" vertex="1" parent="1">
+          <mxGeometry x="560" y="720" width="200" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-hero" value="이미지 캐러셀&#xa;병원명, 별점, 진료과, 상태뱃지" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="560" y="745" width="200" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-hours" value="HospitalDetailOperatingHours&#xa;오늘 진료시간 + 주간 모달" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="560" y="800" width="200" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-map" value="HospitalDetailMapSection&#xa;KakaoMap (detail 모드)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="560" y="855" width="200" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-doctor" value="HospitalDetailDoctors&#xa;의사 목록 (이미지/이니셜)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="560" y="906" width="200" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-review" value="HospitalDetailReviews&#xa;별점 분포 + 리뷰 목록" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="560" y="957" width="200" height="36" as="geometry"/>
+        </mxCell>
+
+        <!-- 사이드바 -->
+        <mxCell id="e-side-title" value="&lt;b&gt;사이드바 (우측, Sticky)&lt;/b&gt;" style="text;html=1;fontSize=12;fontStyle=0;align=left;" vertex="1" parent="1">
+          <mxGeometry x="810" y="720" width="200" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-side" value="HospitalDetailSidebar&#xa;• 병원명, 별점, 리뷰수&#xa;• 진료과, 전화번호, 주소&#xa;• 필터 태그, 해시태그&#xa;• &lt;b&gt;접수하기&lt;/b&gt; 버튼&#xa;• &lt;b&gt;예약하기&lt;/b&gt; 버튼&#xa;• &lt;b&gt;채팅 문의&lt;/b&gt; 카드" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="810" y="745" width="180" height="110" as="geometry"/>
+        </mxCell>
+
+        <!-- 사이드바 액션 -->
+        <mxCell id="e-checkin" value="접수하기&#xa;→ CheckinModal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="810" y="875" width="130" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-reserve" value="예약하기&#xa;→ /reservations/new" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="810" y="925" width="130" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-chat" value="채팅 문의&#xa;→ ChatWidget 열기" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="810" y="975" width="130" height="36" as="geometry"/>
+        </mxCell>
+
+        <!-- 접수 비활성화 조건 -->
+        <mxCell id="e-checkin-note" value="접수 비활성화 조건:&#xa;• 공휴일/지정 휴무일&#xa;• 마감 30분 전&#xa;• 관리자 수동 마감 (checkinClosed)" style="text;html=1;fontSize=9;align=left;fillColor=#f5f5f5;strokeColor=#999999;rounded=1;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="950" y="865" width="200" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ea1" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="e-side" target="e-checkin" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="ea2" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="e-side" target="e-reserve" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="ea3" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="e-side" target="e-chat" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ================================================================== -->
+        <!-- Section F: 운영 상태 판단 로직                                        -->
+        <!-- ================================================================== -->
+        <mxCell id="secF-title" value="F. 실시간 운영 상태 판단 (checkIsOpenNow)" style="text;html=1;fontSize=16;fontStyle=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="20" y="1130" width="400" height="30" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="f1" value="현재 요일의&#xa;OperatingTime 조회" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="20" y="1170" width="150" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="f2" value="isDayOff?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="210" y="1165" width="90" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="f3" value="휴무일/공휴일?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="340" y="1165" width="100" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="f4" value="현재 시간이&#xa;openTime ~ closeTime&#xa;사이?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="480" y="1155" width="120" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="f5" value="점심시간&#xa;아닌지?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="640" y="1165" width="100" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="f-open" value="✅ 진료중" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="790" y="1175" width="90" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="f-closed" value="❌ 진료 종료" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1260" width="100" height="30" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="fa1" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="f1" target="f2" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="fa2" value="No" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="f2" target="f3" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="fa3" value="No" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="f3" target="f4" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="fa4" value="Yes" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="f4" target="f5" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="fa5" value="Yes" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="f5" target="f-open" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="fa6" value="Yes" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="f2" target="f-closed" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="fa7" value="Yes" style="edgeStyle=orthogonalEdgeStyle;dashed=1;" edge="1" source="f3" target="f-closed" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="fa8" value="No" style="edgeStyle=orthogonalEdgeStyle;dashed=1;" edge="1" source="f4" target="f-closed" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="fa9" value="No" style="edgeStyle=orthogonalEdgeStyle;dashed=1;" edge="1" source="f5" target="f-closed" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ================================================================== -->
+        <!-- Section G: 엔티티 관계                                               -->
+        <!-- ================================================================== -->
+        <mxCell id="secG-title" value="G. 엔티티 관계" style="text;html=1;fontSize=16;fontStyle=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="20" y="1330" width="200" height="30" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="g-hospital" value="&lt;b&gt;Hospital&lt;/b&gt;&#xa;id, name, phone, introduction&#xa;status (PENDING/APPROVED/REJECTED/DELETED)&#xa;reservationApprovalMode (AUTO/MANUAL)&#xa;checkinClosedDate" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="300" y="1370" width="270" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="g-address" value="&lt;b&gt;HospitalAddress&lt;/b&gt;&#xa;streetAddress, detailAddress&#xa;zipcode, sido, sigungu, emdName&#xa;latitude, longitude" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="20" y="1490" width="200" height="64" as="geometry"/>
+        </mxCell>
+        <mxCell id="g-time" value="&lt;b&gt;HospitalOperatingTime&lt;/b&gt;&#xa;dayOfWeek (월~일)&#xa;openTime, closeTime&#xa;breakStartTime, breakEndTime&#xa;isDayOff" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="250" y="1490" width="190" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="g-holiday" value="&lt;b&gt;HospitalHoliday&lt;/b&gt;&#xa;holidayDate, reason" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="470" y="1490" width="150" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="g-image" value="&lt;b&gt;HospitalImage&lt;/b&gt;&#xa;imageUrl (S3)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="470" y="1545" width="130" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="g-dept" value="&lt;b&gt;HospitalDepartment&lt;/b&gt;&#xa;→ Department (진료과)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="640" y="1490" width="160" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="g-filter" value="&lt;b&gt;HospitalFilter&lt;/b&gt;&#xa;→ Filter (category)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="640" y="1545" width="160" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="g-hashtag" value="&lt;b&gt;HospitalHashtag&lt;/b&gt;&#xa;tag (max 10자, 최대 5개)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="640" y="1596" width="170" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="g-account" value="&lt;b&gt;Account&lt;/b&gt;&#xa;(병원관리자)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="20" y="1380" width="110" height="36" as="geometry"/>
+        </mxCell>
+
+        <!-- 관계선 -->
+        <mxCell id="ga1" value="1:1" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="g-hospital" target="g-address" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="ga2" value="1:N (7)" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="g-hospital" target="g-time" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="ga3" value="1:N" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="g-hospital" target="g-holiday" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="ga4" value="1:N" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="g-hospital" target="g-dept" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="ga5" value="1:N" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="g-hospital" target="g-filter" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="ga6" value="1:N" style="edgeStyle=orthogonalEdgeStyle;dashed=1;" edge="1" source="g-hospital" target="g-hashtag" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="ga7" value="1:N" style="edgeStyle=orthogonalEdgeStyle;dashed=1;" edge="1" source="g-hospital" target="g-image" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="ga8" value="1:1" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="g-account" target="g-hospital" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ================================================================== -->
+        <!-- 핵심 포인트                                                          -->
+        <!-- ================================================================== -->
+        <mxCell id="key-title" value="핵심 포인트" style="text;html=1;fontSize=14;fontStyle=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="20" y="1660" width="200" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="key-box" value="• 위치 기반 검색: userLat/userLng 필수, ST_Distance_Sphere()로 거리 계산&#xa;• 3단계 정렬: 이름 관련도 → 진료중 여부 → 거리순&#xa;• 동적 필터: Filter 엔티티 (TIME/HOLIDAY/FACILITY/SERVICE 카테고리)&#xa;• 지도: Kakao Maps SDK, 반경 필터 (1/2/5km), 마커 + 플로팅 카드&#xa;• 운영 상태: 요일별 운영시간 + 점심시간 + 휴무일/공휴일 종합 판단&#xa;• 상세 페이지: 좌측 메인(이미지, 지도, 의사, 리뷰) + 우측 사이드바(접수/예약/채팅)&#xa;• 접수 비활성화: 휴무일 OR 마감 30분전 OR 관리자 수동 마감&#xa;• 주소 데이터: 프론트 addressData.js (전국 시도/시군구/읍면동 내장)" style="text;html=1;fontSize=10;align=left;verticalAlign=top;fillColor=#f5f5f5;strokeColor=#666666;rounded=1;spacingLeft=8;spacingTop=4;" vertex="1" parent="1">
+          <mxGeometry x="20" y="1690" width="460" height="130" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

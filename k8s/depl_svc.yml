@@ -1,0 +1,134 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hodadoc-deployment
+  namespace: hodadoc
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-hodadoc
+  template:
+    metadata:
+      labels:
+        app: my-hodadoc
+    spec:
+      containers:
+      - name: my-hodadoc
+        image: 346903264902.dkr.ecr.ap-northeast-2.amazonaws.com/hodadoc
+        ports:
+        - containerPort: 8080
+        resources:
+        # 컨테이너가 사용할수 있는 리소스의 최대치
+          limits:
+            cpu: "1"
+            memory: "500Mi"
+        # 컨테이너가 시작될때 보장받아야 하는 최소 자원
+          requests:
+            cpu: "0.5"
+            memory: "250Mi"
+        env:
+        # 아래의 name과 yml의 ${}의 변수명과 일치해야함
+        - name: DB_HOST
+          valueFrom:
+            secretKeyRef:
+              name: hodadoc-secrets
+              key: DB_HOST
+        - name: DB_PW
+          valueFrom:
+            secretKeyRef:
+              name: hodadoc-secrets
+              key: DB_PW
+        - name: RABBITMQ_DEFAULT_USER
+          valueFrom:
+            secretKeyRef:
+              name: hodadoc-secrets
+              key: RABBITMQ_DEFAULT_USER
+        - name: RABBITMQ_DEFAULT_PASS
+          valueFrom:
+            secretKeyRef:
+              name: hodadoc-secrets
+              key: RABBITMQ_DEFAULT_PASS                  
+        - name: JWT_SECRETKEY
+          valueFrom:
+            secretKeyRef:
+              name: hodadoc-secrets
+              key: JWT_SECRETKEY 
+        - name: JWT_SECRETKEY_RT
+          valueFrom:
+            secretKeyRef:
+              name: hodadoc-secrets
+              key: JWT_SECRETKEY_RT
+        - name: KAKAO_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: hodadoc-secrets
+              key: KAKAO_CLIENT_ID
+        - name: KAKAO_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: hodadoc-secrets
+              key: KAKAO_CLIENT_SECRET
+        - name: FRONT_DOMAIN
+          valueFrom:
+            secretKeyRef:
+              name: hodadoc-secrets
+              key: FRONT_DOMAIN
+        - name: AWS_ACCESS_KEY_HOS
+          valueFrom:
+            secretKeyRef:
+              name: hodadoc-secrets
+              key: AWS_ACCESS_KEY_HOS
+        - name: AWS_SECRET_KEY_HOS
+          valueFrom:
+            secretKeyRef:
+              name: hodadoc-secrets
+              key: AWS_SECRET_KEY_HOS
+        - name: HOLIDAY_SERVICE_KEY
+          valueFrom:
+            secretKeyRef:
+              name: hodadoc-secrets
+              key: HOLIDAY_SERVICE_KEY  
+        - name: HOLIDAY_URL
+          valueFrom:
+            secretKeyRef:
+              name: hodadoc-secrets
+              key: HOLIDAY_URL
+        - name: SOLAPI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: hodadoc-secrets
+              key: SOLAPI_API_KEY 
+        - name: SOLAPI_API_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: hodadoc-secrets
+              key: SOLAPI_API_SECRET
+        - name: PHONE_NUMBER
+          valueFrom:
+            secretKeyRef:
+              name: hodadoc-secrets
+              key: PHONE_NUMBER                                                                                                                                                                           
+        # 컨테이너 상태 확인을 통해 롤링업데이트 최적화 
+        readinessProbe:
+          httpGet:
+            # healthcheck 경로
+            path: /health
+            port: 8080
+          # 컨테이너 시작 후 지연
+          initialDelaySeconds: 10
+          # 확인 반복 주기
+          periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hodadoc-service
+  namespace: hodadoc
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: my-hodadoc

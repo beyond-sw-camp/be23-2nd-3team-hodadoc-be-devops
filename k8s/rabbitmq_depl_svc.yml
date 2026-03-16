@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq-deployment
+  namespace: hodadoc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-rabbitmq
+  template:
+    metadata:
+      labels:
+        app: my-rabbitmq
+    spec:
+      containers:
+      - name: my-rabbitmq
+        image: rabbitmq
+        ports:
+        - containerPort: 5672
+        env:
+        - name: RABBITMQ_DEFAULT_USER
+          valueFrom:
+            secretKeyRef:
+              name: hodadoc-secrets
+              key: RABBITMQ_DEFAULT_USER
+        - name: RABBITMQ_DEFAULT_PASS
+          valueFrom:
+            secretKeyRef:
+              name: hodadoc-secrets
+              key: RABBITMQ_DEFAULT_PASS
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-rabbitmq
+  namespace: hodadoc
+spec:
+  type: ClusterIP
+  ports:
+  - port: 5672
+    targetPort: 5672
+  selector:
+    app: my-rabbitmq

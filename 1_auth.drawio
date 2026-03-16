@@ -1,0 +1,250 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36" version="29.6.1">
+  <diagram name="로그인 인증" id="auth-flow">
+    <mxGraphModel dx="780" dy="465" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#333;" value="1. 로그인 인증 (Authentication)" vertex="1">
+          <mxGeometry height="40" width="500" x="400" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="kakao-section" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#F9A825;strokeWidth=2;dashed=1;fontSize=14;fontStyle=1;fontColor=#F9A825;verticalAlign=top;spacingTop=5;" value="환자: 카카오 OAuth 로그인" vertex="1">
+          <mxGeometry height="260" width="1540" x="30" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="k1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" value="① 카카오 로그인&#xa;버튼 클릭" vertex="1">
+          <mxGeometry height="50" width="120" x="50" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="k1-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#6c8ebf;align=center;" value="Vue Frontend&#xa;AccountDoLoginModal" vertex="1">
+          <mxGeometry height="30" width="120" x="50" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="k2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1;" value="② 카카오 인증 페이지&#xa;리다이렉트" vertex="1">
+          <mxGeometry height="50" width="140" x="230" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="k2-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#b85450;align=center;" value="kauth.kakao.com&#xa;사용자 동의 화면" vertex="1">
+          <mxGeometry height="30" width="140" x="230" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="k3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" value="③ 인증 코드 수신&#xa;(redirect callback)" vertex="1">
+          <mxGeometry height="50" width="140" x="430" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="k3-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#6c8ebf;align=center;" value="Vue Frontend&#xa;?code=xxx 파라미터" vertex="1">
+          <mxGeometry height="30" width="140" x="430" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="k4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="④ 카카오 토큰 요청&#xa;+ 프로필 조회" vertex="1">
+          <mxGeometry height="50" width="140" x="630" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="k4-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#82b366;align=center;" value="Spring Boot&#xa;POST /account/kakao/doLogin&#xa;→ KakaoService" vertex="1">
+          <mxGeometry height="40" width="140" x="630" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="k4d" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" value="Kakao API 호출&#xa;1. /oauth/token → 카카오 accessToken&#xa;2. /v2/user/me → 이메일, kakao_id" vertex="1">
+          <mxGeometry height="50" width="200" x="630" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="k5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="⑤ 계정 조회/생성" vertex="1">
+          <mxGeometry height="50" width="130" x="860" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="k5-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#82b366;align=center;" value="socialId=kakao_id 조회&#xa;없으면 신규 Account 생성&#xa;(role=PATIENT)" vertex="1">
+          <mxGeometry height="40" width="160" x="845" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="k5-db" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=6;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=9;" value="MariaDB&#xa;Account" vertex="1">
+          <mxGeometry height="45" width="90" x="880" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="k6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="⑥ JWT 발급" vertex="1">
+          <mxGeometry height="50" width="120" x="1050" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="k6-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#82b366;align=center;" value="accessToken 생성&#xa;refreshToken 생성&#xa;sub=accountId, role" vertex="1">
+          <mxGeometry height="40" width="140" x="1040" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="k6-redis" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="Redis&#xa;RT:{accountId} 저장" vertex="1">
+          <mxGeometry height="40" width="120" x="1050" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="k7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" value="⑦ 토큰 저장&#xa;+ SSE 연결" vertex="1">
+          <mxGeometry height="50" width="120" x="1230" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="k7-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#6c8ebf;align=center;" value="localStorage 저장&#xa;sseService.start()&#xa;auth-changed 이벤트" vertex="1">
+          <mxGeometry height="40" width="140" x="1220" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="k7-ls" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=6;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=9;" value="localStorage&#xa;accessToken&#xa;refreshToken" vertex="1">
+          <mxGeometry height="55" width="110" x="1400" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="ka1" edge="1" parent="1" source="k1" style="rounded=1;orthogonalLoop=1;strokeColor=#333;strokeWidth=2;" target="k2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ka2" edge="1" parent="1" source="k2" style="rounded=1;orthogonalLoop=1;strokeColor=#333;strokeWidth=2;" target="k3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ka2-label" connectable="0" parent="ka2" style="edgeLabel;html=1;fontSize=8;fontColor=#b85450;" value="code 발급" vertex="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ka3" edge="1" parent="1" source="k3" style="rounded=1;orthogonalLoop=1;strokeColor=#333;strokeWidth=2;" target="k4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ka3-label" connectable="0" parent="ka3" style="edgeLabel;html=1;fontSize=8;fontColor=#82b366;" value="POST code" vertex="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ka4" edge="1" parent="1" source="k4" style="rounded=1;orthogonalLoop=1;strokeColor=#b85450;strokeWidth=1;dashed=1;" target="k4d">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ka5" edge="1" parent="1" source="k4" style="rounded=1;orthogonalLoop=1;strokeColor=#333;strokeWidth=2;" target="k5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ka5d" edge="1" parent="1" source="k5" style="rounded=1;orthogonalLoop=1;strokeColor=#9673a6;strokeWidth=1;dashed=1;" target="k5-db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ka6" edge="1" parent="1" source="k5" style="rounded=1;orthogonalLoop=1;strokeColor=#333;strokeWidth=2;" target="k6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ka6d" edge="1" parent="1" source="k6" style="rounded=1;orthogonalLoop=1;strokeColor=#d6b656;strokeWidth=1;dashed=1;" target="k6-redis">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ka7" edge="1" parent="1" source="k6" style="rounded=1;orthogonalLoop=1;strokeColor=#333;strokeWidth=2;" target="k7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ka7-label" connectable="0" parent="ka7" style="edgeLabel;html=1;fontSize=8;fontColor=#333;" value="응답: tokens" vertex="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ka8" edge="1" parent="1" source="k7" style="rounded=1;orthogonalLoop=1;strokeColor=#9673a6;strokeWidth=2;" target="k7-ls">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="general-section" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#4A86C8;strokeWidth=2;dashed=1;fontSize=14;fontStyle=1;fontColor=#4A86C8;verticalAlign=top;spacingTop=5;" value="병원관리자 / 서버관리자: 일반 로그인 (이메일 + 비밀번호)" vertex="1">
+          <mxGeometry height="200" width="1540" x="30" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="g1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" value="① 이메일 / 비밀번호&#xa;입력" vertex="1">
+          <mxGeometry height="50" width="140" x="50" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="g1-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#6c8ebf;align=center;" value="Vue Frontend&#xa;로그인 폼" vertex="1">
+          <mxGeometry height="25" width="140" x="50" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="g2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="② 인증 처리" vertex="1">
+          <mxGeometry height="50" width="140" x="310" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="g2-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#82b366;align=center;" value="POST /account/doLogin&#xa;이메일 조회 → BCrypt 검증" vertex="1">
+          <mxGeometry height="25" width="180" x="290" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="g2-db" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=6;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=9;" value="MariaDB&#xa;Account" vertex="1">
+          <mxGeometry height="40" width="90" x="335" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="g3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="③ JWT 발급" vertex="1">
+          <mxGeometry height="50" width="140" x="570" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="g3-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#82b366;align=center;" value="accessToken + refreshToken&#xa;sub=accountId&#xa;role=HOSPITAL_ADMIN 또는 ADMIN" vertex="1">
+          <mxGeometry height="40" width="180" x="550" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="g3-redis" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="Redis&#xa;RT:{accountId} 저장" vertex="1">
+          <mxGeometry height="35" width="120" x="580" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="g4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" value="④ 토큰 저장&#xa;+ SSE 연결" vertex="1">
+          <mxGeometry height="50" width="130" x="830" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="g4-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#6c8ebf;align=center;" value="localStorage 저장&#xa;sseService.start()&#xa;페이지 이동" vertex="1">
+          <mxGeometry height="40" width="150" x="820" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="g4-ls" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=6;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=9;" value="localStorage&#xa;accessToken&#xa;refreshToken" vertex="1">
+          <mxGeometry height="55" width="110" x="1020" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="g5" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#E65100;fontSize=9;fontColor=#E65100;" value="hospital_status&#xa;확인" vertex="1">
+          <mxGeometry height="70" width="120" x="1180" y="395" as="geometry" />
+        </mxCell>
+        <mxCell id="g5-none" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#E65100;align=left;" value="NONE → 병원 등록 페이지&#xa;PENDING → 승인 대기 안내&#xa;APPROVED → 전체 기능" vertex="1">
+          <mxGeometry height="50" width="200" x="1320" y="395" as="geometry" />
+        </mxCell>
+        <mxCell id="ga1" edge="1" parent="1" source="g1" style="rounded=1;orthogonalLoop=1;strokeColor=#333;strokeWidth=2;" target="g2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ga1-label" connectable="0" parent="ga1" style="edgeLabel;html=1;fontSize=8;fontColor=#333;" value="POST email/pw" vertex="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ga2d" edge="1" parent="1" source="g2" style="rounded=1;orthogonalLoop=1;strokeColor=#9673a6;strokeWidth=1;dashed=1;" target="g2-db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ga2" edge="1" parent="1" source="g2" style="rounded=1;orthogonalLoop=1;strokeColor=#333;strokeWidth=2;" target="g3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ga3d" edge="1" parent="1" source="g3" style="rounded=1;orthogonalLoop=1;strokeColor=#d6b656;strokeWidth=1;dashed=1;" target="g3-redis">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ga3" edge="1" parent="1" source="g3" style="rounded=1;orthogonalLoop=1;strokeColor=#333;strokeWidth=2;" target="g4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ga3-label" connectable="0" parent="ga3" style="edgeLabel;html=1;fontSize=8;fontColor=#333;" value="응답: tokens" vertex="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ga4" edge="1" parent="1" source="g4" style="rounded=1;orthogonalLoop=1;strokeColor=#9673a6;strokeWidth=2;" target="g4-ls">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ga5" edge="1" parent="1" source="g4" style="rounded=1;orthogonalLoop=1;strokeColor=#E65100;strokeWidth=2;dashed=1;" target="g5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ga5-label" connectable="0" parent="ga5" style="edgeLabel;html=1;fontSize=8;fontColor=#E65100;" value="병원관리자만" vertex="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ga6" edge="1" parent="1" source="g5" style="rounded=1;orthogonalLoop=1;strokeColor=#E65100;strokeWidth=1;" target="g5-none">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="refresh-section" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#82b366;strokeWidth=2;dashed=1;fontSize=14;fontStyle=1;fontColor=#82b366;verticalAlign=top;spacingTop=5;" value="토큰 갱신 (Refresh Token Rotation)" vertex="1">
+          <mxGeometry height="180" width="1200" x="30" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="r1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" value="① accessToken&#xa;만료 감지" vertex="1">
+          <mxGeometry height="50" width="130" x="50" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="r1-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#6c8ebf;align=center;" value="http.js 인터셉터&#xa;exp 확인 (10초 버퍼)" vertex="1">
+          <mxGeometry height="25" width="150" x="40" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="r2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="② refreshToken&#xa;갱신 요청" vertex="1">
+          <mxGeometry height="50" width="140" x="280" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="r2-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#82b366;align=center;" value="POST /account/refresh&#xa;{ refreshToken: &quot;...&quot; }" vertex="1">
+          <mxGeometry height="25" width="160" x="270" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="r3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;fontStyle=1;" value="③ Redis 검증" vertex="1">
+          <mxGeometry height="50" width="130" x="520" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="r3-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#d6b656;align=center;" value="RT:{accountId} 조회&#xa;저장된 토큰과 비교" vertex="1">
+          <mxGeometry height="25" width="150" x="510" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="r4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="④ 새 토큰 쌍 발급&#xa;(Rotation)" vertex="1">
+          <mxGeometry height="50" width="140" x="750" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="r4-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#82b366;align=center;" value="새 accessToken + refreshToken&#xa;Redis RT 갱신" vertex="1">
+          <mxGeometry height="25" width="160" x="740" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="r5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" value="⑤ localStorage&#xa;업데이트" vertex="1">
+          <mxGeometry height="50" width="130" x="990" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="r5-sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#6c8ebf;align=center;" value="토큰 교체 후&#xa;원래 요청 재시도" vertex="1">
+          <mxGeometry height="25" width="150" x="980" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="ra1" edge="1" parent="1" source="r1" style="rounded=1;orthogonalLoop=1;strokeColor=#333;strokeWidth=2;" target="r2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ra2" edge="1" parent="1" source="r2" style="rounded=1;orthogonalLoop=1;strokeColor=#333;strokeWidth=2;" target="r3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ra3" edge="1" parent="1" source="r3" style="rounded=1;orthogonalLoop=1;strokeColor=#333;strokeWidth=2;" target="r4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ra3-label" connectable="0" parent="ra3" style="edgeLabel;html=1;fontSize=8;fontColor=#82b366;" value="검증 성공" vertex="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ra4" edge="1" parent="1" source="r4" style="rounded=1;orthogonalLoop=1;strokeColor=#333;strokeWidth=2;" target="r5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jwt-section" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#9673a6;strokeWidth=2;dashed=1;fontSize=14;fontStyle=1;fontColor=#9673a6;verticalAlign=top;spacingTop=5;" value="JWT 구조 &amp; 프론트 Guard 연동" vertex="1">
+          <mxGeometry height="190" width="1540" x="30" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="jwt-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1F8E9;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=15;" value="&lt;b&gt;JWT Payload 구조&lt;/b&gt;&#xa;&#xa;{&#xa;  &quot;sub&quot;: 42,              // accountId (Long)&#xa;  &quot;role&quot;: &quot;PATIENT&quot;,       // PATIENT | HOSPITAL_ADMIN | ADMIN&#xa;  &quot;iat&quot;: 1710000000,     // 발급 시간&#xa;  &quot;exp&quot;: 1710000900      // 만료 시간&#xa;}" vertex="1">
+          <mxGeometry height="130" width="320" x="50" y="820" as="geometry" />
+        </mxCell>
+        <mxCell id="guard-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#4A86C8;fontSize=11;align=left;spacingLeft=15;" value="&lt;b&gt;프론트 Navigation Guard&lt;/b&gt;&#xa;&#xa;authGuard (마이페이지)&#xa;  → localStorage에서 JWT 읽기&#xa;  → exp 만료 여부 검증&#xa;  → 실패 시 로그인 모달&#xa;&#xa;profileGuard (예약/접수)&#xa;  → authGuard + 이름/전화번호 확인&#xa;  → 미완성 시 마이페이지로 리다이렉트" vertex="1">
+          <mxGeometry height="130" width="300" x="420" y="820" as="geometry" />
+        </mxCell>
+        <mxCell id="fail-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#E65100;fontSize=11;align=left;spacingLeft=15;fontColor=#E65100;" value="&lt;b&gt;인증 실패 처리&lt;/b&gt;&#xa;&#xa;Guard 실패:&#xa;  → 토큰 제거 → 로그인 모달 표시&#xa;&#xa;API 401/403 응답:&#xa;  → refreshToken 갱신 시도&#xa;  → 실패 시 강제 로그아웃 → 홈 이동&#xa;&#xa;로그아웃:&#xa;  → localStorage 토큰 삭제&#xa;  → SSE 연결 종료 → 알림 초기화" vertex="1">
+          <mxGeometry height="130" width="300" x="770" y="820" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#CCC;fontSize=10;align=left;spacingLeft=10;verticalAlign=top;spacingTop=10;" value="&lt;b&gt;범례&lt;/b&gt;&#xa;🔵 파란색 = 프론트엔드 (Vue)&#xa;🟢 초록색 = 백엔드 (Spring Boot)&#xa;🟡 노란색 = 미들웨어 (Redis)&#xa;🟣 보라색 = 저장소 (DB / localStorage)&#xa;🔴 빨간색 = 외부 API (Kakao)" vertex="1">
+          <mxGeometry height="130" width="230" x="1120" y="820" as="geometry" />
+        </mxCell>
+        <mxCell id="summary" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;fontSize=10;align=left;spacingLeft=10;verticalAlign=top;spacingTop=10;fontColor=#333;" value="&lt;b&gt;역할별 로그인 방식&lt;/b&gt;&#xa;&#xa;환자 (PATIENT)&#xa;  → 카카오 OAuth 로그인만 가능&#xa;&#xa;병원관리자 (HOSPITAL_ADMIN)&#xa;  → 이메일/비밀번호 일반 로그인&#xa;&#xa;서버관리자 (ADMIN)&#xa;  → 이메일/비밀번호 일반 로그인" vertex="1">
+          <mxGeometry height="130" width="190" x="1370" y="820" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
