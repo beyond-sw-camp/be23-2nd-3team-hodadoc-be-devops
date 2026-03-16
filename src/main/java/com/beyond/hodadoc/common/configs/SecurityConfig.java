@@ -52,6 +52,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/account/kakao/doLogin").permitAll()
                         .requestMatchers(HttpMethod.POST, "/account/refresh").permitAll() // ✅ 추가
                         .requestMatchers(HttpMethod.POST, "/auth/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/health").permitAll()
+
 
                         .requestMatchers(HttpMethod.GET, "/hospital/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/doctor/hospital/**").permitAll()
