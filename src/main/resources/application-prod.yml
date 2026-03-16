@@ -93,4 +93,4 @@ solapi:
   api-key: ${SOLAPI_API_KEY}
   api-secret: ${SOLAPI_API_SECRET}
   from-number: "${PHONE_NUMBER}"
-  enabled: false # 테스트 시 false로 설정, 실제 시연할 시에는 true로 설정
+  enabled: true # 테스트 시 false로 설정, 실제 시연할 시에는 true로 설정
