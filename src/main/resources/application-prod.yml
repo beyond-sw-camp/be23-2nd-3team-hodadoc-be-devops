@@ -67,7 +67,7 @@ oauth:
   kakao:
     client-id: ${KAKAO_CLIENT_ID}
     client-secret: ${KAKAO_CLIENT_SECRET}
-    redirect-uri: http://${FRONT_DOMAIN}:3002/oauth/kakao/redirect
+    redirect-uri: https://${FRONT_DOMAIN}/oauth/kakao/redirect
 
 logging:
   level:

@@ -4,9 +4,9 @@ spring:
       on-profile: local
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3306/hodadoc?useSSL=true
-    username: root
-    password: test1234
+    url: jdbc:mariadb://xxxxxxxx:3306/hodadoc?useSSL=true
+    username: xxxxxxx
+    password: xxxxxxx
 
   sql:
     init:
@@ -50,16 +50,16 @@ mybatis:
 
 jwt:
   expiration: 3000
-  secretKey: YmV5b25kYWNjZXNzdG9rZW5zZWNyZXRrZXliZXlvbmRhY2Nlc3N0b2tlbnNlY3JldGtleWJleW9uZGFjY2Vzc3Rva2Vuc2VjcmV0a2V5
+  secretKey: xxxxxxxxxx
   refresh-expiration: 10080
   expirationRt: 300000
-  secretKeyRt: YmV5b25kYWNjZXNzdG9rZW5zZWNyZXRrZXliZXlvbmRhY2Nlc3N0b2tlbnNlY3JldGtleWJleW9uZGFjY2Vzc3Rva2Vuc2VjcmV0a2V5
+  secretKeyRt: xxxxxxxxxxx
 
 oauth:
   kakao:
-    client-id: cdba7bb16ab0ec03f94a2caec2e96ade
-    client-secret: g1fmM0He11Q90WNdAbbqkrKzRpRdpcc0
-    redirect-uri: http://localhost:3002/oauth/kakao/redirect
+    client-id: xxxxxxxxxxx
+    client-secret: xxxxxxxxxxxxx
+    redirect-uri: http://xxxxxxx:3002/oauth/kakao/redirect
 
 logging:
   level:
