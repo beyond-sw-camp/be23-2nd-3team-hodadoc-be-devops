@@ -29,13 +29,13 @@ import java.util.stream.Collectors;
 @Transactional
 public class DoctorService {
 
-    private final DoctorRepository          doctorRepository;
-    private final DoctorScheduleRepository  doctorScheduleRepository;
-    private final DoctorOffDayRepository    doctorOffDayRepository;
-    private final HospitalRepository        hospitalRepository;
-    private final DepartmentRepository      departmentRepository;
-    private final DoctorS3Service           doctorS3Service;
-    private final ReservationRepository     reservationRepository;
+    private final DoctorRepository doctorRepository;
+    private final DoctorScheduleRepository doctorScheduleRepository;
+    private final DoctorOffDayRepository doctorOffDayRepository;
+    private final HospitalRepository hospitalRepository;
+    private final DepartmentRepository departmentRepository;
+    private final DoctorS3Service doctorS3Service;
+    private final ReservationRepository reservationRepository;
 
     public DoctorService(DoctorRepository doctorRepository,
                          DoctorScheduleRepository doctorScheduleRepository,
@@ -44,18 +44,17 @@ public class DoctorService {
                          DepartmentRepository departmentRepository,
                          DoctorS3Service doctorS3Service,
                          ReservationRepository reservationRepository) {
-        this.doctorRepository         = doctorRepository;
+        this.doctorRepository = doctorRepository;
         this.doctorScheduleRepository = doctorScheduleRepository;
-        this.doctorOffDayRepository   = doctorOffDayRepository;
-        this.hospitalRepository       = hospitalRepository;
-        this.departmentRepository     = departmentRepository;
-        this.doctorS3Service          = doctorS3Service;
-        this.reservationRepository    = reservationRepository;
+        this.doctorOffDayRepository = doctorOffDayRepository;
+        this.hospitalRepository = hospitalRepository;
+        this.departmentRepository = departmentRepository;
+        this.doctorS3Service = doctorS3Service;
+        this.reservationRepository = reservationRepository;
     }
 
-    // ── 의사 CRUD ────────────────────────────────────────────────────────────
+    // ── 의사 CRUD ──────────────────────────────────────────────────────────────
 
-    // 환자용: hospitalId로 직접 조회 (인증 불필요)
     @Transactional(readOnly = true)
     public List<DoctorResDto> findByHospitalId(Long hospitalId) {
         return doctorRepository.findByHospitalId(hospitalId)
@@ -75,9 +74,13 @@ public class DoctorService {
     }
 
     public DoctorResDto create(Long accountId, DoctorCreateReqDto dto) {
-        Hospital   hospital   = getMyHospital(accountId);
+        Hospital hospital = getMyHospital(accountId);
+
         Department department = departmentRepository.findById(dto.getDepartmentId())
                 .orElseThrow(() -> new EntityNotFoundException("진료과를 찾을 수 없습니다."));
+
+        // [핵심 추가] 선택한 진료과가 해당 병원에 등록된 진료과인지 검증
+        validateDepartmentBelongsToHospital(hospital, department.getId());
 
         String imageUrl = dto.getImageUrl();
         if (dto.getProfileImage() != null && !dto.getProfileImage().isEmpty()) {
@@ -92,21 +95,23 @@ public class DoctorService {
                 .career(dto.getCareer())
                 .hospital(hospital)
                 .build();
+
         doctorRepository.save(doctor);
-
-        // 병원 운영시간을 기본 근무규칙으로 자동 생성
         createDefaultSchedules(doctor, hospital);
-
         return DoctorResDto.from(doctor);
     }
 
     public DoctorResDto update(Long accountId, Long doctorId, DoctorUpdateReqDto dto) {
         Doctor doctor = getMyDoctor(accountId, doctorId);
+        Hospital hospital = doctor.getHospital();
 
         Department department = null;
         if (dto.getDepartmentId() != null) {
             department = departmentRepository.findById(dto.getDepartmentId())
                     .orElseThrow(() -> new EntityNotFoundException("진료과를 찾을 수 없습니다."));
+
+            // [핵심 추가] 수정 시에도 병원 진료과 검증
+            validateDepartmentBelongsToHospital(hospital, department.getId());
         }
 
         String imageUrl = dto.getImageUrl() != null ? dto.getImageUrl() : doctor.getImageUrl();
@@ -127,7 +132,7 @@ public class DoctorService {
         doctorRepository.delete(doctor);
     }
 
-    // ── 근무규칙(스케줄) ──────────────────────────────────────────────────────
+    // ── 근무규칙(스케줄) ────────────────────────────────────────────────────────
 
     @Transactional(readOnly = true)
     public List<DoctorScheduleResDto> getSchedules(Long accountId, Long doctorId) {
@@ -136,11 +141,6 @@ public class DoctorService {
                 .stream().map(DoctorScheduleResDto::from).collect(Collectors.toList());
     }
 
-    /**
-     * 근무규칙 저장
-     * 1. 기존 스케줄 전체 삭제 후 새로 저장
-     * 2. 근무일(isDayOff=false)로 변경된 요일의 오늘 ~ 1년치 BLOCKED 슬롯 삭제
-     */
     public List<DoctorScheduleResDto> saveSchedules(Long accountId, Long doctorId, List<DoctorScheduleReqDto> dtos) {
         Doctor doctor = getMyDoctor(accountId, doctorId);
 
@@ -154,20 +154,20 @@ public class DoctorService {
                     .dayOfWeek(dto.getDayOfWeek())
                     .build();
             schedule.update(
-                    dto.getWorkStartTime()  != null ? LocalTime.parse(dto.getWorkStartTime())  : null,
-                    dto.getWorkEndTime()    != null ? LocalTime.parse(dto.getWorkEndTime())    : null,
+                    dto.getWorkStartTime() != null ? LocalTime.parse(dto.getWorkStartTime()) : null,
+                    dto.getWorkEndTime() != null ? LocalTime.parse(dto.getWorkEndTime()) : null,
                     dto.getLunchStartTime() != null ? LocalTime.parse(dto.getLunchStartTime()) : null,
-                    dto.getLunchEndTime()   != null ? LocalTime.parse(dto.getLunchEndTime())   : null,
+                    dto.getLunchEndTime() != null ? LocalTime.parse(dto.getLunchEndTime()) : null,
                     dto.getConsultationInterval(),
                     dto.isDayOff()
             );
             result.add(doctorScheduleRepository.save(schedule));
         }
 
-        // ✅ 근무일로 변경된 요일의 BLOCKED 슬롯 삭제 (오늘 ~ 1년 후)
         List<LocalDate> datesToClearBlocked = new ArrayList<>();
-        LocalDate today        = LocalDate.now();
+        LocalDate today = LocalDate.now();
         LocalDate oneYearLater = today.plusYears(1);
+
         for (DoctorScheduleReqDto dto : dtos) {
             if (!dto.isDayOff()) {
                 LocalDate cursor = today;
@@ -179,6 +179,7 @@ public class DoctorService {
                 }
             }
         }
+
         if (!datesToClearBlocked.isEmpty()) {
             reservationRepository.deleteBlockedByDoctorIdAndDates(doctorId, datesToClearBlocked);
         }
@@ -186,52 +187,40 @@ public class DoctorService {
         return result.stream().map(DoctorScheduleResDto::from).collect(Collectors.toList());
     }
 
-    // ── 휴무/연차 ─────────────────────────────────────────────────────────────
+    // ── 휴무/연차 ───────────────────────────────────────────────────────────────
 
-    // 환자용: 병원 소유자 검증 없이 의사 휴무일 조회
     @Transactional(readOnly = true)
     public List<DoctorOffDayResDto> getOffDaysPublic(Long doctorId, LocalDate startDate, LocalDate endDate) {
         Doctor doctor = doctorRepository.findById(doctorId)
                 .orElseThrow(() -> new EntityNotFoundException("의사를 찾을 수 없습니다."));
-
         List<DoctorOffDayResDto> result = new ArrayList<>(
                 doctorOffDayRepository.findByDoctorIdAndOffDateBetween(doctorId, startDate, endDate)
                         .stream().map(DoctorOffDayResDto::from).collect(Collectors.toList())
         );
-
         doctor.getHospital().getHolidays().stream()
                 .filter(h -> !h.getHolidayDate().isBefore(startDate) && !h.getHolidayDate().isAfter(endDate))
                 .forEach(h -> result.add(DoctorOffDayResDto.fromHospitalHoliday(h.getHolidayDate(), h.getReason())));
-
         return result;
     }
 
     @Transactional(readOnly = true)
-    public List<DoctorOffDayResDto> getOffDays(Long accountId, Long doctorId,
-                                               LocalDate startDate, LocalDate endDate) {
+    public List<DoctorOffDayResDto> getOffDays(Long accountId, Long doctorId, LocalDate startDate, LocalDate endDate) {
         Doctor doctor = getMyDoctor(accountId, doctorId);
-
-        // 의사 개인 휴무/연차
         List<DoctorOffDayResDto> result = new ArrayList<>(
                 doctorOffDayRepository.findByDoctorIdAndOffDateBetween(doctorId, startDate, endDate)
                         .stream().map(DoctorOffDayResDto::from).collect(Collectors.toList())
         );
-
-        // 병원 휴무일도 포함
         doctor.getHospital().getHolidays().stream()
                 .filter(h -> !h.getHolidayDate().isBefore(startDate) && !h.getHolidayDate().isAfter(endDate))
                 .forEach(h -> result.add(DoctorOffDayResDto.fromHospitalHoliday(h.getHolidayDate(), h.getReason())));
-
         return result;
     }
 
     public DoctorOffDayResDto createOffDay(Long accountId, DoctorOffDayReqDto dto) {
         Doctor doctor = getMyDoctor(accountId, dto.getDoctorId());
-
         if (doctorOffDayRepository.existsByDoctorIdAndOffDate(doctor.getId(), dto.getOffDate())) {
             throw new IllegalStateException("해당 날짜에 이미 휴무가 등록되어 있습니다.");
         }
-
         DoctorOffDay offDay = DoctorOffDay.builder()
                 .doctor(doctor)
                 .offDate(dto.getOffDate())
@@ -240,18 +229,15 @@ public class DoctorService {
         return DoctorOffDayResDto.from(doctorOffDayRepository.save(offDay));
     }
 
-    // ✅ 추가: 여러 날짜 일괄 OFF / BLOCKED 등록 (upsert)
     @Transactional
     public void batchSetOffDays(Long accountId, Long doctorId, List<String> dates, String type) {
         Doctor doctor = getMyDoctor(accountId, doctorId);
         OffDayType offType = OffDayType.valueOf(type);
-
         for (String dateStr : dates) {
             LocalDate date = LocalDate.parse(dateStr);
-            Optional<DoctorOffDay> existing =
-                    doctorOffDayRepository.findByDoctorIdAndOffDate(doctorId, date);
+            Optional<DoctorOffDay> existing = doctorOffDayRepository.findByDoctorIdAndOffDate(doctorId, date);
             if (existing.isPresent()) {
-                existing.get().updateType(offType); // 타입만 변경
+                existing.get().updateType(offType);
             } else {
                 doctorOffDayRepository.save(
                         DoctorOffDay.builder()
@@ -264,7 +250,6 @@ public class DoctorService {
         }
     }
 
-    // ✅ 추가: 선택 날짜 일괄 초기화 (삭제)
     @Transactional
     public void batchResetOffDays(Long accountId, Long doctorId, List<String> dates) {
         getMyDoctor(accountId, doctorId);
@@ -273,41 +258,44 @@ public class DoctorService {
         }
     }
 
-    // ✅ 추가: 해당 월 전체 초기화
     @Transactional
     public void resetMonthOffDays(Long accountId, Long doctorId, int year, int month) {
         getMyDoctor(accountId, doctorId);
         LocalDate start = LocalDate.of(year, month, 1);
-        LocalDate end   = start.withDayOfMonth(start.lengthOfMonth());
+        LocalDate end = start.withDayOfMonth(start.lengthOfMonth());
         doctorOffDayRepository.deleteByDoctorIdAndOffDateBetween(doctorId, start, end);
     }
 
-    // ── 내부 유틸 ─────────────────────────────────────────────────────────────
+    // ── 내부 유틸 ───────────────────────────────────────────────────────────────
+
+    /**
+     * [핵심 추가] 선택한 진료과가 병원에 등록된 과목인지 검증
+     * 프론트에서도 막지만 백엔드에서 한 번 더 검증 (이중 방어)
+     */
+    private void validateDepartmentBelongsToHospital(Hospital hospital, Long departmentId) {
+        boolean belongs = hospital.getHospitalDepartments().stream()
+                .anyMatch(hd -> hd.getDepartment().getId().equals(departmentId));
+        if (!belongs) {
+            throw new IllegalArgumentException(
+                    "선택한 진료과는 소속 병원에 등록되지 않은 진료과입니다. 병원 정보에서 진료과를 먼저 추가해 주세요."
+            );
+        }
+    }
 
     private static final int DEFAULT_CONSULTATION_INTERVAL = 15;
 
     private void createDefaultSchedules(Doctor doctor, Hospital hospital) {
         List<HospitalOperatingTime> opTimes = hospital.getOperatingHours();
         if (opTimes == null || opTimes.isEmpty()) return;
-
         for (HospitalOperatingTime ot : opTimes) {
             DoctorSchedule schedule = DoctorSchedule.builder()
                     .doctor(doctor)
                     .dayOfWeek(ot.getDayOfWeek())
                     .build();
-
-            // 휴무일이어도 시간 필드에 기본값을 넣어 프론트 null 에러 방지
             LocalTime startTime = ot.getOpenTime() != null ? ot.getOpenTime() : LocalTime.of(9, 0);
             LocalTime endTime = ot.getCloseTime() != null ? ot.getCloseTime() : LocalTime.of(18, 0);
-
-            schedule.update(
-                    startTime,
-                    endTime,
-                    ot.getBreakStartTime(),
-                    ot.getBreakEndTime(),
-                    DEFAULT_CONSULTATION_INTERVAL,
-                    ot.isDayOff()
-            );
+            schedule.update(startTime, endTime, ot.getBreakStartTime(), ot.getBreakEndTime(),
+                    DEFAULT_CONSULTATION_INTERVAL, ot.isDayOff());
             doctorScheduleRepository.save(schedule);
         }
     }
@@ -319,7 +307,7 @@ public class DoctorService {
 
     private Doctor getMyDoctor(Long accountId, Long doctorId) {
         Hospital hospital = getMyHospital(accountId);
-        Doctor   doctor   = doctorRepository.findById(doctorId)
+        Doctor doctor = doctorRepository.findById(doctorId)
                 .orElseThrow(() -> new EntityNotFoundException("의사를 찾을 수 없습니다."));
         if (!doctor.getHospital().getId().equals(hospital.getId())) {
             throw new IllegalStateException("해당 의사에 대한 권한이 없습니다.");
