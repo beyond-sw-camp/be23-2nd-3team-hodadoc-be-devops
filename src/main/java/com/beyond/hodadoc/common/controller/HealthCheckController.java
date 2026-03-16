@@ -1,4 +1,4 @@
-package com.example.ordersystem.common.controller;
+package com.beyond.hodadoc.common.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
