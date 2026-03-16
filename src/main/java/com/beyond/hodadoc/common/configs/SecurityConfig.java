@@ -52,7 +52,6 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/account/kakao/doLogin").permitAll()
                         .requestMatchers(HttpMethod.POST, "/account/refresh").permitAll() // ✅ 추가
                         .requestMatchers(HttpMethod.POST, "/auth/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/health").permitAll()
 
 
                         .requestMatchers(HttpMethod.GET, "/hospital/**").permitAll()
@@ -61,6 +60,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/reservation/slots").permitAll()
                         .requestMatchers(HttpMethod.GET, "/reservation/hospital/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/sse/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/health").permitAll()
+
                         .requestMatchers("/connect/**").permitAll()
 
                         .requestMatchers(HttpMethod.GET, "/admin/department/list").permitAll()
