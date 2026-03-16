@@ -12,7 +12,7 @@ spring:
 
   sql:
     init:
-      mode: always # 항상 실행 (필요에 따라 never, embedded 로 변경)
+      mode: never # 항상 실행 (필요에 따라 never, embedded 로 변경)
       data-locations: classpath:data.sql, classpath:hospital_data_all_final.sql, classpath:insert_doctor.sql, classpath:insert_hospital_holiday.sql, classpath:insert_hospital_images_s3.sql, classpath:update_coordinates_all.sql, classpath:insert_review_dummy.sql
 
 
@@ -21,7 +21,7 @@ spring:
     database-platform: org.hibernate.dialect.MariaDBDialect
     generate-ddl: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         jdbc:
