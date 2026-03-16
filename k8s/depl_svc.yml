@@ -22,11 +22,14 @@ spec:
         # 컨테이너가 사용할수 있는 리소스의 최대치
           limits:
             cpu: "1"
-            memory: "500Mi"
+            memory: "1Gi"
         # 컨테이너가 시작될때 보장받아야 하는 최소 자원
           requests:
             cpu: "0.5"
-            memory: "250Mi"
+            memory: "512Mi"
+        env:
+         - name: JAVA_OPTS
+           value: "-Xms256m -Xmx768m"
         env:
         # 아래의 name과 yml의 ${}의 변수명과 일치해야함
         - name: DB_HOST
@@ -116,7 +119,7 @@ spec:
             path: /health
             port: 8080
           # 컨테이너 시작 후 지연
-          initialDelaySeconds: 10
+          initialDelaySeconds: 90
           # 확인 반복 주기
           periodSeconds: 10
 ---
