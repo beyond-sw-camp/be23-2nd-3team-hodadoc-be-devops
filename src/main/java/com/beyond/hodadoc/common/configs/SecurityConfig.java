@@ -82,6 +82,7 @@ public class SecurityConfig {
                 "http://localhost:*",
                 "http://127.0.0.1:*",
                 "https://www.hodadoc.littleniddle.store",
+                "https://www.hodadoc.admin.littleniddle.store",
                 "http://192.168.*.*:*"
         ));
         configuration.setAllowedMethods(Arrays.asList("GET","POST","PUT","PATCH","DELETE","OPTIONS"));
