@@ -17,6 +17,8 @@ import com.beyond.hodadoc.common.domain.AlarmType;
 import com.beyond.hodadoc.common.service.SseAlarmService;
 import com.beyond.hodadoc.hospital.domain.Hospital;
 import com.beyond.hodadoc.hospital.repository.HospitalRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,9 +42,10 @@ public class ChatService {
     private final AccountRepository accountRepository;
     private final HospitalRepository hospitalRepository;
     private final SseAlarmService sseAlarmService;
+    private final RedisPubSubService redisPubSubService;
 
     @Autowired
-    public ChatService(ChatRoomRepository chatRoomRepository, ChatParticipantRepository chatParticipantRepository, ChatMessageRepository chatMessageRepository, ReadStatusRepository readStatusRepository, AccountRepository accountRepository, HospitalRepository hospitalRepository, SseAlarmService sseAlarmService) {
+    public ChatService(ChatRoomRepository chatRoomRepository, ChatParticipantRepository chatParticipantRepository, ChatMessageRepository chatMessageRepository, ReadStatusRepository readStatusRepository, AccountRepository accountRepository, HospitalRepository hospitalRepository, SseAlarmService sseAlarmService, RedisPubSubService redisPubSubService) {
         this.chatRoomRepository = chatRoomRepository;
         this.chatParticipantRepository = chatParticipantRepository;
         this.chatMessageRepository = chatMessageRepository;
@@ -50,11 +53,20 @@ public class ChatService {
         this.accountRepository = accountRepository;
         this.hospitalRepository = hospitalRepository;
         this.sseAlarmService = sseAlarmService;
+        this.redisPubSubService = redisPubSubService;
     }
 
     public void saveMessage(Long roomId, Account sender, ChatMessageDto chatMessageReqDto) {
 //        채팅방 조회
         ChatRoom chatRoom = chatRoomRepository.findById(roomId).orElseThrow(()-> new EntityNotFoundException("room cannot be found."));
+
+//        나간 참여자가 있는 채팅방에는 메시지를 보낼 수 없음
+        List<ChatParticipant> allParticipants = chatParticipantRepository.findAllByChatRoom(chatRoom);
+        boolean hasLeftParticipant = allParticipants.stream()
+                .anyMatch(p -> "Y".equals(p.getLeftYn()));
+        if (hasLeftParticipant) {
+            throw new IllegalArgumentException("종료된 채팅방에는 메시지를 보낼 수 없습니다.");
+        }
 
 //        메시지 저장
         ChatMessage chatMessage = ChatMessage.builder()
@@ -211,6 +223,21 @@ public class ChatService {
 
 //        나간 상태로 변경 (데이터 보존)
         chatParticipant.updateLeftYn("Y");
+
+//        상대방에게 WebSocket으로 퇴장 알림 발송
+        ChatMessageDto leaveNotification = ChatMessageDto.builder()
+                .roomId(roomId)
+                .senderEmail(account.getEmail())
+                .senderId(accountId)
+                .message("상대방이 나갔습니다.")
+                .build();
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            String message = objectMapper.writeValueAsString(leaveNotification);
+            redisPubSubService.publish("chat", message);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public List<MyChatListResDto> getMyChatRooms() {
