@@ -121,7 +121,7 @@ public class ChatService {
 //        특정 room에 대한 message 조회
         boolean check = false;
         for(ChatParticipant c : chatParticipants){
-            if(c.getAccount().equals(account)){
+            if(c.getAccount().getId().equals(account.getId())){
                 check = true;
             }
         }
@@ -223,6 +223,14 @@ public class ChatService {
 
 //        나간 상태로 변경 (데이터 보존)
         chatParticipant.updateLeftYn("Y");
+
+//        퇴장 메시지를 DB에 저장 (히스토리 조회 시 표시용)
+        ChatMessage leaveMessage = ChatMessage.builder()
+                .chatRoom(chatRoom)
+                .account(account)
+                .content("상대방이 나갔습니다.")
+                .build();
+        chatMessageRepository.save(leaveMessage);
 
 //        상대방에게 WebSocket으로 퇴장 알림 발송
         ChatMessageDto leaveNotification = ChatMessageDto.builder()
