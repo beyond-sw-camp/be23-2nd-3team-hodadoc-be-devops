@@ -29,6 +29,9 @@ public class HospitalDetailDto {
     private String zipcode;
     private Double latitude;
     private Double longitude;
+    private String sido;
+    private String sigungu;
+    private String emdName;
 
     // 이미지
     private List<String> imageUrls;
@@ -72,6 +75,9 @@ public class HospitalDetailDto {
                 .zipcode(hospital.getAddress() != null ? hospital.getAddress().getZipcode() : null)
                 .latitude(hospital.getAddress() != null ? hospital.getAddress().getLatitude() : null)
                 .longitude(hospital.getAddress() != null ? hospital.getAddress().getLongitude() : null)
+                .sido(hospital.getAddress() != null ? hospital.getAddress().getSido() : null)
+                .sigungu(hospital.getAddress() != null ? hospital.getAddress().getSigungu() : null)
+                .emdName(hospital.getAddress() != null ? hospital.getAddress().getEmdName() : null)
 
                 .imageUrls(hospital.getImages() != null
                         ? hospital.getImages().stream().map(HospitalImage::getImageUrl).collect(Collectors.toList())
