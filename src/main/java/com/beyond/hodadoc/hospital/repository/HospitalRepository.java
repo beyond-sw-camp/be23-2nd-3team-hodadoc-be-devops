@@ -28,7 +28,7 @@ public interface HospitalRepository extends JpaRepository<Hospital, Long> {
 
     Optional<Hospital> findByAccount_IdAndAccount_DelYn(Long accountId, String delYn);
 
-//    Filter 조회
+    //    Filter 조회
     Page<Hospital> findAll(Specification<Hospital> specification, Pageable pageable);
 
     @Query(value = """
@@ -49,8 +49,8 @@ public interface HospitalRepository extends JpaRepository<Hospital, Long> {
                   OR a.sigungu LIKE CONCAT('%', :#{#dto.name}, '%')
                   OR a.emd_name LIKE CONCAT('%', :#{#dto.name}, '%')
               ))
-              AND (:#{#dto.sido} IS NULL OR a.sido = :#{#dto.sido})
-              AND (:#{#dto.sigungu} IS NULL OR a.sigungu = :#{#dto.sigungu})
+              AND (:#{#dto.sido} IS NULL OR a.sido LIKE CONCAT(:#{#dto.sido}, '%'))
+              AND (:#{#dto.sigungu} IS NULL OR a.sigungu LIKE CONCAT('%', :#{#dto.sigungu}, '%'))
               AND (:#{#dto.emdName} IS NULL OR a.emd_name LIKE CONCAT(:#{#dto.emdName}, '%'))
 
               AND (:#{#dto.departmentName} IS NULL OR d.name = :#{#dto.departmentName})
@@ -146,8 +146,8 @@ public interface HospitalRepository extends JpaRepository<Hospital, Long> {
                   OR a.sigungu LIKE CONCAT('%', :#{#dto.name}, '%')
                   OR a.emd_name LIKE CONCAT('%', :#{#dto.name}, '%')
               ))
-              AND (:#{#dto.sido} IS NULL OR a.sido = :#{#dto.sido})
-              AND (:#{#dto.sigungu} IS NULL OR a.sigungu = :#{#dto.sigungu})
+              AND (:#{#dto.sido} IS NULL OR a.sido LIKE CONCAT(:#{#dto.sido}, '%'))
+              AND (:#{#dto.sigungu} IS NULL OR a.sigungu LIKE CONCAT('%', :#{#dto.sigungu}, '%'))
               AND (:#{#dto.emdName} IS NULL OR a.emd_name LIKE CONCAT(:#{#dto.emdName}, '%'))
               AND (:#{#dto.departmentName} IS NULL OR d.name = :#{#dto.departmentName})
               AND (:#{#dto.nightFilter} IS NULL OR EXISTS (
