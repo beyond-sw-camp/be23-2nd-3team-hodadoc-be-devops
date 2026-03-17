@@ -70,7 +70,8 @@ public class SseAlarmService implements MessageListener {
         }
     }
 
-    // 알림을 받는쪽 (수신)
+    // 알림을 받는쪽 (수신) - Redis Pub/Sub으로 다른 서버에서 온 메시지 처리
+    // RabbitMQ 저장은 sendMessage()에서 이미 처리했으므로 여기서는 SSE 전달만 시도
     @Override
     public void onMessage(Message message, byte[] pattern){
         try {
@@ -83,13 +84,11 @@ public class SseAlarmService implements MessageListener {
                     emitter.send(SseEmitter.event().name(dto.getType()).data(data));
                     log.info("[SSE 수신] 전달 완료 - receiverId={}, type={}", dto.getReceiverId(), dto.getType());
                 } catch (Exception sendEx) {
-                    log.warn("[SSE 수신] emitter 전송 실패 → 제거 후 RabbitMQ 저장 - receiverId={}", dto.getReceiverId());
+                    log.warn("[SSE 수신] emitter 전송 실패 → 제거 - receiverId={}", dto.getReceiverId());
                     sseEmitterRegistry.remove(dto.getReceiverId());
-                    saveToPendingQueue(dto.getReceiverId(), dto);
                 }
             } else {
-                saveToPendingQueue(dto.getReceiverId(), dto);
-                log.warn("[SSE 수신] emitter 없음 → RabbitMQ 저장 - receiverId={}", dto.getReceiverId());
+                log.info("[SSE 수신] emitter 없음 → 무시 (이미 RabbitMQ에 저장됨) - receiverId={}", dto.getReceiverId());
             }
         }catch (Exception e){
             log.error("[SSE 수신] 처리 실패", e);
