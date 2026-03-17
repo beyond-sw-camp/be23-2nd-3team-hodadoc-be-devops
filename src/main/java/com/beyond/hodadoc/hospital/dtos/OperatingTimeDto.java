@@ -38,7 +38,7 @@ public class OperatingTimeDto {
                 .closeTime("23:59".equals(this.closeTime) ? LocalTime.of(23, 59, 59, 900_000_000) : parseTime(this.closeTime))
                 .breakStartTime(parseTime(this.breakStartTime))
                 .breakEndTime(parseTime(this.breakEndTime))
-                .isDayOff(this.isDayOff)
+                .dayOff(this.isDayOff)
                 .build();
     }
 
