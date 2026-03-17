@@ -49,9 +49,21 @@ public interface HospitalRepository extends JpaRepository<Hospital, Long> {
                   OR a.sigungu LIKE CONCAT('%', :#{#dto.name}, '%')
                   OR a.emd_name LIKE CONCAT('%', :#{#dto.name}, '%')
               ))
-              AND (:#{#dto.sido} IS NULL OR a.sido LIKE CONCAT(:#{#dto.sido}, '%'))
-              AND (:#{#dto.sigungu} IS NULL OR a.sigungu LIKE CONCAT('%', :#{#dto.sigungu}, '%'))
-              AND (:#{#dto.emdName} IS NULL OR a.emd_name LIKE CONCAT(:#{#dto.emdName}, '%'))
+              AND (:#{#dto.sido} IS NULL OR EXISTS (
+                  SELECT 1 FROM hospital_address ha2
+                  WHERE ha2.id = h.address_id
+                  AND ha2.sido LIKE CONCAT(:#{#dto.sido}, '%')
+              ))
+              AND (:#{#dto.sigungu} IS NULL OR EXISTS (
+                  SELECT 1 FROM hospital_address ha3
+                  WHERE ha3.id = h.address_id
+                  AND ha3.sigungu LIKE CONCAT('%', :#{#dto.sigungu}, '%')
+              ))
+              AND (:#{#dto.emdName} IS NULL OR EXISTS (
+                  SELECT 1 FROM hospital_address ha4
+                  WHERE ha4.id = h.address_id
+                  AND ha4.emd_name LIKE CONCAT(:#{#dto.emdName}, '%')
+              ))
 
               AND (:#{#dto.departmentName} IS NULL OR d.name = :#{#dto.departmentName})
 
@@ -146,9 +158,21 @@ public interface HospitalRepository extends JpaRepository<Hospital, Long> {
                   OR a.sigungu LIKE CONCAT('%', :#{#dto.name}, '%')
                   OR a.emd_name LIKE CONCAT('%', :#{#dto.name}, '%')
               ))
-              AND (:#{#dto.sido} IS NULL OR a.sido LIKE CONCAT(:#{#dto.sido}, '%'))
-              AND (:#{#dto.sigungu} IS NULL OR a.sigungu LIKE CONCAT('%', :#{#dto.sigungu}, '%'))
-              AND (:#{#dto.emdName} IS NULL OR a.emd_name LIKE CONCAT(:#{#dto.emdName}, '%'))
+              AND (:#{#dto.sido} IS NULL OR EXISTS (
+                  SELECT 1 FROM hospital_address ha2
+                  WHERE ha2.id = h.address_id
+                  AND ha2.sido LIKE CONCAT(:#{#dto.sido}, '%')
+              ))
+              AND (:#{#dto.sigungu} IS NULL OR EXISTS (
+                  SELECT 1 FROM hospital_address ha3
+                  WHERE ha3.id = h.address_id
+                  AND ha3.sigungu LIKE CONCAT('%', :#{#dto.sigungu}, '%')
+              ))
+              AND (:#{#dto.emdName} IS NULL OR EXISTS (
+                  SELECT 1 FROM hospital_address ha4
+                  WHERE ha4.id = h.address_id
+                  AND ha4.emd_name LIKE CONCAT(:#{#dto.emdName}, '%')
+              ))
               AND (:#{#dto.departmentName} IS NULL OR d.name = :#{#dto.departmentName})
               AND (:#{#dto.nightFilter} IS NULL OR EXISTS (
                   SELECT 1 FROM hospital_filter hf_n
