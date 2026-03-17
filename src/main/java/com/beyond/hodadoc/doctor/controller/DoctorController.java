@@ -22,47 +22,23 @@ public class DoctorController {
         this.doctorService = doctorService;
     }
 
-    // ── 환자용 공개 API ──────────────────────────────────────────────────────
+    // ── 의사 CRUD ──────────────────────────────────────────────────────────────
 
-    /**
-     * 환자용: 의사 휴무일 조회 (병원 소유자 검증 없음)
-     * GET /doctor/{doctorId}/offdays/public?startDate=&endDate=
-     */
-    @GetMapping("/{doctorId}/offdays/public")
-    public ResponseEntity<List<DoctorOffDayResDto>> getOffDaysPublic(
-            @PathVariable Long doctorId,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
-        return ResponseEntity.ok(doctorService.getOffDaysPublic(doctorId, startDate, endDate));
-    }
-
-    // ── 의사 CRUD ────────────────────────────────────────────────────────────
-
-    /**
-     * 환자용: 병원 소속 의사 목록 공개 조회
-     * GET /doctor/hospital/{hospitalId}
-     */
+    /** GET /doctor/hospital/{hospitalId} - 병원 소속 의사 목록 (공개) */
     @GetMapping("/hospital/{hospitalId}")
-    public ResponseEntity<List<DoctorResDto>> listByHospital(@PathVariable Long hospitalId) {
+    public ResponseEntity<List<DoctorResDto>> getByHospital(@PathVariable Long hospitalId) {
         return ResponseEntity.ok(doctorService.findByHospitalId(hospitalId));
     }
 
-    /**
-     * 의사 목록 조회 (진료과 필터 지원)
-     * GET /doctor/list
-     * GET /doctor/list?departmentId=1
-     */
+    /** GET /doctor/list - 내 병원 의사 목록 (관리자) */
     @GetMapping("/list")
-    public ResponseEntity<List<DoctorResDto>> list(
+    public ResponseEntity<List<DoctorResDto>> listByHospital(
             @AuthenticationPrincipal Long accountId,
             @RequestParam(required = false) Long departmentId) {
         return ResponseEntity.ok(doctorService.findAllByHospital(accountId, departmentId));
     }
 
-    /**
-     * 의사 등록
-     * POST /doctor/create (multipart/form-data)
-     */
+    /** POST /doctor/create */
     @PostMapping("/create")
     public ResponseEntity<DoctorResDto> create(
             @AuthenticationPrincipal Long accountId,
@@ -71,10 +47,7 @@ public class DoctorController {
                 .body(doctorService.create(accountId, dto));
     }
 
-    /**
-     * 의사 수정
-     * PUT /doctor/{doctorId} (multipart/form-data)
-     */
+    /** PUT /doctor/{doctorId} */
     @PutMapping("/{doctorId}")
     public ResponseEntity<DoctorResDto> update(
             @AuthenticationPrincipal Long accountId,
@@ -83,10 +56,7 @@ public class DoctorController {
         return ResponseEntity.ok(doctorService.update(accountId, doctorId, dto));
     }
 
-    /**
-     * 의사 삭제
-     * DELETE /doctor/{doctorId}
-     */
+    /** DELETE /doctor/{doctorId} */
     @DeleteMapping("/{doctorId}")
     public ResponseEntity<String> delete(
             @AuthenticationPrincipal Long accountId,
@@ -95,14 +65,24 @@ public class DoctorController {
         return ResponseEntity.ok("의사가 삭제되었습니다.");
     }
 
-    // ── 근무규칙(스케줄) ──────────────────────────────────────────────────────
+    // ── 근무규칙(스케줄) ────────────────────────────────────────────────────────
 
-    /** GET /doctor/{doctorId}/schedule */
+    /** GET /doctor/{doctorId}/schedule - 관리자용 (인증 필요) */
     @GetMapping("/{doctorId}/schedule")
     public ResponseEntity<List<DoctorScheduleResDto>> getSchedule(
             @AuthenticationPrincipal Long accountId,
             @PathVariable Long doctorId) {
         return ResponseEntity.ok(doctorService.getSchedules(accountId, doctorId));
+    }
+
+    /**
+     * [추가] GET /doctor/{doctorId}/schedule/public - 환자용 (인증 불필요)
+     * 환자 예약 달력에서 의사 정기 휴무 요일을 미리 표시하기 위해 사용
+     */
+    @GetMapping("/{doctorId}/schedule/public")
+    public ResponseEntity<List<DoctorScheduleResDto>> getSchedulePublic(
+            @PathVariable Long doctorId) {
+        return ResponseEntity.ok(doctorService.getSchedulesPublic(doctorId));
     }
 
     /** PUT /doctor/{doctorId}/schedule */
@@ -114,9 +94,18 @@ public class DoctorController {
         return ResponseEntity.ok(doctorService.saveSchedules(accountId, doctorId, dtos));
     }
 
-    // ── 휴무/연차 ─────────────────────────────────────────────────────────────
+    // ── 휴무/연차 ───────────────────────────────────────────────────────────────
 
-    /** GET /doctor/{doctorId}/offdays?startDate=&endDate= */
+    /** GET /doctor/{doctorId}/offdays/public - 환자용 (인증 불필요) */
+    @GetMapping("/{doctorId}/offdays/public")
+    public ResponseEntity<List<DoctorOffDayResDto>> getOffDaysPublic(
+            @PathVariable Long doctorId,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
+        return ResponseEntity.ok(doctorService.getOffDaysPublic(doctorId, startDate, endDate));
+    }
+
+    /** GET /doctor/{doctorId}/offdays - 관리자용 (인증 필요) */
     @GetMapping("/{doctorId}/offdays")
     public ResponseEntity<List<DoctorOffDayResDto>> getOffDays(
             @AuthenticationPrincipal Long accountId,
@@ -126,7 +115,7 @@ public class DoctorController {
         return ResponseEntity.ok(doctorService.getOffDays(accountId, doctorId, startDate, endDate));
     }
 
-    /** POST /doctor/offday (단건 등록) */
+    /** POST /doctor/offday */
     @PostMapping("/offday")
     public ResponseEntity<DoctorOffDayResDto> createOffDay(
             @AuthenticationPrincipal Long accountId,
@@ -135,7 +124,7 @@ public class DoctorController {
                 .body(doctorService.createOffDay(accountId, dto));
     }
 
-    // ── 배치 오프데이 API ✅ 추가 ─────────────────────────────────────────────
+    // ── 배치 오프데이 API ────────────────────────────────────────────────────────
 
     /**
      * 여러 날짜 일괄 OFF / BLOCKED 등록
@@ -149,13 +138,13 @@ public class DoctorController {
             @RequestBody Map<String, Object> body) {
         @SuppressWarnings("unchecked")
         List<String> dates = (List<String>) body.get("dates");
-        String type        = (String) body.get("type");
+        String type = (String) body.get("type");
         doctorService.batchSetOffDays(accountId, doctorId, dates, type);
         return ResponseEntity.ok().build();
     }
 
     /**
-     * 선택 날짜 일괄 초기화
+     * 여러 날짜 일괄 초기화
      * DELETE /doctor/{doctorId}/off-days/batch
      * Body: { "dates": ["2025-03-15"] }
      */
@@ -171,7 +160,7 @@ public class DoctorController {
     }
 
     /**
-     * 해당 월 전체 초기화
+     * 특정 월 전체 오프데이 초기화
      * DELETE /doctor/{doctorId}/off-days/month
      * Body: { "year": 2025, "month": 3 }
      */

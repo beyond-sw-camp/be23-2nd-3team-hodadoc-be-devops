@@ -53,10 +53,11 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/account/refresh").permitAll() // ✅ 추가
                         .requestMatchers(HttpMethod.POST, "/auth/**").permitAll()
 
-
                         .requestMatchers(HttpMethod.GET, "/hospital/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/doctor/hospital/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/doctor/*/offdays/public").permitAll()
+                        // [추가] 환자용 의사 스케줄 조회 - 예약 달력에서 정기 휴무 요일 표시용
+                        .requestMatchers(HttpMethod.GET, "/doctor/*/schedule/public").permitAll()
                         .requestMatchers(HttpMethod.GET, "/reservation/slots").permitAll()
                         .requestMatchers(HttpMethod.GET, "/reservation/hospital/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/sse/**").permitAll()
