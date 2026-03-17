@@ -98,6 +98,12 @@ public interface ReservationRepository extends JpaRepository<ReservationPatient,
             LocalTime reservationTime,
             ReservationStatus status);
 
+    // 의사 삭제 전 활성 예약 존재 여부 확인
+    @Query("select count(r) > 0 from ReservationPatient r " +
+            "where r.doctor.id = :doctorId " +
+            "and r.status IN ('WAITING', 'APPROVED')")
+    boolean existsActiveByDoctorId(@Param("doctorId") Long doctorId);
+
     // 통계: 오늘 예약 건수 (WAITING, APPROVED, COMPLETED만)
     @Query("SELECT COUNT(r) FROM ReservationPatient r " +
             "WHERE r.hospital.id = :hospitalId " +

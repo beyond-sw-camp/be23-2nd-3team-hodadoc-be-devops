@@ -5,6 +5,9 @@ import com.beyond.hodadoc.hospital.domain.Hospital;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -34,6 +37,22 @@ public class Doctor {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hospital_id", foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT), nullable = false)
     private Hospital hospital;
+
+    @Column(nullable = false, length = 1)
+    @Builder.Default
+    private String delYn = "N";
+
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<DoctorSchedule> schedules = new ArrayList<>();
+
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<DoctorOffDay> offDays = new ArrayList<>();
+
+    public void softDelete() {
+        this.delYn = "Y";
+    }
 
     public void update(String name, Department department, String imageUrl, String university, String career) {
         if (name != null) this.name = name;

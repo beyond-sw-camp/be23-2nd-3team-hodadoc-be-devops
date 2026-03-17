@@ -57,15 +57,17 @@ public class DoctorService {
 
     @Transactional(readOnly = true)
     public List<DoctorResDto> findByHospitalId(Long hospitalId) {
-        return doctorRepository.findByHospitalId(hospitalId)
+        return doctorRepository.findByHospitalIdAndDelYn(hospitalId, "N")
                 .stream().map(DoctorResDto::from).collect(Collectors.toList());
     }
 
     // [추가] 환자용 스케줄 조회 - 인증 없이 의사 정기 휴무 요일 확인용
     @Transactional(readOnly = true)
     public List<DoctorScheduleResDto> getSchedulesPublic(Long doctorId) {
-        doctorRepository.findById(doctorId)
+        Doctor doctor = doctorRepository.findById(doctorId)
                 .orElseThrow(() -> new EntityNotFoundException("의사를 찾을 수 없습니다."));
+        if ("Y".equals(doctor.getDelYn()))
+            throw new EntityNotFoundException("삭제된 의사입니다.");
         return doctorScheduleRepository.findByDoctorId(doctorId)
                 .stream().map(DoctorScheduleResDto::from).collect(Collectors.toList());
     }
@@ -75,9 +77,9 @@ public class DoctorService {
         Hospital hospital = getMyHospital(accountId);
         List<Doctor> doctors;
         if (departmentId != null) {
-            doctors = doctorRepository.findByHospitalIdAndDepartmentId(hospital.getId(), departmentId);
+            doctors = doctorRepository.findByHospitalIdAndDepartmentIdAndDelYn(hospital.getId(), departmentId, "N");
         } else {
-            doctors = doctorRepository.findByHospitalId(hospital.getId());
+            doctors = doctorRepository.findByHospitalIdAndDelYn(hospital.getId(), "N");
         }
         return doctors.stream().map(DoctorResDto::from).collect(Collectors.toList());
     }
@@ -133,12 +135,13 @@ public class DoctorService {
         return DoctorResDto.from(doctor);
     }
 
+    @Transactional
     public void delete(Long accountId, Long doctorId) {
         Doctor doctor = getMyDoctor(accountId, doctorId);
-        if (doctor.getImageUrl() != null) {
-            doctorS3Service.deleteFile(doctor.getImageUrl());
+        if (reservationRepository.existsActiveByDoctorId(doctorId)) {
+            throw new IllegalStateException("대기 중이거나 승인된 예약이 있는 의사는 삭제할 수 없습니다.");
         }
-        doctorRepository.delete(doctor);
+        doctor.softDelete();
     }
 
     // ── 근무규칙(스케줄) ────────────────────────────────────────────────────────
@@ -202,6 +205,8 @@ public class DoctorService {
     public List<DoctorOffDayResDto> getOffDaysPublic(Long doctorId, LocalDate startDate, LocalDate endDate) {
         Doctor doctor = doctorRepository.findById(doctorId)
                 .orElseThrow(() -> new EntityNotFoundException("의사를 찾을 수 없습니다."));
+        if ("Y".equals(doctor.getDelYn()))
+            throw new EntityNotFoundException("삭제된 의사입니다.");
         List<DoctorOffDayResDto> result = new ArrayList<>(
                 doctorOffDayRepository.findByDoctorIdAndOffDateBetween(doctorId, startDate, endDate)
                         .stream().map(DoctorOffDayResDto::from).collect(Collectors.toList())
@@ -318,6 +323,9 @@ public class DoctorService {
         Hospital hospital = getMyHospital(accountId);
         Doctor doctor = doctorRepository.findById(doctorId)
                 .orElseThrow(() -> new EntityNotFoundException("의사를 찾을 수 없습니다."));
+        if ("Y".equals(doctor.getDelYn())) {
+            throw new EntityNotFoundException("삭제된 의사입니다.");
+        }
         if (!doctor.getHospital().getId().equals(hospital.getId())) {
             throw new IllegalStateException("해당 의사에 대한 권한이 없습니다.");
         }
