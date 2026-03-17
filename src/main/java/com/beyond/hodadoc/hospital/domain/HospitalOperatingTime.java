@@ -33,6 +33,12 @@ public class HospitalOperatingTime {
     private LocalTime breakStartTime;
     private LocalTime breakEndTime;
 
-    // 휴무 여부
-    private boolean isDayOff;
+    // 휴무 여부 (is prefix + Builder 조합 버그 방지 → 필드명 dayOff로 변경)
+    @Column(name = "is_day_off")
+    @Builder.Default
+    private boolean dayOff = false;
+
+    public boolean isDayOff() {
+        return dayOff;
+    }
 }
