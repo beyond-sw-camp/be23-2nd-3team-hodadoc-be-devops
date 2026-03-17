@@ -255,6 +255,7 @@ public class HospitalService {
     }
 
     // 접수 가능 여부 계산
+    // [수정] 점심시간에는 접수 불가 처리 추가
     private boolean checkIsAcceptingCheckin(Hospital hospital) {
         if (hospital.isCheckinClosedToday()) return false;
 
@@ -269,16 +270,26 @@ public class HospitalService {
         return hospital.getOperatingHours().stream()
                 .filter(h -> h.getDayOfWeek() == dayOfWeek)
                 .findFirst()
-                .map(h -> !h.isDayOff()
-                        && h.getOpenTime() != null
-                        && h.getCloseTime() != null
-                        && !now.isBefore(h.getOpenTime())
-                        && now.isBefore(h.getCloseTime().minusMinutes(30))
-                )
+                .map(h -> {
+                    if (h.isDayOff()) return false;
+                    if (h.getOpenTime() == null || h.getCloseTime() == null) return false;
+                    if (now.isBefore(h.getOpenTime())) return false;
+                    if (!now.isBefore(h.getCloseTime().minusMinutes(30))) return false;
+                    // [추가] 점심시간이면 접수 불가
+                    if (h.getBreakStartTime() != null && h.getBreakEndTime() != null
+                            && !now.isBefore(h.getBreakStartTime())
+                            && now.isBefore(h.getBreakEndTime())) {
+                        return false;
+                    }
+                    return true;
+                })
                 .orElse(false);
     }
 
     // 현재 영업 여부 계산
+    // [수정] 점심시간이어도 운영시간 내이면 진료중으로 표시
+    // 점심시간은 접수 여부(checkIsAcceptingCheckin)에서만 판단하고,
+    // 영업 표시(병원 목록 노출)에는 영향을 주지 않음
     private boolean checkIsOpenNow(Hospital hospital) {
         LocalDate today = LocalDate.now();
         boolean isTodayHoliday = hospital.getHolidays().stream()
@@ -293,13 +304,11 @@ public class HospitalService {
                 .filter(h -> h.getDayOfWeek() == dayOfWeek)
                 .findFirst()
                 .map(h -> !h.isDayOff()
-                        && h.getOpenTime() != null
-                        && h.getCloseTime() != null
-                        && !time.isBefore(h.getOpenTime())
-                        && !time.isAfter(h.getCloseTime())
-                        && (h.getBreakStartTime() == null
-                        || time.isBefore(h.getBreakStartTime())
-                        || time.isAfter(h.getBreakEndTime()))
+                                && h.getOpenTime() != null
+                                && h.getCloseTime() != null
+                                && !time.isBefore(h.getOpenTime())
+                                && !time.isAfter(h.getCloseTime())
+                        // 점심시간 조건 제거: 점심시간에도 진료중으로 표시
                 )
                 .orElse(false);
     }
