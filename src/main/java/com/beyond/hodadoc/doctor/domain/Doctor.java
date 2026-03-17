@@ -38,7 +38,7 @@ public class Doctor {
     @JoinColumn(name = "hospital_id", foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT), nullable = false)
     private Hospital hospital;
 
-    @Column(nullable = false, length = 1)
+    @Column(nullable = false, length = 1, columnDefinition = "VARCHAR(1) DEFAULT 'N'")
     @Builder.Default
     private String delYn = "N";
 
