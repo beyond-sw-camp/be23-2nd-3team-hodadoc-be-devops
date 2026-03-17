@@ -61,6 +61,15 @@ public class DoctorService {
                 .stream().map(DoctorResDto::from).collect(Collectors.toList());
     }
 
+    // [추가] 환자용 스케줄 조회 - 인증 없이 의사 정기 휴무 요일 확인용
+    @Transactional(readOnly = true)
+    public List<DoctorScheduleResDto> getSchedulesPublic(Long doctorId) {
+        doctorRepository.findById(doctorId)
+                .orElseThrow(() -> new EntityNotFoundException("의사를 찾을 수 없습니다."));
+        return doctorScheduleRepository.findByDoctorId(doctorId)
+                .stream().map(DoctorScheduleResDto::from).collect(Collectors.toList());
+    }
+
     @Transactional(readOnly = true)
     public List<DoctorResDto> findAllByHospital(Long accountId, Long departmentId) {
         Hospital hospital = getMyHospital(accountId);
