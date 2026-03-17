@@ -76,15 +76,15 @@ public class SseController {
 
         emitter.onCompletion(() -> {
             log.info("[SSE] onCompletion 콜백 - userId={}", userId);
-            sseEmitterRegistry.remove(userId);
+            sseEmitterRegistry.removeIfSame(userId, emitter);
         });
         emitter.onTimeout(() -> {
             log.info("[SSE] onTimeout 콜백 - userId={}", userId);
-            sseEmitterRegistry.remove(userId);
+            sseEmitterRegistry.removeIfSame(userId, emitter);
         });
         emitter.onError(e -> {
             log.warn("[SSE] onError 콜백 - userId={}, error={}", userId, e.getMessage());
-            sseEmitterRegistry.remove(userId);
+            sseEmitterRegistry.removeIfSame(userId, emitter);
         });
 
         return emitter;
