@@ -23,11 +23,7 @@ public class OperatingTimeDto {
     private String breakStartTime;  // "13:00"
     private String breakEndTime;    // "14:00"
     @JsonProperty("isDayOff")
-    private boolean isDayOff;       // 정기 휴무 여부 (매주 반복되는 쉬는 날)
-
-    public boolean isDayOff() {
-        return isDayOff;
-    }
+    private boolean dayOff;       // 정기 휴무 여부 (매주 반복되는 쉬는 날)
 
     // DTO -> Entity 변환 메서드
     public HospitalOperatingTime toEntity(Hospital hospital) {
@@ -38,7 +34,7 @@ public class OperatingTimeDto {
                 .closeTime("23:59".equals(this.closeTime) ? LocalTime.of(23, 59, 59, 900_000_000) : parseTime(this.closeTime))
                 .breakStartTime(parseTime(this.breakStartTime))
                 .breakEndTime(parseTime(this.breakEndTime))
-                .dayOff(this.isDayOff)
+                .dayOff(this.dayOff)
                 .build();
     }
 
