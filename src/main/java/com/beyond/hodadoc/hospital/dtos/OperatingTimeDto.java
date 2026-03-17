@@ -2,7 +2,6 @@ package com.beyond.hodadoc.hospital.dtos;
 
 import com.beyond.hodadoc.hospital.domain.Hospital;
 import com.beyond.hodadoc.hospital.domain.HospitalOperatingTime;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,13 +21,7 @@ public class OperatingTimeDto {
     private String closeTime;       // "18:00"
     private String breakStartTime;  // "13:00"
     private String breakEndTime;    // "14:00"
-    @JsonProperty("isDayOff")
     private boolean dayOff;       // 정기 휴무 여부 (매주 반복되는 쉬는 날)
-
-    @JsonProperty("isDayOff")
-    public void setDayOff(boolean dayOff) {
-        this.dayOff = dayOff;
-    }
 
     // DTO -> Entity 변환 메서드
     public HospitalOperatingTime toEntity(Hospital hospital) {
