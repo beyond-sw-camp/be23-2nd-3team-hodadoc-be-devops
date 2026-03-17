@@ -25,6 +25,11 @@ public class OperatingTimeDto {
     @JsonProperty("isDayOff")
     private boolean dayOff;       // 정기 휴무 여부 (매주 반복되는 쉬는 날)
 
+    @JsonProperty("isDayOff")
+    public void setDayOff(boolean dayOff) {
+        this.dayOff = dayOff;
+    }
+
     // DTO -> Entity 변환 메서드
     public HospitalOperatingTime toEntity(Hospital hospital) {
         return HospitalOperatingTime.builder()
