@@ -73,6 +73,8 @@ public class ReservationCreateService {
 
         Doctor doctor = doctorRepository.findByIdWithHospital(dto.getDoctorId())
                 .orElseThrow(() -> new EntityNotFoundException("의사 정보를 찾을 수 없습니다."));
+        if ("Y".equals(doctor.getDelYn()))
+            throw new IllegalStateException("삭제된 의사에게는 예약할 수 없습니다.");
         Hospital hospital = doctor.getHospital();
 
         if (hospital.getStatus() == HospitalStatus.DELETED)
