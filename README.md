@@ -205,336 +205,479 @@
 
 <br>
 
-## 5. 주요 기능 및 역할별 기능
+## 5. 주요 서비스 테스트 결과 보고서
 
-### 📌 주요 기능
+### 5-1. 주요 기능
 
 <details>
-  <summary><b>리뷰</b></summary>
+<summary><b>📌 예약</b></summary>
+<br>
 
   <details>
-    <summary><b>리뷰작성</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/3b55e0b0-e046-4a37-b310-bb50ce47aa31"/>
-    </p>
+  <summary><b>환자 자동 예약 등록</b></summary>
+
+  > 원하는 의사/날짜/시간대를 선택하여 자동으로 진료 예약을 등록합니다.
+
+  <p align="center">
+    <img src=""/>
+  </p>
   </details>
 
   <details>
-    <summary><b>리뷰수정</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/503833b1-430e-4d16-b629-6a74746049ff"/>
-    </p>
+  <summary><b>환자 수동 예약 등록</b></summary>
+
+  > 원하는 의사/날짜/시간대를 직접 선택하여 진료 예약을 등록합니다.
+
+  <p align="center">
+    <img src=""/>
+  </p>
   </details>
 
   <details>
-    <summary><b>관리자에 의한 리뷰삭제 (환자)</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/25620adf-dcda-41d4-a40c-e6e49832f628"/>
-    </p>
+  <summary><b>환자 병원 예약 취소</b></summary>
+
+  > 환자가 직접 예약을 취소할 수 있습니다.
+
+  <p align="center">
+    <img src=""/>
+  </p>
   </details>
 
   <details>
-    <summary><b>환자가 직접 삭제</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/35b1ad0c-41f1-4c81-8f68-b44a53a868ea"/>
-    </p>
+  <summary><b>병원 환자 예약 거절</b></summary>
+
+  > 병원 관리자가 환자의 예약 요청을 거절할 수 있습니다.
+
+  <p align="center">
+    <img src=""/>
+  </p>
   </details>
 
   <details>
-    <summary><b>욕설 필터링</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/ba3c0cca-37f1-4215-bf51-44e2964f0545"/>
-    </p>
-  </details>
+  <summary><b>병원 환자 예약 취소</b></summary>
 
-  <details>
-    <summary><b>신고된 리뷰 삭제 및 평점 수정</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/4d9a7c78-6d4d-49c0-a0a9-7d2059a26d38"/>
-    </p>
-  </details>
+  > 병원 관리자가 확정된 예약을 취소할 수 있습니다.
 
-  <details>
-    <summary><b>리뷰 신고 (환자)</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/0a31d9b3-02b8-4c0a-8fab-9e6272f61080"/>
-    </p>
-  </details>
-
-  <details>
-    <summary><b>리뷰 신고 (병원관리자)</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/556601ba-7471-4dbb-8bcd-72b5c6ae95a4"/>
-    </p>
-  </details>
-
-  <details>
-    <summary><b>리뷰 신고 삭제 (서버관리자)</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/68e041f1-f012-4c9e-bc47-0cff3f166dd1"/>
-    </p>
-  </details>
-
-  <details>
-    <summary><b>리뷰 신고 기각 (서버관리자)</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/585f3f71-1964-49c1-8f45-3b1a4908f6d1"/>
-    </p>
-  </details>
-
-  <details>
-    <summary><b>리뷰 확인 후 로그아웃 (환자)</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/59557c6f-926f-441d-8b59-54abae053496"/>
-    </p>
-  </details>
-
-  <details>
-    <summary><b>리뷰 탈퇴</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/145d647d-6768-4eaa-930f-ff3d00e74089"/>
-    </p>
+  <p align="center">
+    <img src=""/>
+  </p>
   </details>
 
 </details>
 
-  ### 📌 환자
-
 <details>
-  <summary><b>환자</b></summary>
+<summary><b>📌 접수</b></summary>
+<br>
 
   <details>
-    <summary><b>환자 카카오 로그인 후 정보등록</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/982358e5-f551-4490-bf4c-d23d297c6df8"/>
-    </p>
+  <summary><b>환자 접수</b></summary>
+
+  > 원하는 병원에 당일 접수를 신청합니다. (운영시간/휴무일/공휴일 자동 체크)
+
+  <p align="center">
+    <img src=""/>
+  </p>
   </details>
 
   <details>
-    <summary><b>로그인 화면으로 리다이렉트</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/f6303a8b-7d39-42f8-9f42-9f8ef88c644c"/>
-    </p>
+  <summary><b>환자 접수 마감 / 재개</b></summary>
+
+  > 환자가 접수 마감 및 재개 상태를 실시간으로 확인할 수 있습니다.
+
+  <p align="center">
+    <img src=""/>
+    <img src=""/>
+  </p>
   </details>
 
   <details>
-    <summary><b>병원관리자 비밀번호 변경</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/d07d2b94-b289-4c70-ada4-e5ffb4c0d666"/>
-    </p>
+  <summary><b>병원관리자 접수 / 마감</b></summary>
+
+  > 병원 관리자가 당일 접수를 마감하거나 재개할 수 있습니다.
+
+  <p align="center">
+    <img src=""/>
+    <img src=""/>
+  </p>
   </details>
 
   <details>
-    <summary><b>홈화면 진료과 아이콘 클릭 시 병원 매핑</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/351f795e-6971-424a-8e3c-3754f4f11a4a"/>
-    </p>
-  </details>
+  <summary><b>병원관리자 접수 재개</b></summary>
 
-  <details>
-    <summary><b>홈화면 진료과 아이콘 클릭 시</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/eae69a33-bf1f-41bb-b859-e9daaba6b9ea"/>
-    </p>
-  </details>
+  > 병원 관리자가 마감된 접수를 재개합니다.
 
-  <details>
-    <summary><b>병원 목록 필터링 검색 (진료과, 진료중 등)</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/1533c9e3-dd1b-417a-ac0f-8df46a4614e5"/>
-    </p>
-  </details>
-
-  <details>
-    <summary><b>병원 검색 (병원명, 진료과, 지역)</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/9494a1a1-39d5-4d44-b4a4-1e8a8a4bcbe3"/>
-    </p>
-  </details>
-
-  <details>
-    <summary><b>병원 검색 (지역)</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/8b61d044-c74e-4716-b36b-24ba093c87a3"/>
-    </p>
-  </details>
-
-  <details>
-    <summary><b>병원 검색 (지역 + 진료과 필터링)</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/18db14bc-5e90-48a0-b0d2-512b3d68a744"/>
-    </p>
-  </details>
-
-  <details>
-    <summary><b>지도로 내 주변 병원 찾기</b></summary>
-    <p align="center">
-      <img src=""/>
-    </p>
-  </details>
-
-  <details>
-    <summary><b>환자 탈퇴</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/cc6107d9-a3ca-4a4e-8968-fdc834f3b447"/>
-    </p>
-  </details>
-
-  <details>
-    <summary><b>환자 탈퇴 후 서비스 이용 시</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/6e04aada-c26d-41c7-861c-d53f1a1d1e24"/>
-    </p>
+  <p align="center">
+    <img src=""/>
+  </p>
   </details>
 
 </details>
 
-  ### 📌 병원
-  <details>
-    <summary><b>병원</b></summary>
-    <details>
-      <summary><b>병원운영시간</b></summary>
-      <p align="center">
-        <img src="https://github.com/user-attachments/assets/0a36e222-945f-4e30-a065-1ec4ab2ffaa6"/>
-      </p>
-    </details>
-  
-    <details>
-      <summary><b>리뷰신고_병원관리자</b></summary>
-      <p align="center">
-        <img src=""/>
-      </p>
-    </details>
-  </details>
-
-  ### 📌 예약
-
 <details>
-  <summary><b>환자 예약</b></summary>
+<summary><b>📌 채팅</b></summary>
+<br>
 
   <details>
-    <summary><b>환자 자동 예약 등록</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/23e2fa26-fba8-41d7-9331-12c654005553"/>
-    </p>
+  <summary><b>환자 - 병원관리자 채팅</b></summary>
+
+  > 환자와 병원 관리자 간 실시간 1:1 채팅입니다. (WebSocket STOMP)
+
+  <p align="center">
+    <img src=""/>
+    <img src=""/>
+  </p>
   </details>
 
   <details>
-    <summary><b>환자 수동 예약 등록</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/c33602a6-6fce-4b9a-bed2-f77b91907af3"/>
-    </p>
+  <summary><b>환자 - 서버관리자 채팅</b></summary>
+
+  > 환자와 서버 관리자 간 실시간 1:1 채팅입니다. (WebSocket STOMP)
+
+  <p align="center">
+    <img src=""/>
+    <img src=""/>
+  </p>
   </details>
 
   <details>
-    <summary><b>환자 병원 예약 취소</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/ba870a30-3710-4ae3-958f-a6272bd6a368"/>
-    </p>
-  </details>
+  <summary><b>병원관리자 - 서버관리자 채팅</b></summary>
 
-  <details>
-    <summary><b>병원 환자 예약 거절</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/383fe69a-9fac-4385-9a8e-0b2781703369"/>
-    </p>
-  </details>
+  > 병원 관리자와 서버 관리자 간 실시간 1:1 채팅입니다. (WebSocket STOMP)
 
-  <details>
-    <summary><b>병원 환자 예약 취소</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/18c3c2a9-3804-41fb-ad2c-99708b32e66e"/>
-    </p>
+  <p align="center">
+    <img src=""/>
+    <img src=""/>
+  </p>
   </details>
-  
-
-</details>
-<details>
-  <summary><b>병원 예약</b></summary>
-
-  <details>
-    <summary><b>환자 자동 예약 등록</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/23e2fa26-fba8-41d7-9331-12c654005553"/>
-    </p>
-  </details>
-
-  <details>
-    <summary><b>환자 수동 예약 등록</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/c33602a6-6fce-4b9a-bed2-f77b91907af3"/>
-    </p>
-  </details>
-
-  <details>
-    <summary><b>환자 병원 예약 취소</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/ba870a30-3710-4ae3-958f-a6272bd6a368"/>
-    </p>
-  </details>
-
-  <details>
-    <summary><b>병원 환자 예약 거절</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/383fe69a-9fac-4385-9a8e-0b2781703369"/>
-    </p>
-  </details>
-
-  <details>
-    <summary><b>병원 환자 예약 취소</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/18c3c2a9-3804-41fb-ad2c-99708b32e66e"/>
-    </p>
-  </details>
-  
 
 </details>
 
-  ### 📌 접수
-  <details>
-    <summary><b>접수</b></summary>
-    <details>
-      <summary><b>리뷰신고_병원관리자</b></summary>
-      <p align="center">
-        <img src=""/>
-      </p>
-    </details>
-  
-    <details>
-      <summary><b>리뷰신고_병원관리자</b></summary>
-      <p align="center">
-        <img src=""/>
-      </p>
-    </details>
-  </details>
-
-  ### 📌 채팅
+### 5-2. 역할별 기능
 
 <details>
-  <summary><b>채팅</b></summary>
+<summary><b>👤 환자</b></summary>
+<br>
 
   <details>
-    <summary><b>환자 - 병원관리자 채팅</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/49f954aa-cb72-4a4a-ad1d-4831c387c6af"/>
-      <img src="https://github.com/user-attachments/assets/4c22bfb9-c985-4bdd-954f-9eb6d95c55cc"/>
-    </p>
+  <summary><b>카카오 소셜 로그인</b></summary>
+
+  > 카카오 OAuth를 통한 간편 로그인/회원가입
+
+  <p align="center">
+    <img src="https://github.com/user-attachments/assets/1337c0cb-97df-486e-9c0e-64258c1d91d0"/>
+  </p>
   </details>
 
   <details>
-    <summary><b>환자 - 서버관리자 채팅</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/baf2ca52-59c4-4b3d-b5b6-8f32a6e16db9"/>
-      <img src="https://github.com/user-attachments/assets/f065f165-fb7f-4dc3-814b-d57f2a01800a"/>
-    </p>
+  <summary><b>환자 정보 등록</b></summary>
+
+  > 이름, 생년월일, 전화번호 등 진료에 필요한 기본 정보 등록
+
+  <p align="center">
+    <img src="https://github.com/user-attachments/assets/dd8b262b-e3bd-47ac-858e-5aa31bd78a82"/>
+  </p>
   </details>
 
   <details>
-    <summary><b>병원관리자 - 서버관리자 채팅</b></summary>
-    <p align="center">
-      <img src="https://github.com/user-attachments/assets/a476b99d-ac6d-4638-99c4-c09c888c601b"/>
-      <img src="https://github.com/user-attachments/assets/5e7c7b81-f409-40de-897b-d680408fdb60"/>
-    </p>
+  <summary><b>병원 검색</b></summary>
+
+  > 병원명, 지역, 진료과목, 필터(야간/주말/편의시설 등) 기반 통합 검색
+
+  <p align="center">
+    <img src="https://github.com/user-attachments/assets/94ee4188-879a-487f-be34-b32999255532"/>
+  </p>
+  </details>
+
+  <details>
+  <summary><b>지도 보기</b></summary>
+
+  > 카카오맵 기반 주변 병원 위치 확인 및 거리순 정렬
+
+  <p align="center">
+    <img src=""/>
+  </p>
+  </details>
+
+  <details>
+  <summary><b>병원 상세 조회</b></summary>
+
+  > 병원 정보, 진료시간, 의사 목록, 리뷰 확인
+
+  <p align="center">
+    <img src="https://github.com/user-attachments/assets/7476c8c9-3645-48b2-8a83-de8bf08d2575"/>
+  </p>
+  </details>
+
+  <details>
+  <summary><b>리뷰 작성/수정/삭제</b></summary>
+
+  > 진료 완료 후 병원 리뷰 작성, 수정, 삭제 (예약/접수당 1회 작성 가능)
+
+  <p align="center">
+    리뷰작성
+    <img src="https://github.com/user-attachments/assets/4851a61c-ec79-4e7f-a571-eff8c4a4660d"/>
+    리뷰수정
+    <img src="https://github.com/user-attachments/assets/5035569d-65aa-480b-b496-d9bcf744842a"/>
+    리뷰삭제
+    <img src="https://github.com/user-attachments/assets/a72635a4-0b7b-4472-97cb-0f4a4d061e5a"/>
+  </p>
+  </details>
+
+  <details>
+  <summary><b>리뷰 신고</b></summary>
+
+  > 부적절한 리뷰에 대한 신고 접수
+
+  <p align="center">
+    리뷰신고
+    <img src="https://github.com/user-attachments/assets/2cc67911-62da-454c-953c-ffe5509ef58c"/>
+    신고된 리뷰 평점 수정
+    <img src="https://github.com/user-attachments/assets/4654bcd6-5010-4805-a0c9-05f290f42cd1"/>
+    탈퇴한 계정의 리뷰
+    <img src="https://github.com/user-attachments/assets/6b8238a9-6293-4a29-9ab5-f16ca94cfdf6"/>
+  </p>
+  </details>
+
+  <details>
+  <summary><b>마이페이지</b></summary>
+
+  > 개인 정보 수정, 회원 탈퇴
+
+  <p align="center">
+    <img src=""/>
+  </p>
+  </details>
+
+</details>
+
+<details>
+<summary><b>🏥 병원 관리자</b></summary>
+<br>
+
+  <details>
+  <summary><b>회원가입/로그인</b></summary>
+
+  > 병원 관리자 계정 가입 및 로그인 (서버 관리자 승인 후 이용 가능)
+
+  <p align="center">
+    <img src=""/>
+  </p>
+  </details>
+
+  <details>
+  <summary><b>SMS 인증/비밀번호 재설정</b></summary>
+
+  > SMS 인증번호를 통한 본인 확인 및 비밀번호 재설정
+
+  <p align="center">
+    <img src=""/>
+  </p>
+  </details>
+
+  <details>
+  <summary><b>병원 정보 관리</b></summary>
+
+  > 병원명, 주소, 전화번호, 진료과목, 소개글, 이미지, 해시태그 등록/수정
+
+  <p align="center">
+    <img src=""/>
+  </p>
+  </details>
+
+  <details>
+  <summary><b>운영시간 관리</b></summary>
+
+  > 요일별 진료시간, 점심시간, 휴무일 설정
+
+  <p align="center">
+    <img src=""/>
+  </p>
+  </details>
+
+  <details>
+  <summary><b>접수 마감 토글</b></summary>
+
+  > 당일 접수 마감/재개 설정
+
+  <p align="center">
+    <img src=""/>
+  </p>
+  </details>
+
+  <details>
+  <summary><b>예약 승인 모드 변경</b></summary>
+
+  > 예약 자동 승인/수동 승인 모드 전환
+
+  <p align="center">
+    <img src=""/>
+  </p>
+  </details>
+
+  <details>
+  <summary><b>의사 관리</b></summary>
+
+  > 소속 의사 정보 등록/수정/삭제
+
+  <p align="center">
+    <img src=""/>
+  </p>
+  </details>
+
+  <details>
+  <summary><b>의사 스케줄 관리</b></summary>
+
+  > 의사별 근무 요일/시간, 예약 간격 설정
+
+  <p align="center">
+    <img src=""/>
+  </p>
+  </details>
+
+  <details>
+  <summary><b>의사 휴무 관리</b></summary>
+
+  > 의사별 휴무일 조회, 단건/일괄 등록, 일괄 삭제, 월별 초기화
+
+  <p align="center">
+    <img src=""/>
+  </p>
+  </details>
+
+  <details>
+  <summary><b>공휴일 관리</b></summary>
+
+  > 병원에 공휴일 적용/제거
+
+  <p align="center">
+    <img src=""/>
+  </p>
+  </details>
+
+  <details>
+  <summary><b>접수 관리</b></summary>
+
+  > 당일 접수 목록 확인, 접수 상태 변경 (대기 → 진료중 → 완료)
+
+  <p align="center">
+    <img src=""/>
+  </p>
+  </details>
+
+  <details>
+  <summary><b>예약 관리</b></summary>
+
+  > 주간 캘린더 조회, 예약 승인/거절/취소, 진료 완료 처리, 슬롯 블록/해제
+
+  <p align="center">
+    <img src=""/>
+  </p>
+  </details>
+
+  <details>
+  <summary><b>통계</b></summary>
+
+  > 대시보드 요약, 의사별 랭킹, 일별 트렌드 조회
+
+  <p align="center">
+    <img src=""/>
+  </p>
+  </details>
+
+  <details>
+  <summary><b>리뷰 관리</b></summary>
+
+  > 병원 리뷰 확인, 리뷰 통계 조회
+
+  <p align="center">
+    <img src=""/>
+  </p>
+  </details>
+
+  <details>
+  <summary><b>1:1 채팅</b></summary>
+
+  > 환자/관리자와의 실시간 1:1 채팅 (WebSocket STOMP)
+
+  <p align="center">
+    <img src=""/>
+  </p>
+  </details>
+
+  <details>
+  <summary><b>실시간 알림</b></summary>
+
+  > 새 접수/예약 발생 시 실시간 알림 (SSE)
+
+  <p align="center">
+    <img src=""/>
+  </p>
+  </details>
+
+</details>
+
+<details>
+<summary><b>⚙️ 서버 관리자</b></summary>
+<br>
+
+  <details>
+  <summary><b>로그인</b></summary>
+
+  > 서버 관리자 계정 로그인
+
+  <p align="center">
+    <img src=""/>
+  </p>
+  </details>
+
+  <details>
+  <summary><b>대시보드</b></summary>
+
+  > 승인 대기 병원 수, 신고 리뷰 수 등 전체 현황 요약
+
+  <p align="center">
+    <img src=""/>
+  </p>
+  </details>
+
+  <details>
+  <summary><b>병원 가입 승인</b></summary>
+
+  > 신규 병원 가입 요청 검토 및 승인/거절
+
+  <p align="center">
+    <img src=""/>
+  </p>
+  </details>
+
+  <details>
+  <summary><b>신고 리뷰 관리</b></summary>
+
+  > 신고된 리뷰 확인 및 삭제 승인/신고 반려 처리
+
+  <p align="center">
+    <img src=""/>
+  </p>
+  </details>
+
+  <details>
+  <summary><b>기초 데이터 관리</b></summary>
+
+  > 진료과목, 필터(야간/주말/편의시설 등) 카테고리 생성/삭제
+
+  <p align="center">
+    <img src=""/>
+  </p>
+  </details>
+
+  <details>
+  <summary><b>1:1 채팅</b></summary>
+
+  > 병원 관리자와의 실시간 1:1 채팅 (WebSocket STOMP)
+
+  <p align="center">
+    <img src=""/>
+  </p>
   </details>
 
 </details>
