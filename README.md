@@ -10,7 +10,7 @@
       <sub><b><a href="https://github.com/JeaPple" target="_blank" rel="noreferrer">박준형</a></b></sub>
     </td>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/6fe5d6ec-b5a8-4888-84ed-5658fca8f021" width="240" height="120" alt="황건하"/><br />
+      <img src="https://github.com/user-attachments/assets/7b55e1a8-10db-4c02-b81a-5504696793c0" width="120" height="120" alt="황건하"/><br />
       <sub><b><a href="https://github.com/ifunhy" target="_blank" rel="noreferrer">황건하</a></b></sub>
     </td>
     <td align="center">
