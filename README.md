@@ -29,11 +29,11 @@
 
 ## 목차
 
-1. [프로젝트 개요](#1-프로젝트-개요)
-2. [프로젝트 소개](#2-프로젝트-소개)
-3. [기술 스택](#3-기술-스택)
-4. [산출물](#4-산출물)
-5. [시스템 아키텍처](#5-시스템-아키텍처)
+1. [프로젝트 소개](#2-프로젝트-소개)
+2. [기술 스택](#3-기술-스택)
+3. [산출물](#4-산출물)
+4. [시스템 아키텍처](#5-시스템-아키텍처)
+5. [주요 서비스 테스트 결과 보고서](#5-주요-서비스-테스트-결과-보고서)
 6. [역할별 기능](#6-역할별-기능)
 7. [사용한 핵심 기술](#7-사용한-핵심-기술)
 8. [트러블 슈팅](#8-트러블-슈팅)
@@ -41,18 +41,9 @@
 
 ---
 
-## 1. 프로젝트 개요
-
-| 항목 | 내용 |
-|------|------|
-| **프로젝트명** | Hodadoc (호다닥) |
-| **개발 기간** | 2026.01.23 ~ 2026.03.18 |
-| **개발 인원** | 4명 |
-| **목적** | 환자의 병원 예약/접수 편의성 향상 및 병원의 효율적인 운영 관리 지원 |
-
 <br>
 
-## 2. 프로젝트 소개
+## 1. 프로젝트 소개
 
 <p align="center">
     Hodadoc은 환자의 시간 절약, 병원의 원활한 예약 관리를 위해,
@@ -62,8 +53,11 @@
     누구나 쉽게 병원 예약·접수할 수 있는 웹사이트 기반 병원 예약 시스템입니다.
 </p>
 
-<br>
+<p align="center">
+  환자, 병원 관리자, 서버 관리자 역할로 구성 되어있습니다.  
+  </p>
 
+<br>
 ## 3. 기술 스택
 
 ### Frontend
@@ -149,10 +143,10 @@
 <details>
   <summary>세부사항</summary>
   <div>
-    <a href="https://docs.google.com/spreadsheets/d/1kbDEIqy6FzWeUFboFyDg-FJSxLkvnS7t8I32xc3Gwuc/edit?gid=0#gid=0" >요구사항 정의서</a>
+    <a href="https://docs.google.com/spreadsheets/d/1kbDEIqy6FzWeUFboFyDg-FJSxLkvnS7t8I32xc3Gwuc/edit?gid=1989793475#gid=1989793475" >요구사항 정의서</a>
   </div>
   <div markdown="1">
-    <img width="2078" height="1596" alt="Image" src="https://github.com/user-attachments/assets/d3a9515b-0598-46fb-bc51-356434f88b2d" />
+    <img width="2078" height="1596" alt="Image" src="https://github.com/user-attachments/assets/2a1b7148-115a-450b-b616-72685283f15f" />
   </div>
 </details>
 
@@ -164,7 +158,7 @@
     <a href="https://docs.google.com/spreadsheets/d/1kbDEIqy6FzWeUFboFyDg-FJSxLkvnS7t8I32xc3Gwuc/edit?gid=1551114415#gid=1551114415" >WBS</a>
   </div>
   <div markdown="1">
-    <img width="1620" height="1500" alt="Image" src="https://github.com/user-attachments/assets/2e5c3ec5-ba5e-4eb5-8d6c-4f767c46b46a" />
+    <img width="1620" height="1500" alt="Image" src="https://github.com/user-attachments/assets/fb0a5189-7a86-4f10-98db-bad57a9a25c7" />
   </div>
 </details>
 
@@ -205,8 +199,10 @@
 <br>
 
 ## 5. 시스템 아키텍처
-
-![시스템 아키텍처](https://github.com/user-attachments/assets/b998b186-7001-4202-83da-819579c18c30)
+5-1 서비스 구조 아키텍처
+![서비스 구조 아키텍처](https://github.com/user-attachments/assets/b998b186-7001-4202-83da-819579c18c30)
+5-2 인프라 아키텍처
+![인프라 아키텍처](https://github.com/user-attachments/assets/22c16f82-e3cc-45da-b907-dfbe0f24a6b4)
 
 <br>
 
@@ -268,19 +264,18 @@
 
 | 사용 기술 | 설명 |
 |-----------|------|
-| 카카오 소셜 로그인 | 카카오 OAuth를 연동하여 별도 회원가입 없이 간편하게 로그인할 수 있습니다. |
-| Refresh Token 보안 강화 | HTTP Only Cookie와 블랙리스트 기반 토큰 무효화로 안전한 인증 시스템을 구축했습니다. |
-| Redis를 활용한 예약 동시성 제어 | 여러 환자가 동시에 같은 슬롯에 예약 요청 시, Redis 분산락으로 직렬화하여 1명만 성공하도록 동시성을 제어했습니다. |
-| SSE를 활용한 실시간 알림 | SSE(Server-Sent Events)를 이용해 예약 신청·승인·취소 등 주요 이벤트 알림을 실시간으로 환자와 병원에 전달합니다. |
-| Redis Pub/Sub | 멀티 Pod 환경(EKS)에서 특정 Pod로 연결된 SSE 클라이언트에도 메시지가 전달되도록 인스턴스 간 알림을 동기화합니다. |
-| 병원 검색 및 지역 필터 | 병원명·진료과 키워드 검색과 시/도·시군구 단위 지역 필터를 지원하며, GPS 기반 현재 위치 거리순 정렬이 가능합니다. |
-| 실시간 운영 상태 표시 | 병원별 운영시간·점심시간·공휴일·임시 휴무를 실시간 계산하여 진료 중 / 접수 마감 / 진료 종료 상태를 자동으로 표시합니다. |
-| 예약 슬롯 자동 생성 | 의사별 근무 요일·시간·진료 간격·점심시간 설정을 기반으로 예약 가능 시간 슬롯을 동적으로 생성합니다. |
-| WebSocket STOMP 실시간 채팅 | WebSocket과 STOMP 프로토콜을 활용해 환자·병원 관리자·서버 관리자 간 실시간 1:1 채팅 기능을 구현했습니다. |
-| SMS 알림 | 솔라피(Solapi) API를 연동해 예약 확정·취소·거절 시 환자에게 문자 메시지를 자동 발송합니다. |
-| 카카오 지도 API 연동 | 병원 주소를 좌표로 변환(Geocoding)하여 지도 위에 주변 병원 위치를 표시하고 거리 기반 탐색이 가능합니다. |
-| AWS S3 이미지 업로드 | 병원 프로필 이미지를 S3에 업로드하여 관리하고, CloudFront를 통해 빠르게 제공합니다. |
-| CI/CD 자동 배포 | GitHub Actions로 main 브랜치 푸시 시 Docker 이미지를 ECR에 빌드·푸시하고 EKS에 자동 롤링 배포합니다. |
+| 소셜 로그인 | 카카오 OAuth를 연동하여 별도 회원가입 없이 간편하게 로그인할 수 있습니다. |
+| 인증 보안 강화 | HTTP Only Cookie와 Redis 기반 RT 토큰 저장으로 XSS/CSRF 공격에 안전한 인증 시스템을 구축했습니다. |
+| 예약 동시성 제어 | 여러 환자가 동시에 같은 슬롯을 예약할 경우 Redis 분산락을 활용해 1명만 성공하도록 동시성을 제어했습니다. |
+| 실시간 알림 | SSE(Server-Sent Events)를 이용해 예약 신청·승인·취소 등 주요 이벤트를 실시간으로 환자·병원에 전달합니다. |
+| Redis Pub/Sub | 멀티 Pod 환경(EKS)에서 SSE 메시지를 모든 인스턴스에 동기화하여 안정적인 실시간 알림을 제공합니다. |
+| GPS 활용 | 시/도·시군구 단위 지역 필터와 병원명·진료과 복합 검색을 지원하며, 현재 위치 기반 거리순 정렬이 가능합니다. |
+| 공휴일 API 활용 | 병원 운영시간·점심시간·휴무일을 실시간으로 계산하여 진료 중/접수 마감/진료 종료 상태를 자동으로 표시합니다. |
+| 예약 슬롯 자동 생성 | 의사 근무 규칙(요일·시간·진료 간격·점심시간)을 기반으로 예약 가능 슬롯을 동적으로 생성합니다. |
+| SMS 알림 | 솔라피(Solapi) API를 연동해 예약 확정·취소 시 환자에게 문자 메시지를 발송합니다. |
+| 카카오 지도 API 연동 | 병원 주소를 좌표로 변환(Geocoding)하여 지도 위에 병원 위치를 표시하고 사용자가 쉽게 찾을 수 있도록 합니다. |
+| AWS S3 이미지 업로드 | 병원 프로필 이미지를 S3에 업로드하고 CloudFront를 통해 빠르게 제공합니다. |
+| CI/CD 자동 배포 | GitHub Actions로 코드 푸시 시 Docker 이미지를 ECR에 빌드·푸시하고 EKS에 자동 롤링 배포합니다. |
 
 # 8. 트러블 슈팅
 ---
