@@ -7,19 +7,19 @@
   <tr>
     <td align="center">
       <img src="https://github.com/user-attachments/assets/41c632dd-25e8-4490-9340-af4e2d4e2f23" width="120" height="120" alt="박준형"/><br />
-      <sub><b><a href="https://github.com/JeaPple" target="_blank" rel="noreferrer">박준형</a></b></sub>
+      <sub><b><a href="https://github.com/abilitytony" target="_blank" rel="noreferrer">박준형</a></b></sub>
     </td>
     <td align="center">
       <img src="https://github.com/user-attachments/assets/7b55e1a8-10db-4c02-b81a-5504696793c0" width="120" height="120" alt="황건하"/><br />
-      <sub><b><a href="https://github.com/ifunhy" target="_blank" rel="noreferrer">황건하</a></b></sub>
+      <sub><b><a href="https://github.com/LittleNiddle" target="_blank" rel="noreferrer">황건하</a></b></sub>
     </td>
     <td align="center">
       <img src="https://github.com/user-attachments/assets/b97a590e-1206-4389-8976-ca4056655a5a" width="120" height="120" alt="김세연"/><br />
-      <sub><b><a href="https://github.com/jinnn12" target="_blank" rel="noreferrer">김세연</a></b></sub>
+      <sub><b><a href="https://github.com/tpdus55" target="_blank" rel="noreferrer">김세연</a></b></sub>
     </td>
     <td align="center">
       <img src="https://github.com/user-attachments/assets/ad2d2246-a8ee-4631-90af-ded708d53fe2" width="120" height="120" alt="이은경"/><br />
-      <sub><b><a href="https://github.com/solidify-d" target="_blank" rel="noreferrer">이은경</a></b></sub>
+      <sub><b><a href="https://github.com/DLDMSRUD-BIT" target="_blank" rel="noreferrer">이은경</a></b></sub>
     </td>
   </tr>
 </table>
