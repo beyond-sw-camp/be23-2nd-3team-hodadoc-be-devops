@@ -175,11 +175,7 @@
   <div>
     <a href="https://www.figma.com/design/g0S2334UVVH8z4OSN2x0PY/%ED%98%B8%EB%8B%A4%EB%8B%A5?node-id=0-1&p=f&t=Pojv6r1uW8QWTqfV-0" >Figma</a>
   </div>
-  <div markdown="1">
-    <img width="1352" height="681" alt="Image" src="https://github.com/user-attachments/assets/044fe728-ec14-432c-98b3-494389a2e635" />
-    <img width="1351" height="682" alt="Image" src="https://github.com/user-attachments/assets/28628874-460f-4b16-aaee-f2887d3369b9" />
-    <img width="1352" height="679" alt="Image" src="https://github.com/user-attachments/assets/44e260da-d86c-4414-8a85-7cbf22fdb1cc" />
-  </div>
+  
 </details>
 
 ### 4-4. ERD
