@@ -71,6 +71,9 @@
   <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white"/>
   <img src="https://img.shields.io/badge/STOMP.js-010101?style=for-the-badge&logo=socketdotio&logoColor=white"/>
   <img src="https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white"/>
+  <img src="https://img.shields.io/badge/css-663399?style=for-the-badge&logo=css&logoColor=white"/>
+  <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
+  <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white"/>
 </p>
 
 ### Backend
@@ -80,6 +83,10 @@
   <img src="https://img.shields.io/badge/Spring_Security-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white"/>
   <img src="https://img.shields.io/badge/Spring_Data_JPA-6DB33F?style=for-the-badge&logo=spring&logoColor=white"/>
   <img src="https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"/>
+  <img src="https://img.shields.io/badge/intellijidea-000000?style=for-the-badge&logo=intellijidea&logoColor=white"/>
+
+
 </p>
 
 ### Database & Messaging
@@ -102,6 +109,13 @@
   <img src="https://img.shields.io/badge/Redis_Pub/Sub-DC382D?style=for-the-badge&logo=redis&logoColor=white"/>
 </p>
 
+### 🛠️ Communication
+
+<p align="center">
+  <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"/>
+  <img src="https://img.shields.io/badge/discord-5865F2?style=for-the-badge&logo=discord&logoColor=white"/>
+</p>
+
 ### Infra & DevOps
 <p>
   <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"/>
@@ -116,6 +130,11 @@
   <img src="https://img.shields.io/badge/AWS_S3-569A31?style=for-the-badge&logo=amazons3&logoColor=white"/>
   <img src="https://img.shields.io/badge/AWS_ECR-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white"/>
   <img src="https://img.shields.io/badge/Solapi_SMS-4285F4?style=for-the-badge&logo=googlemessages&logoColor=white"/>
+  <img src="https://img.shields.io/badge/AWS%20CloudFront-8C4FFF?style=for-the-badge&logo=amazonaws&logoColor=white"/>
+  <img src="https://img.shields.io/badge/AWS%20RDS-527FFF?style=for-the-badge&logo=amazonrds&logoColor=black"/>
+  <img src="https://img.shields.io/badge/AWS%20EC2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=black"/>
+
+
 </p>
 
 <br>
@@ -245,6 +264,278 @@
 | **1:1 채팅** | 병원 관리자와의 실시간 1:1 채팅 (WebSocket STOMP) |
 
 <br>
+
+## 🔍 사용한 핵심 기술
+
+| 사용 기술 | 설명 |
+|-----------|------|
+| 카카오 소셜 로그인 | 카카오 OAuth를 연동하여 별도 회원가입 없이 간편하게 로그인할 수 있습니다. |
+| Refresh Token 보안 강화 | HTTP Only Cookie와 블랙리스트 기반 토큰 무효화로 안전한 인증 시스템을 구축했습니다. |
+| Redis를 활용한 예약 동시성 제어 | 여러 환자가 동시에 같은 슬롯에 예약 요청 시, Redis 분산락으로 직렬화하여 1명만 성공하도록 동시성을 제어했습니다. |
+| SSE를 활용한 실시간 알림 | SSE(Server-Sent Events)를 이용해 예약 신청·승인·취소 등 주요 이벤트 알림을 실시간으로 환자와 병원에 전달합니다. |
+| Redis Pub/Sub | 멀티 Pod 환경(EKS)에서 특정 Pod로 연결된 SSE 클라이언트에도 메시지가 전달되도록 인스턴스 간 알림을 동기화합니다. |
+| 병원 검색 및 지역 필터 | 병원명·진료과 키워드 검색과 시/도·시군구 단위 지역 필터를 지원하며, GPS 기반 현재 위치 거리순 정렬이 가능합니다. |
+| 실시간 운영 상태 표시 | 병원별 운영시간·점심시간·공휴일·임시 휴무를 실시간 계산하여 진료 중 / 접수 마감 / 진료 종료 상태를 자동으로 표시합니다. |
+| 예약 슬롯 자동 생성 | 의사별 근무 요일·시간·진료 간격·점심시간 설정을 기반으로 예약 가능 시간 슬롯을 동적으로 생성합니다. |
+| WebSocket STOMP 실시간 채팅 | WebSocket과 STOMP 프로토콜을 활용해 환자·병원 관리자·서버 관리자 간 실시간 1:1 채팅 기능을 구현했습니다. |
+| SMS 알림 | 솔라피(Solapi) API를 연동해 예약 확정·취소·거절 시 환자에게 문자 메시지를 자동 발송합니다. |
+| 카카오 지도 API 연동 | 병원 주소를 좌표로 변환(Geocoding)하여 지도 위에 주변 병원 위치를 표시하고 거리 기반 탐색이 가능합니다. |
+| AWS S3 이미지 업로드 | 병원 프로필 이미지를 S3에 업로드하여 관리하고, CloudFront를 통해 빠르게 제공합니다. |
+| CI/CD 자동 배포 | GitHub Actions로 main 브랜치 푸시 시 Docker 이미지를 ECR에 빌드·푸시하고 EKS에 자동 롤링 배포합니다. |
+
+# 🚦 트러블 슈팅
+
+---
+
+<details>
+<summary><strong>인증</strong></summary>
+
+<details>
+<summary>1. 회원탈퇴 후 카카오 재가입 시 이메일 unique 제약 위반</summary>
+
+### 🔴 문제 상황
+회원탈퇴 후 동일한 카카오 계정으로 재가입 시도 시 오류 발생
+```
+Duplicate entry 'user@kakao.com' for key 'account.email'
+```
+
+### 🔍 원인
+회원탈퇴를 soft delete(`delYn = "Y"`)로 구현하면서 email을 null로 초기화하는 로직을 누락했다. 탈퇴 레코드에 이메일이 그대로 남아있어 카카오 재가입 시 `createOauth()`가 신규 INSERT를 시도하면서 `Account.email`의 `unique = true` 제약에 위반
+
+| 단계 | 내용 |
+|------|------|
+| 탈퇴 처리 | `delYn = "Y"` 만 처리, email은 그대로 남아있음 |
+| 재가입 시도 | 카카오에서 동일 이메일 반환 → `createOauth()`로 신규 INSERT 시도 |
+| 오류 발생 | 기존 탈퇴 레코드에 같은 이메일이 남아있어 unique 제약 위반 |
+
+### ✅ 해결
+회원탈퇴 처리 시 email 컬럼을 null로 초기화하여 unique 제약과 충돌하지 않도록 수정
+
+</details>
+
+</details>
+
+---
+
+<details>
+<summary><strong>알림 (SSE / RabbitMQ)</strong></summary>
+
+<details>
+<summary>1. 서버 2대 환경에서 SSE 알림 이중 수신</summary>
+
+### 🔴 문제 상황
+멀티 Pod 환경에서 병원관리자가 재접속 시 동일한 알림을 여러 번 수신하는 현상 발생
+
+### 🔍 원인
+`sendMessage()`에서 emitter가 없을 때 Redis Pub/Sub 발행과 RabbitMQ 저장을 동시에 수행하고, Redis 메시지를 구독하는 `onMessage()`에서도 emitter가 없으면 RabbitMQ에 한 번 더 저장하는 구조
+
+```
+[서버 A] 예약 생성 이벤트 발생
+├── emitter 없음 → Redis 발행 + RabbitMQ 저장 ─── 1회차
+├── [서버 A] onMessage() 수신 → RabbitMQ 저장 ─── 2회차
+└── [서버 B] onMessage() 수신 → RabbitMQ 저장 ─── 3회차
+```
+
+### ✅ 해결
+`onMessage()`에서 RabbitMQ 저장 로직을 제거하고, Redis 수신 측에서는 SSE 전달만 시도하도록 수정
+
+```java
+// 변경 후 — onMessage()
+if (emitter != null) {
+    emitter.send(SseEmitter.event().name(dto.getType()).data(data));
+} else {
+    log.info("[SSE 수신] emitter 없음 → 무시 (이미 RabbitMQ에 저장됨)");
+}
+```
+
+</details>
+
+<details>
+<summary>2. 좀비 Emitter로 인한 신규 SSE 연결 삭제</summary>
+
+### 🔴 문제 상황
+병원관리자가 페이지를 새로고침하거나 네트워크가 일시적으로 끊겼다가 재연결되면, SSE map에 끊긴 연결(좀비 Emitter)이 남아 신규 연결을 덮어쓰지 못하고 이후 알림이 전달되지 않는 현상 발생
+
+### 🔍 원인
+끊긴 연결(좀비 Emitter)이 map에 남아 신규 연결 등록 시 충돌 발생
+
+### ✅ 해결
+`onCompletion`, `onTimeout`, `onError` 콜백에서 map에서 해당 emitter를 명시적으로 제거하고, 신규 연결 등록 시 기존 emitter가 살아있는지 확인 후 교체하도록 수정
+
+</details>
+
+</details>
+
+---
+
+<details>
+<summary><strong>예약</strong></summary>
+
+<details>
+<summary>1. 예약 동시성 처리 (Redis 분산락)</summary>
+
+### 🔴 문제 상황
+4명이 동시에 동일한 의사/날짜/시간 슬롯에 예약 요청 시 4명 모두 성공 → 중복 예약 발생
+
+### 🔁 시행착오 과정
+
+**1단계 — 4명 시도 → 4명 성공 ❌**
+
+- 원인 1: `ReservationPatient`에 DB UniqueConstraint 없음
+- 원인 2: `deleteInactiveByDoctorDateAndTime`이 APPROVED 레코드를 건드리지 않음
+
+```java
+@Table(name = "reservation")  // uniqueConstraints 없음
+public class ReservationPatient { ... }
+```
+
+**2단계 — 4명 시도 → 2명 성공 2명 실패 ❌**
+
+`doCreateByPatient()`에 `@Transactional(REQUIRES_NEW)` 추가 시도
+
+```java
+@Transactional(propagation = Propagation.NOT_SUPPORTED)
+public ReservationPatientListDto createByPatient(...) {
+    return doCreateByPatient(accountId, dto);  // ← 같은 클래스 내부 this.호출!
+}
+
+@Transactional(propagation = Propagation.REQUIRES_NEW)
+public ReservationPatientListDto doCreateByPatient(...) {
+    // REQUIRES_NEW 완전 무시 → 트랜잭션 없이 실행
+}
+```
+
+> **원인**: Spring AOP 프록시 우회 — 같은 클래스 내부에서 `this.메서드()` 호출 시 프록시를 거치지 않아 어노테이션이 무시됨 → 트랜잭션 없이 실행 → JPA Lazy 로딩 시 `LazyInitializationException` 발생
+
+**3단계 — 4명 시도 → 4명 실패 ❌**
+
+트랜잭션 없는 상태 → 모든 JPA Lazy 로딩 실패 → 전원 예약 불가
+
+### ✅ 최종 해결 — 3중 방어 구조
+
+`ReservationCreateService`를 별도 Bean으로 분리 → Spring 프록시를 통한 호출 → `REQUIRES_NEW` 정상 작동
+
+```
+createByPatient (NOT_SUPPORTED — 락만 관리)
+  └→ [Spring Proxy] → ReservationCreateService.doCreateByPatient()
+       → REQUIRES_NEW 트랜잭션 시작 → DB 저장 → 커밋 완료
+  └→ finally: unlock() ← 커밋 후 해제 보장
+```
+
+| 방어층 | 역할 |
+|--------|------|
+| ① Redis 분산락 | 동시 진입 자체를 직렬화 |
+| ② existsActive 체크 | 락 해제 후 순차 진입 요청 차단 |
+| ③ DB UniqueConstraint | 최후 방어선 |
+
+**결과: 4명 동시 요청 → 1명 성공, 3명 실패 ✅**
+
+</details>
+
+</details>
+
+---
+
+<details>
+<summary><strong>채팅</strong></summary>
+
+<details>
+<summary>1. 한글 입력 시 채팅 메시지 2번 전송</summary>
+
+### 🔴 문제 상황
+한글로 메시지를 입력하고 Enter를 누르면 동일한 메시지가 2번 전송됨. 영문 입력 시에는 정상.
+
+### 🔍 원인
+한글은 IME(Input Method Editor)로 자모를 조합하는 과정이 있어 Enter를 누르면 브라우저가 keydown 이벤트를 2번 발생시킨다.
+
+```
+keydown (isComposing: true)  ← 조합 종료를 위한 Enter → sendMessage() 1회차
+keydown (isComposing: false) ← 실제 Enter 입력         → sendMessage() 2회차
+```
+
+`@keydown.enter="sendMessage"`로 바인딩 시 두 이벤트 모두에서 전송이 실행됨
+
+### ✅ 해결
+`event.isComposing`으로 IME 조합 중인 이벤트를 무시
+
+```javascript
+const handleEnter = (event) => {
+    if (event.isComposing) return;  // 조합 중 Enter 무시
+    sendMessage();
+};
+```
+
+</details>
+
+</details>
+
+---
+
+<details>
+<summary><strong>공통</strong></summary>
+
+<details>
+<summary>1. JWT 토큰 식별자 전환 (Email → Account ID)</summary>
+
+### 🔴 문제 상황
+JWT 토큰의 subject를 이메일로 설정하여 소유권 체크나 중복 방지 코드 작성 시마다 이메일로 계정을 조회하고, 다시 환자 ID로 변환하는 단계를 매번 거쳐야 했다.
+
+### ✅ 해결
+토큰의 subject를 이메일에서 `accountId(Long)`으로 변경하고, 서비스 진입 시 `accountId → Patient` 변환 패턴을 도입
+
+```java
+// 토큰에서 accountId 추출
+Long accountId = (Long) SecurityContextHolder.getContext()
+        .getAuthentication().getPrincipal();
+
+// accountId → Patient 변환 (계정 삭제 여부 함께 확인)
+Patient patient = patientRepository
+        .findByAccountIdAndAccount_DelYn(accountId, "N")
+        .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 사용자입니다."));
+```
+
+</details>
+
+<details>
+<summary>2. boolean 필드 isDayOff → Jackson JSON 직렬화 불일치</summary>
+
+### 🔴 문제 상황
+프론트에서 `isDayOff: true`로 전송해도 백엔드에서 항상 false로 저장됨
+
+### 🔍 원인
+Lombok `@Data`가 `boolean isDayOff` 필드에 대해 getter `isDayOff()`와 setter `setDayOff()`를 생성한다. Jackson은 setter 기준으로 JSON 키를 `"dayOff"`로 결정하기 때문에 프론트가 `"isDayOff"`로 보내도 매핑에 실패하여 false(기본값)로 저장됨
+
+### ✅ 해결
+boolean 필드명에서 `is` 접두어를 전체적으로 제거. `dayOff`로 선언하면 Lombok이 getter `isDayOff()`와 setter `setDayOff()`를 자동 생성하고 JSON 키도 `dayOff`로 일관됨
+
+```java
+// Entity - After
+@Column(name = "is_day_off")
+@Builder.Default
+private boolean dayOff = false;
+```
+
+</details>
+
+<details>
+<summary>3. LocalTime 24:00 파싱 오류 및 마감시간 처리</summary>
+
+### 🔴 문제 상황
+초기 SQL 데이터에 마감시간이 `24:00:00`으로 들어가 있었다. Java의 `LocalTime`은 `00:00:00 ~ 23:59:59` 범위만 허용하기 때문에 `24:00`을 파싱하면 오류가 발생했다. 또한 마감시간을 `23:59:00`으로 저장하면 `23:59 ~ 00:00` 사이 1분 동안 진료 종료로 표시되는 문제도 있었다.
+
+### ✅ 해결
+SQL 데이터 수정, 프론트 입력 제한, 백엔드 자동 변환, 진료 중 판단 로직 4단계로 처리
+
+```java
+// 백엔드 - 23:59로 입력된 경우 내부적으로 LocalTime.MAX(23:59:59.999)로 변환
+.closeTime("23:59".equals(this.closeTime)
+    ? LocalTime.of(23, 59, 900_000_000)
+    : parseTime(this.closeTime))
+```
+
+</details>
+
+</details>
 
 ## 7. 테스트 계획 및 결과 보고서
 
