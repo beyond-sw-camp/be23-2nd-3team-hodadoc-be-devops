@@ -394,7 +394,7 @@
   > 카카오맵 기반 주변 병원 위치 확인 및 거리순 정렬
 
   <p align="center">
-    <img src=""/>
+    <img src="https://github.com/user-attachments/assets/125582ff-b8ae-4faf-9bc3-40f2ddb89ad7"/>
   </p>
   </details>
 
@@ -442,9 +442,11 @@
   <summary><b>마이페이지</b></summary>
 
   > 개인 정보 수정, 회원 탈퇴
-
   <p align="center">
-    <img src=""/>
+    개인정보 수정
+    <img src="https://github.com/user-attachments/assets/7200bcef-c652-4170-8232-079fba38b4bd"/>
+    회원 탈퇴
+    <img src="https://github.com/user-attachments/assets/effe30fc-fd0b-49b2-bb2e-bda09283e663"/>
   </p>
   </details>
 
@@ -460,7 +462,7 @@
   > 병원 관리자 계정 가입 및 로그인 (서버 관리자 승인 후 이용 가능)
 
   <p align="center">
-    <img src=""/>
+    <img src="https://github.com/user-attachments/assets/4db06005-0a61-44a8-a738-5ecada337360"/>
   </p>
   </details>
 
@@ -470,7 +472,7 @@
   > SMS 인증번호를 통한 본인 확인 및 비밀번호 재설정
 
   <p align="center">
-    <img src=""/>
+    <img src="https://github.com/user-attachments/assets/bb0649a8-1942-4b16-a976-0827f0e248ba"/>
   </p>
   </details>
 
@@ -480,7 +482,12 @@
   > 병원명, 주소, 전화번호, 진료과목, 소개글, 이미지, 해시태그 등록/수정
 
   <p align="center">
-    <img src=""/>
+    등록
+    <img src="https://github.com/user-attachments/assets/55b3db61-b658-4d83-b65a-701225d22fb0"/>
+    수정
+    <img src="https://github.com/user-attachments/assets/7e81cabe-15c6-410f-b9a7-de1d205f4dff"/>
+    탈퇴
+    <img src="https://github.com/user-attachments/assets/61b3c6bd-6b10-4928-acc0-f542a5df9895"/>
   </p>
   </details>
 
@@ -490,7 +497,7 @@
   > 요일별 진료시간, 점심시간, 휴무일 설정
 
   <p align="center">
-    <img src=""/>
+    <img src="https://github.com/user-attachments/assets/c3647343-8b03-4c9b-971d-f2be4d16659d"/>
   </p>
   </details>
 
