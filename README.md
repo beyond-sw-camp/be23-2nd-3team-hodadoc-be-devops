@@ -275,7 +275,7 @@
   > 원하는 병원에 당일 접수를 신청합니다. (운영시간/휴무일/공휴일 자동 체크)
 
   <p align="center">
-    <img src=""/>
+    <img src="https://github.com/user-attachments/assets/84d55824-ea03-4a91-b0ef-f19b00548038"/>
   </p>
   </details>
 
@@ -285,8 +285,10 @@
   > 환자가 접수 마감 및 재개 상태를 실시간으로 확인할 수 있습니다.
 
   <p align="center">
-    <img src=""/>
-    <img src=""/>
+    접수마감
+    <img src="https://github.com/user-attachments/assets/4329a25e-bedf-4fbc-a378-4af7cd64a70b"/>
+    접수재개
+    <img src="https://github.com/user-attachments/assets/48d18ac3-2b9e-4fcf-9589-f90350657541"/>
   </p>
   </details>
 
@@ -296,18 +298,20 @@
   > 병원 관리자가 당일 접수를 마감하거나 재개할 수 있습니다.
 
   <p align="center">
-    <img src=""/>
-    <img src=""/>
+    접수마감
+    <img src="https://github.com/user-attachments/assets/ddc05498-faaa-4249-8a7e-25c3803ee3ad"/>
+    접수재개
+    <img src="https://github.com/user-attachments/assets/e5223207-c50f-4d56-a9c4-5134f16da0f6"/>
   </p>
   </details>
 
   <details>
-  <summary><b>병원관리자 접수 재개</b></summary>
+  <summary><b>병원관리자 접수</b></summary>
 
-  > 병원 관리자가 마감된 접수를 재개합니다.
+  > 병원 관리자가 접수를 확인하고 호출한다.
 
   <p align="center">
-    <img src=""/>
+    <img src="https://github.com/user-attachments/assets/278e4b4c-5ff3-4780-ad17-2784e0455810"/>
   </p>
   </details>
 
@@ -323,8 +327,8 @@
   > 환자와 병원 관리자 간 실시간 1:1 채팅입니다. (WebSocket STOMP)
 
   <p align="center">
-    <img src=""/>
-    <img src=""/>
+    <img src="https://github.com/user-attachments/assets/36efef77-f979-43ff-b970-1f6cf6939beb"/>
+    <img src="https://github.com/user-attachments/assets/1d91d2ac-c3e0-4742-b3a7-50fedc3e5a32"/>
   </p>
   </details>
 
@@ -334,8 +338,8 @@
   > 환자와 서버 관리자 간 실시간 1:1 채팅입니다. (WebSocket STOMP)
 
   <p align="center">
-    <img src=""/>
-    <img src=""/>
+    <img src="https://github.com/user-attachments/assets/205415b0-ed98-4e92-a2e5-5f9e15a312c6"/>
+    <img src="https://github.com/user-attachments/assets/35053b7f-da51-4ae3-91ca-a908015dedab"/>
   </p>
   </details>
 
@@ -345,8 +349,8 @@
   > 병원 관리자와 서버 관리자 간 실시간 1:1 채팅입니다. (WebSocket STOMP)
 
   <p align="center">
-    <img src=""/>
-    <img src=""/>
+    <img src="https://github.com/user-attachments/assets/8fa7ff55-61bd-4afb-a3ce-03a704f40c80"/>
+    <img src="https://github.com/user-attachments/assets/2a412ac8-ff56-4e89-b2d6-b788864d281b"/>
   </p>
   </details>
 
@@ -507,7 +511,10 @@
   > 당일 접수 마감/재개 설정
 
   <p align="center">
-    <img src=""/>
+    접수마감
+    <img src="https://github.com/user-attachments/assets/ee284fb0-bdc8-4454-996a-b73076d06fa6"/>
+    접수재개
+    <img src="https://github.com/user-attachments/assets/df4b1994-164c-4b1e-9574-5c2c23bfd118"/>
   </p>
   </details>
 
@@ -517,7 +524,7 @@
   > 예약 자동 승인/수동 승인 모드 전환
 
   <p align="center">
-    <img src=""/>
+    <img src="https://github.com/user-attachments/assets/5cec2abd-5e2e-4fda-87a9-7927e585d15e"/>
   </p>
   </details>
 
@@ -537,7 +544,12 @@
   > 의사별 근무 요일/시간, 예약 간격 설정
 
   <p align="center">
-    <img src=""/>
+    의사등록
+    <img src="https://github.com/user-attachments/assets/8cae4776-e2a7-4056-bd9b-902324796e5c"/>
+    의사수정
+    <img src="https://github.com/user-attachments/assets/b5fca44c-acf5-417b-af51-e5127d7f1575"/>
+    의사삭제
+    <img src="https://github.com/user-attachments/assets/5b67c464-79d7-4567-ac57-ec5951bf17e0"/>
   </p>
   </details>
 
@@ -547,7 +559,12 @@
   > 의사별 휴무일 조회, 단건/일괄 등록, 일괄 삭제, 월별 초기화
 
   <p align="center">
-    <img src=""/>
+    근무규칙 설정
+    <img src="https://github.com/user-attachments/assets/fc74e6e3-7a5a-4753-8aa0-1dde83d93f34"/>
+    근무규칙 수정
+    <img src="https://github.com/user-attachments/assets/7a4cbb6f-f05a-44ee-a6a9-11c599a07743"/>
+    시간 블록
+    <img src="https://github.com/user-attachments/assets/bb785347-003b-4d5a-86f8-b5867359d0c2"/>
   </p>
   </details>
 
@@ -574,10 +591,10 @@
   <details>
   <summary><b>예약 관리</b></summary>
 
-  > 주간 캘린더 조회, 예약 승인/거절/취소, 진료 완료 처리, 슬롯 블록/해제
+  > 병원 예약 관리 필터
 
   <p align="center">
-    <img src=""/>
+    <img src="https://github.com/user-attachments/assets/fadd8163-a3fe-4690-91f2-398ba6a19a64"/>
   </p>
   </details>
 
@@ -587,7 +604,7 @@
   > 대시보드 요약, 의사별 랭킹, 일별 트렌드 조회
 
   <p align="center">
-    <img src=""/>
+    <img src="https://github.com/user-attachments/assets/04ac0305-9f8c-427a-b3f5-5fd84a2d6bde"/>
   </p>
   </details>
 
@@ -597,27 +614,7 @@
   > 병원 리뷰 확인, 리뷰 통계 조회
 
   <p align="center">
-    <img src=""/>
-  </p>
-  </details>
-
-  <details>
-  <summary><b>1:1 채팅</b></summary>
-
-  > 환자/관리자와의 실시간 1:1 채팅 (WebSocket STOMP)
-
-  <p align="center">
-    <img src=""/>
-  </p>
-  </details>
-
-  <details>
-  <summary><b>실시간 알림</b></summary>
-
-  > 새 접수/예약 발생 시 실시간 알림 (SSE)
-
-  <p align="center">
-    <img src=""/>
+    <img src="https://github.com/user-attachments/assets/6c256655-ad8e-49b1-a50f-42e2140fb4b0)"/>
   </p>
   </details>
 
@@ -630,20 +627,11 @@
   <details>
   <summary><b>로그인</b></summary>
 
-  > 서버 관리자 계정 로그인
+  > 서버 관리자 계정 로그인/로그아웃
 
   <p align="center">
-    <img src=""/>
-  </p>
-  </details>
-
-  <details>
-  <summary><b>대시보드</b></summary>
-
-  > 승인 대기 병원 수, 신고 리뷰 수 등 전체 현황 요약
-
-  <p align="center">
-    <img src=""/>
+    로그인/대시보드
+    <img src="https://github.com/user-attachments/assets/e56972d6-4a69-4231-a58a-65b969937153"/>
   </p>
   </details>
 
@@ -653,7 +641,14 @@
   > 신규 병원 가입 요청 검토 및 승인/거절
 
   <p align="center">
-    <img src=""/>
+    병원수락
+    <img src="https://github.com/user-attachments/assets/3ad04503-2a51-4ff5-a57a-e39204bf31a4"/>
+    병원거절
+    <img src="https://github.com/user-attachments/assets/1e66f0f2-46bd-43ec-b6df-875cddc4d416"/>
+    병원승인됨
+    <img src="https://github.com/user-attachments/assets/60c6ec7d-9cef-427d-8066-76d38b8f2e17"/>
+    병원거절됨
+    <img src="https://github.com/user-attachments/assets/76671b1e-2eda-491e-8387-59bfb6ce8b38"/>
   </p>
   </details>
 
@@ -663,7 +658,10 @@
   > 신고된 리뷰 확인 및 삭제 승인/신고 반려 처리
 
   <p align="center">
-    <img src=""/>
+    리뷰신고삭제
+    <img src="https://github.com/user-attachments/assets/2938f6a4-c43f-4cef-8239-a106cc860250"/>
+    리뷰신고반려
+    <img src="https://github.com/user-attachments/assets/55e998d5-0f6b-4ab1-ba6f-b51728fb0667"/>
   </p>
   </details>
 
@@ -673,17 +671,7 @@
   > 진료과목, 필터(야간/주말/편의시설 등) 카테고리 생성/삭제
 
   <p align="center">
-    <img src=""/>
-  </p>
-  </details>
-
-  <details>
-  <summary><b>1:1 채팅</b></summary>
-
-  > 병원 관리자와의 실시간 1:1 채팅 (WebSocket STOMP)
-
-  <p align="center">
-    <img src=""/>
+    <img src="https://github.com/user-attachments/assets/defdc37a-776f-4dd1-86dd-138d6791380e"/>
   </p>
   </details>
 
