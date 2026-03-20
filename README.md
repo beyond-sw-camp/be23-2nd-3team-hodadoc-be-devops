@@ -216,20 +216,26 @@
   <details>
   <summary><b>환자 자동 예약 등록</b></summary>
 
-  > 원하는 의사/날짜/시간대를 선택하여 자동으로 진료 예약을 등록합니다.
+  > 원하는 의사/날짜/시간대를 선택하여 진료 예약이 확정됩니다.
 
   <p align="center">
-    <img src=""/>
+    환자
+    <img src="https://github.com/user-attachments/assets/18486c82-738c-4faa-b0bf-107eb2c5e605"/>
+    병원
+    <img src="https://github.com/user-attachments/assets/c2b62e50-a634-4e01-b828-b68177380f59"/>
   </p>
   </details>
 
   <details>
   <summary><b>환자 수동 예약 등록</b></summary>
 
-  > 원하는 의사/날짜/시간대를 직접 선택하여 진료 예약을 등록합니다.
+  > 원하는 의사/날짜/시간대를 직접 선택하여 진료 예약이 확정되길 기다립니다.
 
   <p align="center">
-    <img src=""/>
+    환자
+    <img src="https://github.com/user-attachments/assets/409b170c-d9d9-4168-aa10-a829335921b9"/>
+    병원
+    <img src="https://github.com/user-attachments/assets/c489bf96-5233-40b7-a7ea-2fe661497e7c"/>
   </p>
   </details>
 
@@ -239,7 +245,10 @@
   > 환자가 직접 예약을 취소할 수 있습니다.
 
   <p align="center">
-    <img src=""/>
+    환자
+    <img src="https://github.com/user-attachments/assets/9e62bd05-57a5-443c-86f0-b8c8fbf0321b"/>
+    병원
+    <img src="https://github.com/user-attachments/assets/b6dd0fad-a454-445d-b919-b8fab575bfab"/>
   </p>
   </details>
 
@@ -249,7 +258,10 @@
   > 병원 관리자가 환자의 예약 요청을 거절할 수 있습니다.
 
   <p align="center">
-    <img src=""/>
+    환자
+    <img src="https://github.com/user-attachments/assets/e4f5c07c-71c4-4a1d-be0c-98eca7980863"/>
+    병원
+    <img src="https://github.com/user-attachments/assets/e4f5c07c-71c4-4a1d-be0c-98eca7980863"/>
   </p>
   </details>
 
@@ -258,8 +270,8 @@
 
   > 병원 관리자가 확정된 예약을 취소할 수 있습니다.
 
-  <p align="center">
-    <img src=""/>
+  <p align="center">ㅗㅓ
+    <img src="https://github.com/user-attachments/assets/0329cbf9-34de-4671-94ba-5ee772a5583f"/>
   </p>
   </details>
 
@@ -534,16 +546,6 @@
   > 소속 의사 정보 등록/수정/삭제
 
   <p align="center">
-    <img src=""/>
-  </p>
-  </details>
-
-  <details>
-  <summary><b>의사 스케줄 관리</b></summary>
-
-  > 의사별 근무 요일/시간, 예약 간격 설정
-
-  <p align="center">
     의사등록
     <img src="https://github.com/user-attachments/assets/8cae4776-e2a7-4056-bd9b-902324796e5c"/>
     의사수정
@@ -554,9 +556,9 @@
   </details>
 
   <details>
-  <summary><b>의사 휴무 관리</b></summary>
+  <summary><b>의사 스케줄 관리</b></summary>
 
-  > 의사별 휴무일 조회, 단건/일괄 등록, 일괄 삭제, 월별 초기화
+  > 의사별 근무 요일/시간, 예약 간격 설정
 
   <p align="center">
     근무규칙 설정
