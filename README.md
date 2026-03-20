@@ -261,7 +261,7 @@
     환자
     <img src="https://github.com/user-attachments/assets/e4f5c07c-71c4-4a1d-be0c-98eca7980863"/>
     병원
-    <img src="https://github.com/user-attachments/assets/e4f5c07c-71c4-4a1d-be0c-98eca7980863"/>
+    <img src="https://github.com/user-attachments/assets/b59a247d-2325-48c1-9629-e808d8b967c7"/>
   </p>
   </details>
 
@@ -270,8 +270,11 @@
 
   > 병원 관리자가 확정된 예약을 취소할 수 있습니다.
 
-  <p align="center">ㅗㅓ
+  <p align="center">
+    환자
     <img src="https://github.com/user-attachments/assets/0329cbf9-34de-4671-94ba-5ee772a5583f"/>
+    병원
+    <img src="https://github.com/user-attachments/assets/b1f5ed77-8fc9-4ed0-b2ed-a0e1ba4a0864"/>
   </p>
   </details>
 
