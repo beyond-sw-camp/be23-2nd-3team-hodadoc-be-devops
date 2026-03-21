@@ -220,9 +220,9 @@
 
   <p align="center">
     환자
-    <img src="https://github.com/user-attachments/assets/18486c82-738c-4faa-b0bf-107eb2c5e605"/>
+    <img src="https://github.com/user-attachments/assets/18486c82-738c-4faa-b0bf-107eb2c5e605" alt="환자 자동 예약 등록"/>
     병원
-    <img src="https://github.com/user-attachments/assets/c2b62e50-a634-4e01-b828-b68177380f59"/>
+    <img src="https://github.com/user-attachments/assets/c2b62e50-a634-4e01-b828-b68177380f59" alt="병원 자동 예약 등록"/>
   </p>
   </details>
 
@@ -233,9 +233,9 @@
 
   <p align="center">
     환자
-    <img src="https://github.com/user-attachments/assets/409b170c-d9d9-4168-aa10-a829335921b9"/>
+    <img src="https://github.com/user-attachments/assets/409b170c-d9d9-4168-aa10-a829335921b9" alt="환자 수동 예약 등록"/>
     병원
-    <img src="https://github.com/user-attachments/assets/c489bf96-5233-40b7-a7ea-2fe661497e7c"/>
+    <img src="https://github.com/user-attachments/assets/c489bf96-5233-40b7-a7ea-2fe661497e7c" alt="병원 수동 예약 등록"/>
   </p>
   </details>
 
@@ -246,9 +246,9 @@
 
   <p align="center">
     환자
-    <img src="https://github.com/user-attachments/assets/9e62bd05-57a5-443c-86f0-b8c8fbf0321b"/>
+    <img src="https://github.com/user-attachments/assets/9e62bd05-57a5-443c-86f0-b8c8fbf0321b" alt="환자 예약 취소"/>
     병원
-    <img src="https://github.com/user-attachments/assets/b6dd0fad-a454-445d-b919-b8fab575bfab"/>
+    <img src="https://github.com/user-attachments/assets/b6dd0fad-a454-445d-b919-b8fab575bfab" alt="병원 예약 취소 확인"/>
   </p>
   </details>
 
@@ -259,9 +259,9 @@
 
   <p align="center">
     환자
-    <img src="https://github.com/user-attachments/assets/e4f5c07c-71c4-4a1d-be0c-98eca7980863"/>
+    <img src="https://github.com/user-attachments/assets/e4f5c07c-71c4-4a1d-be0c-98eca7980863" alt="환자 예약 거절 알림"/>
     병원
-    <img src="https://github.com/user-attachments/assets/b59a247d-2325-48c1-9629-e808d8b967c7"/>
+    <img src="https://github.com/user-attachments/assets/b59a247d-2325-48c1-9629-e808d8b967c7" alt="병원 예약 거절"/>
   </p>
   </details>
 
@@ -272,9 +272,9 @@
 
   <p align="center">
     환자
-    <img src="https://github.com/user-attachments/assets/0329cbf9-34de-4671-94ba-5ee772a5583f"/>
+    <img src="https://github.com/user-attachments/assets/0329cbf9-34de-4671-94ba-5ee772a5583f" alt="환자 예약 취소 알림"/>
     병원
-    <img src="https://github.com/user-attachments/assets/b1f5ed77-8fc9-4ed0-b2ed-a0e1ba4a0864"/>
+    <img src="https://github.com/user-attachments/assets/b1f5ed77-8fc9-4ed0-b2ed-a0e1ba4a0864" alt="병원 예약 취소"/>
   </p>
   </details>
 
@@ -290,7 +290,7 @@
   > 원하는 병원에 당일 접수를 신청합니다. (운영시간/휴무일/공휴일 자동 체크)
 
   <p align="center">
-    <img src="https://github.com/user-attachments/assets/84d55824-ea03-4a91-b0ef-f19b00548038"/>
+    <img src="https://github.com/user-attachments/assets/84d55824-ea03-4a91-b0ef-f19b00548038" alt="환자 접수"/>
   </p>
   </details>
 
@@ -301,9 +301,9 @@
 
   <p align="center">
     접수마감
-    <img src="https://github.com/user-attachments/assets/4329a25e-bedf-4fbc-a378-4af7cd64a70b"/>
+    <img src="https://github.com/user-attachments/assets/4329a25e-bedf-4fbc-a378-4af7cd64a70b" alt="접수 마감"/>
     접수재개
-    <img src="https://github.com/user-attachments/assets/48d18ac3-2b9e-4fcf-9589-f90350657541"/>
+    <img src="https://github.com/user-attachments/assets/48d18ac3-2b9e-4fcf-9589-f90350657541" alt="접수 재개"/>
   </p>
   </details>
 
@@ -314,9 +314,9 @@
 
   <p align="center">
     접수마감
-    <img src="https://github.com/user-attachments/assets/ddc05498-faaa-4249-8a7e-25c3803ee3ad"/>
+    <img src="https://github.com/user-attachments/assets/ddc05498-faaa-4249-8a7e-25c3803ee3ad" alt="병원 접수 마감"/>
     접수재개
-    <img src="https://github.com/user-attachments/assets/e5223207-c50f-4d56-a9c4-5134f16da0f6"/>
+    <img src="https://github.com/user-attachments/assets/e5223207-c50f-4d56-a9c4-5134f16da0f6" alt="병원 접수 재개"/>
   </p>
   </details>
 
@@ -326,7 +326,7 @@
   > 병원 관리자가 접수를 확인하고 호출한다.
 
   <p align="center">
-    <img src="https://github.com/user-attachments/assets/278e4b4c-5ff3-4780-ad17-2784e0455810"/>
+    <img src="https://github.com/user-attachments/assets/278e4b4c-5ff3-4780-ad17-2784e0455810" alt="병원 관리자 접수"/>
   </p>
   </details>
 
@@ -342,8 +342,8 @@
   > 환자와 병원 관리자 간 실시간 1:1 채팅입니다. (WebSocket STOMP)
 
   <p align="center">
-    <img src="https://github.com/user-attachments/assets/36efef77-f979-43ff-b970-1f6cf6939beb"/>
-    <img src="https://github.com/user-attachments/assets/1d91d2ac-c3e0-4742-b3a7-50fedc3e5a32"/>
+    <img src="https://github.com/user-attachments/assets/36efef77-f979-43ff-b970-1f6cf6939beb" alt="환자-병원관리자 채팅 1"/>
+    <img src="https://github.com/user-attachments/assets/1d91d2ac-c3e0-4742-b3a7-50fedc3e5a32" alt="환자-병원관리자 채팅 2"/>
   </p>
   </details>
 
@@ -353,8 +353,8 @@
   > 환자와 서버 관리자 간 실시간 1:1 채팅입니다. (WebSocket STOMP)
 
   <p align="center">
-    <img src="https://github.com/user-attachments/assets/205415b0-ed98-4e92-a2e5-5f9e15a312c6"/>
-    <img src="https://github.com/user-attachments/assets/35053b7f-da51-4ae3-91ca-a908015dedab"/>
+    <img src="https://github.com/user-attachments/assets/205415b0-ed98-4e92-a2e5-5f9e15a312c6" alt="환자-서버관리자 채팅 1"/>
+    <img src="https://github.com/user-attachments/assets/35053b7f-da51-4ae3-91ca-a908015dedab" alt="환자-서버관리자 채팅 2"/>
   </p>
   </details>
 
@@ -364,8 +364,8 @@
   > 병원 관리자와 서버 관리자 간 실시간 1:1 채팅입니다. (WebSocket STOMP)
 
   <p align="center">
-    <img src="https://github.com/user-attachments/assets/8fa7ff55-61bd-4afb-a3ce-03a704f40c80"/>
-    <img src="https://github.com/user-attachments/assets/2a412ac8-ff56-4e89-b2d6-b788864d281b"/>
+    <img src="https://github.com/user-attachments/assets/8fa7ff55-61bd-4afb-a3ce-03a704f40c80" alt="병원관리자-서버관리자 채팅 1"/>
+    <img src="https://github.com/user-attachments/assets/2a412ac8-ff56-4e89-b2d6-b788864d281b" alt="병원관리자-서버관리자 채팅 2"/>
   </p>
   </details>
 
@@ -383,7 +383,7 @@
   > 카카오 OAuth를 통한 간편 로그인/회원가입
 
   <p align="center">
-    <img src="https://github.com/user-attachments/assets/1337c0cb-97df-486e-9c0e-64258c1d91d0"/>
+    <img src="https://github.com/user-attachments/assets/1337c0cb-97df-486e-9c0e-64258c1d91d0" alt="카카오 소셜 로그인"/>
   </p>
   </details>
 
@@ -393,7 +393,7 @@
   > 이름, 생년월일, 전화번호 등 진료에 필요한 기본 정보 등록
 
   <p align="center">
-    <img src="https://github.com/user-attachments/assets/dd8b262b-e3bd-47ac-858e-5aa31bd78a82"/>
+    <img src="https://github.com/user-attachments/assets/dd8b262b-e3bd-47ac-858e-5aa31bd78a82" alt="환자 정보 등록"/>
   </p>
   </details>
 
@@ -403,7 +403,7 @@
   > 병원명, 지역, 진료과목, 필터(야간/주말/편의시설 등) 기반 통합 검색
 
   <p align="center">
-    <img src="https://github.com/user-attachments/assets/94ee4188-879a-487f-be34-b32999255532"/>
+    <img src="https://github.com/user-attachments/assets/94ee4188-879a-487f-be34-b32999255532" alt="병원 검색"/>
   </p>
   </details>
 
@@ -413,7 +413,7 @@
   > 카카오맵 기반 주변 병원 위치 확인 및 거리순 정렬
 
   <p align="center">
-    <img src="https://github.com/user-attachments/assets/125582ff-b8ae-4faf-9bc3-40f2ddb89ad7"/>
+    <img src="https://github.com/user-attachments/assets/125582ff-b8ae-4faf-9bc3-40f2ddb89ad7" alt="지도 보기"/>
   </p>
   </details>
 
@@ -423,7 +423,7 @@
   > 병원 정보, 진료시간, 의사 목록, 리뷰 확인
 
   <p align="center">
-    <img src="https://github.com/user-attachments/assets/7476c8c9-3645-48b2-8a83-de8bf08d2575"/>
+    <img src="https://github.com/user-attachments/assets/7476c8c9-3645-48b2-8a83-de8bf08d2575" alt="병원 상세 조회"/>
   </p>
   </details>
 
@@ -434,11 +434,11 @@
 
   <p align="center">
     리뷰작성
-    <img src="https://github.com/user-attachments/assets/4851a61c-ec79-4e7f-a571-eff8c4a4660d"/>
+    <img src="https://github.com/user-attachments/assets/4851a61c-ec79-4e7f-a571-eff8c4a4660d" alt="리뷰 작성"/>
     리뷰수정
-    <img src="https://github.com/user-attachments/assets/5035569d-65aa-480b-b496-d9bcf744842a"/>
+    <img src="https://github.com/user-attachments/assets/5035569d-65aa-480b-b496-d9bcf744842a" alt="리뷰 수정"/>
     리뷰삭제
-    <img src="https://github.com/user-attachments/assets/a72635a4-0b7b-4472-97cb-0f4a4d061e5a"/>
+    <img src="https://github.com/user-attachments/assets/a72635a4-0b7b-4472-97cb-0f4a4d061e5a" alt="리뷰 삭제"/>
   </p>
   </details>
 
@@ -449,11 +449,11 @@
 
   <p align="center">
     리뷰신고
-    <img src="https://github.com/user-attachments/assets/2cc67911-62da-454c-953c-ffe5509ef58c"/>
+    <img src="https://github.com/user-attachments/assets/2cc67911-62da-454c-953c-ffe5509ef58c" alt="리뷰 신고"/>
     신고된 리뷰 평점 수정
-    <img src="https://github.com/user-attachments/assets/4654bcd6-5010-4805-a0c9-05f290f42cd1"/>
+    <img src="https://github.com/user-attachments/assets/4654bcd6-5010-4805-a0c9-05f290f42cd1" alt="신고된 리뷰 평점 수정"/>
     탈퇴한 계정의 리뷰
-    <img src="https://github.com/user-attachments/assets/6b8238a9-6293-4a29-9ab5-f16ca94cfdf6"/>
+    <img src="https://github.com/user-attachments/assets/6b8238a9-6293-4a29-9ab5-f16ca94cfdf6" alt="탈퇴한 계정의 리뷰"/>
   </p>
   </details>
 
@@ -463,9 +463,9 @@
   > 개인 정보 수정, 회원 탈퇴
   <p align="center">
     개인정보 수정
-    <img src="https://github.com/user-attachments/assets/7200bcef-c652-4170-8232-079fba38b4bd"/>
+    <img src="https://github.com/user-attachments/assets/7200bcef-c652-4170-8232-079fba38b4bd" alt="개인정보 수정"/>
     회원 탈퇴
-    <img src="https://github.com/user-attachments/assets/effe30fc-fd0b-49b2-bb2e-bda09283e663"/>
+    <img src="https://github.com/user-attachments/assets/effe30fc-fd0b-49b2-bb2e-bda09283e663" alt="회원 탈퇴"/>
   </p>
   </details>
 
@@ -481,7 +481,7 @@
   > 병원 관리자 계정 가입 및 로그인 (서버 관리자 승인 후 이용 가능)
 
   <p align="center">
-    <img src="https://github.com/user-attachments/assets/4db06005-0a61-44a8-a738-5ecada337360"/>
+    <img src="https://github.com/user-attachments/assets/4db06005-0a61-44a8-a738-5ecada337360" alt="병원 관리자 회원가입/로그인"/>
   </p>
   </details>
 
@@ -491,7 +491,7 @@
   > SMS 인증번호를 통한 본인 확인 및 비밀번호 재설정
 
   <p align="center">
-    <img src="https://github.com/user-attachments/assets/bb0649a8-1942-4b16-a976-0827f0e248ba"/>
+    <img src="https://github.com/user-attachments/assets/bb0649a8-1942-4b16-a976-0827f0e248ba" alt="SMS 인증/비밀번호 재설정"/>
   </p>
   </details>
 
@@ -502,11 +502,11 @@
 
   <p align="center">
     등록
-    <img src="https://github.com/user-attachments/assets/55b3db61-b658-4d83-b65a-701225d22fb0"/>
+    <img src="https://github.com/user-attachments/assets/55b3db61-b658-4d83-b65a-701225d22fb0" alt="병원 정보 등록"/>
     수정
-    <img src="https://github.com/user-attachments/assets/7e81cabe-15c6-410f-b9a7-de1d205f4dff"/>
+    <img src="https://github.com/user-attachments/assets/7e81cabe-15c6-410f-b9a7-de1d205f4dff" alt="병원 정보 수정"/>
     탈퇴
-    <img src="https://github.com/user-attachments/assets/61b3c6bd-6b10-4928-acc0-f542a5df9895"/>
+    <img src="https://github.com/user-attachments/assets/61b3c6bd-6b10-4928-acc0-f542a5df9895" alt="병원 탈퇴"/>
   </p>
   </details>
 
@@ -516,7 +516,7 @@
   > 요일별 진료시간, 점심시간, 휴무일 설정
 
   <p align="center">
-    <img src="https://github.com/user-attachments/assets/c3647343-8b03-4c9b-971d-f2be4d16659d"/>
+    <img src="https://github.com/user-attachments/assets/c3647343-8b03-4c9b-971d-f2be4d16659d" alt="운영시간 관리"/>
   </p>
   </details>
 
@@ -527,9 +527,9 @@
 
   <p align="center">
     접수마감
-    <img src="https://github.com/user-attachments/assets/ee284fb0-bdc8-4454-996a-b73076d06fa6"/>
+    <img src="https://github.com/user-attachments/assets/ee284fb0-bdc8-4454-996a-b73076d06fa6" alt="접수 마감"/>
     접수재개
-    <img src="https://github.com/user-attachments/assets/df4b1994-164c-4b1e-9574-5c2c23bfd118"/>
+    <img src="https://github.com/user-attachments/assets/df4b1994-164c-4b1e-9574-5c2c23bfd118" alt="접수 재개"/>
   </p>
   </details>
 
@@ -539,7 +539,7 @@
   > 예약 자동 승인/수동 승인 모드 전환
 
   <p align="center">
-    <img src="https://github.com/user-attachments/assets/5cec2abd-5e2e-4fda-87a9-7927e585d15e"/>
+    <img src="https://github.com/user-attachments/assets/5cec2abd-5e2e-4fda-87a9-7927e585d15e" alt="예약 승인 모드 변경"/>
   </p>
   </details>
 
@@ -550,11 +550,11 @@
 
   <p align="center">
     의사등록
-    <img src="https://github.com/user-attachments/assets/8cae4776-e2a7-4056-bd9b-902324796e5c"/>
+    <img src="https://github.com/user-attachments/assets/8cae4776-e2a7-4056-bd9b-902324796e5c" alt="의사 등록"/>
     의사수정
-    <img src="https://github.com/user-attachments/assets/b5fca44c-acf5-417b-af51-e5127d7f1575"/>
+    <img src="https://github.com/user-attachments/assets/b5fca44c-acf5-417b-af51-e5127d7f1575" alt="의사 수정"/>
     의사삭제
-    <img src="https://github.com/user-attachments/assets/5b67c464-79d7-4567-ac57-ec5951bf17e0"/>
+    <img src="https://github.com/user-attachments/assets/5b67c464-79d7-4567-ac57-ec5951bf17e0" alt="의사 삭제"/>
   </p>
   </details>
 
@@ -565,11 +565,11 @@
 
   <p align="center">
     근무규칙 설정
-    <img src="https://github.com/user-attachments/assets/fc74e6e3-7a5a-4753-8aa0-1dde83d93f34"/>
+    <img src="https://github.com/user-attachments/assets/fc74e6e3-7a5a-4753-8aa0-1dde83d93f34" alt="근무규칙 설정"/>
     근무규칙 수정
-    <img src="https://github.com/user-attachments/assets/7a4cbb6f-f05a-44ee-a6a9-11c599a07743"/>
+    <img src="https://github.com/user-attachments/assets/7a4cbb6f-f05a-44ee-a6a9-11c599a07743" alt="근무규칙 수정"/>
     시간 블록
-    <img src="https://github.com/user-attachments/assets/bb785347-003b-4d5a-86f8-b5867359d0c2"/>
+    <img src="https://github.com/user-attachments/assets/bb785347-003b-4d5a-86f8-b5867359d0c2" alt="시간 블록"/>
   </p>
   </details>
 
@@ -579,7 +579,7 @@
   > 병원에 공휴일 적용/제거
 
   <p align="center">
-    <img src=""/>
+    <img src="" alt="공휴일 관리"/>  <!-- ⚠️ 빈 src: 이미지 URL 추가 필요 -->
   </p>
   </details>
 
@@ -589,7 +589,7 @@
   > 당일 접수 목록 확인, 접수 상태 변경 (대기 → 진료중 → 완료)
 
   <p align="center">
-    <img src=""/>
+    <img src="" alt="접수 관리"/>  <!-- ⚠️ 빈 src: 이미지 URL 추가 필요 -->
   </p>
   </details>
 
@@ -599,7 +599,7 @@
   > 병원 예약 관리 필터
 
   <p align="center">
-    <img src="https://github.com/user-attachments/assets/fadd8163-a3fe-4690-91f2-398ba6a19a64"/>
+    <img src="https://github.com/user-attachments/assets/fadd8163-a3fe-4690-91f2-398ba6a19a64" alt="예약 관리"/>
   </p>
   </details>
 
@@ -609,7 +609,7 @@
   > 대시보드 요약, 의사별 랭킹, 일별 트렌드 조회
 
   <p align="center">
-    <img src="https://github.com/user-attachments/assets/04ac0305-9f8c-427a-b3f5-5fd84a2d6bde"/>
+    <img src="https://github.com/user-attachments/assets/04ac0305-9f8c-427a-b3f5-5fd84a2d6bde" alt="통계"/>
   </p>
   </details>
 
@@ -619,7 +619,7 @@
   > 병원 리뷰 확인, 리뷰 통계 조회
 
   <p align="center">
-    <img src="https://github.com/user-attachments/assets/6c256655-ad8e-49b1-a50f-42e2140fb4b0)"/>
+    <img src="https://github.com/user-attachments/assets/6c256655-ad8e-49b1-a50f-42e2140fb4b0" alt="리뷰 관리"/>
   </p>
   </details>
 
@@ -636,7 +636,7 @@
 
   <p align="center">
     로그인/대시보드
-    <img src="https://github.com/user-attachments/assets/e56972d6-4a69-4231-a58a-65b969937153"/>
+    <img src="https://github.com/user-attachments/assets/e56972d6-4a69-4231-a58a-65b969937153" alt="서버 관리자 로그인/대시보드"/>
   </p>
   </details>
 
@@ -647,13 +647,13 @@
 
   <p align="center">
     병원수락
-    <img src="https://github.com/user-attachments/assets/3ad04503-2a51-4ff5-a57a-e39204bf31a4"/>
+    <img src="https://github.com/user-attachments/assets/3ad04503-2a51-4ff5-a57a-e39204bf31a4" alt="병원 수락"/>
     병원거절
-    <img src="https://github.com/user-attachments/assets/1e66f0f2-46bd-43ec-b6df-875cddc4d416"/>
+    <img src="https://github.com/user-attachments/assets/1e66f0f2-46bd-43ec-b6df-875cddc4d416" alt="병원 거절"/>
     병원승인됨
-    <img src="https://github.com/user-attachments/assets/60c6ec7d-9cef-427d-8066-76d38b8f2e17"/>
+    <img src="https://github.com/user-attachments/assets/60c6ec7d-9cef-427d-8066-76d38b8f2e17" alt="병원 승인됨"/>
     병원거절됨
-    <img src="https://github.com/user-attachments/assets/76671b1e-2eda-491e-8387-59bfb6ce8b38"/>
+    <img src="https://github.com/user-attachments/assets/76671b1e-2eda-491e-8387-59bfb6ce8b38" alt="병원 거절됨"/>
   </p>
   </details>
 
@@ -664,9 +664,9 @@
 
   <p align="center">
     리뷰신고삭제
-    <img src="https://github.com/user-attachments/assets/2938f6a4-c43f-4cef-8239-a106cc860250"/>
+    <img src="https://github.com/user-attachments/assets/2938f6a4-c43f-4cef-8239-a106cc860250" alt="리뷰 신고 삭제"/>
     리뷰신고반려
-    <img src="https://github.com/user-attachments/assets/55e998d5-0f6b-4ab1-ba6f-b51728fb0667"/>
+    <img src="https://github.com/user-attachments/assets/55e998d5-0f6b-4ab1-ba6f-b51728fb0667" alt="리뷰 신고 반려"/>
   </p>
   </details>
 
@@ -676,7 +676,7 @@
   > 진료과목, 필터(야간/주말/편의시설 등) 카테고리 생성/삭제
 
   <p align="center">
-    <img src="https://github.com/user-attachments/assets/defdc37a-776f-4dd1-86dd-138d6791380e"/>
+    <img src="https://github.com/user-attachments/assets/defdc37a-776f-4dd1-86dd-138d6791380e" alt="기초 데이터 관리"/>
   </p>
   </details>
 
